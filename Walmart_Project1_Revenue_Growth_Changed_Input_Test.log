@@ -1,0 +1,33 @@
+Walmart Project 1 V2 Revenue-Growth Changed-Input Test Output Log
+Execution date: 2026-10-12
+Command: PYTHONDONTWRITEBYTECODE=1 python3 walmart_project1_revenue_growth_changed_input_test.py
+Model sources: walmart_project1_proforma_v2.py; project1_fcff_v2.py
+Pre-run record preserved unchanged: Walmart_Project1_Locked_Changed_Input_Record.md
+
+WALMART PROJECT 1 V2 -- REVENUE-GROWTH CHANGED-INPUT TEST
+Diagnostic output; not a final valuation or investment recommendation
+Fixed valuation inputs: WACC 7.00% | terminal growth 2.50% | cash $10,727M | borrowings $44,762M | finance leases $6,761M | diluted shares 8,022M
+Independent-input isolation: PASS -- only revenue_growth changed
+Year   Base growth   Changed growth   Change
+2027        4.30%            3.30%    -1.00%
+2028        4.20%            3.20%    -1.00%
+2029        4.00%            3.00%    -1.00%
+2030        3.80%            2.80%    -1.00%
+2031        3.50%            2.50%    -1.00%
+
+Year      Base FCFF   Changed FCFF    FCFF change
+2027  $ 12,928.580M  $ 12,459.870M     -$468.710M
+2028  $ 13,139.341M  $ 12,293.383M     -$845.958M
+2029  $ 14,382.705M  $ 13,125.566M   -$1,257.139M
+2030  $ 15,558.358M  $ 13,859.148M   -$1,699.209M
+2031  $ 16,504.648M  $ 14,341.673M   -$2,162.975M
+Base controls: PASS | max balance gap 0.000000M | minimum cash $10,272.8M | maximum revolver $0.0M
+Base failures: none
+Changed-input controls: PASS | max balance gap 0.000000M | minimum cash $8,626.0M | maximum revolver $0.0M
+Changed-input failures: none
+
+Valuation results
+Base: EV $326,976.203M | equity $286,180.203M | $35.674421/share | terminal share 81.975218%
+Changed-input: EV $286,807.335M | equity $246,011.335M | $30.667082/share | terminal share 81.208598%
+Changed-input difference from reported $35.67 baseline: -$5.002918/share
+Changed-input difference from unrounded actual base ($35.674421): -$5.007338/share
