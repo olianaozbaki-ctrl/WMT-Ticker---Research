@@ -1,0 +1,212 @@
+WALMART PROJECT 1 — COLD RUN LOG
+Run timestamp (UTC): 2026-10-12T23:39:40.907734+00:00
+Python: 3.12.5 (/Library/Frameworks/Python.framework/Versions/3.12/bin/python3)
+Platform: macOS-15.7.4-arm64-arm-64bit
+Dependency basis: Python standard library plus existing local V2/V3 project modules; no network access or third-party package installation.
+Harness command: python3 -B walmart_project1_cold_run.py
+Subprocess policy: each listed command ran in a fresh interpreter with bytecode writing disabled.
+
+### V3 pro-forma / balance-sheet and cash-flow controls
+Command: /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -B walmart_project1_proforma_v3.py
+Exit code: 0
+WALMART PROJECT 1 PRO FORMA V3 -- DIAGNOSTIC, NOT FINAL
+USD millions; net sales and membership/other income modeled separately.
+Year   Net sales   Other income      EBIT      D&A    Lease debt      Cash   Balance gap
+2027   736,788.8       7,040.2   33,223.9  14,203.0     6,573.0   10,303.6     0.000000
+2028   767,733.9       7,335.9   34,592.0  15,417.3     6,385.0   10,369.6     0.000000
+2029   798,443.2       7,629.4   35,917.1  16,709.8     6,197.0   11,442.5     0.000000
+2030   828,784.1       7,919.3   37,190.8  17,974.7     6,009.0   14,852.4     0.000000
+2031   857,791.5       8,196.5   38,215.8  19,214.7     5,821.0   18,612.1     0.000000
+Checks: PASS | balance 0.000000 | cash flow 0.000000 | debt roll 0.000000 | lease roll 0.000000 | minimum cash $10,303.6M | maximum revolver $0.0M
+
+### V3 FCFF base valuation / DCF controls
+Command: /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -B project1_fcff_v3.py
+Exit code: 0
+WALMART PROJECT 1 FCFF V3 -- DIAGNOSTIC, NOT FINAL
+Provisional WACC 7.00% | terminal growth 2.50% | USD millions
+Year       EBIT       D&A   CapEx  Lease capex   Change ONWC       FCFF
+2027   33,223.9  14,203.0  26,000.0        703.0        -534.3   13,118.4
+2028   34,592.0  15,417.3  28,000.0        703.0        -583.1   13,414.3
+2029   35,917.1  16,709.8  29,000.0        703.0        -578.1   14,702.3
+2030   37,190.8  17,974.7  30,000.0        703.0        -573.9   15,924.7
+2031   38,215.8  19,214.7  31,000.0        703.0        -548.3   16,912.9
+Statement checks: PASS | balance 0.000000 | cash flow 0.000000 | debt roll 0.000000 | lease roll 0.000000 | minimum cash $10,303.6M | maximum revolver $0.0M
+DCF checks: PASS
+V3 EV $334,855.6M | equity $291,806.6M | provisional $36.78/August 26 basic share | terminal share 82.03%
+Provisional bridge: +$11,529M cash -$47,746M debt proxy -$6,832M finance leases -$0M NCI +$0M investments
+
+V2-TO-V3 SEQUENTIAL RECONCILIATION
+Historical V2: $35.674421/share
+Revenue/net-sales formula: $38.603418/share | impact +2.928997 | confirmed formula correction
+D&A definition and asset roll-forward: $38.256078/share | impact -0.347340 | confirmed definition correction; split remains provisional
+Finance-lease forecast convention: $36.656641/share | impact -1.599437 | provisional roll-forward
+July 31 cash proxy: $36.756616/share | impact +0.099975 | source-backed date; excess-cash treatment provisional
+July 31 debt fair-value proxy: $36.384639/share | impact -0.371977 | source-backed date; not September 23
+July 31 finance-lease bridge: $36.375789/share | impact -0.008851 | source-backed date; not September 23
+August 26 basic spot shares: $36.780427/share | impact +0.404639 | source-backed basic count; dilution unresolved
+
+### Final downside, base, upside scenario run
+Command: /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -B walmart_project1_v3_final_scenarios.py
+Exit code: 0
+WALMART PROJECT 1 V3 CAUSAL SCENARIOS — DIAGNOSTIC, NOT FINAL
+WACC 7.00% | terminal growth 2.50% | V3 provisional bridge and August 26 basic shares
+
+DOWNSIDE — FEASIBLE
+Cause: Weaker consumer demand, competitive price pressure, slower digital/membership growth, and less favorable supplier terms.
+Year Revenue     EBIT      CapEx  Change ONWC      FCFF     Cash  Debt  Lease debt Revolver
+2027 740,263.2  32,435.5  26,000.0     2,160.3   9,828.5  8,000.0 41,220.0    6,573.0    986.3
+2028 767,652.9  33,528.6  28,000.0      -416.4  12,444.8  8,000.0 37,983.0    6,385.0  1,927.0
+2029 794,520.8  34,554.5  29,000.0      -408.2  13,503.7  8,000.0 34,594.0    6,197.0  2,125.5
+2030 820,740.0  35,507.4  30,000.0      -399.6  14,479.4  8,000.0 32,451.0    6,009.0    241.1
+2031 845,362.2  36,196.4  31,000.0      -375.1  15,215.1  9,811.7 29,851.0    5,821.0      0.0
+EV $300,069.364M | equity $257,020.364M | $32.3958/share | terminal share 82.35%
+Balance 0.00000000M | cash-flow 0.00000000M | debt roll 0.00000000M | finance-lease roll 0.00000000M | min cash $8,000.0M | max revolver $2,125.5M | statement controls PASS | DCF checks PASS
+
+BASE — FEASIBLE
+Cause: Current V3 operating forecast and financing policy, with no driver changes.
+Year Revenue     EBIT      CapEx  Change ONWC      FCFF     Cash  Debt  Lease debt Revolver
+2027 743,829.0  33,223.9  26,000.0      -534.3  13,118.4 10,303.6 41,220.0    6,573.0      0.0
+2028 775,069.8  34,592.0  28,000.0      -583.1  13,414.3 10,369.6 37,983.0    6,385.0      0.0
+2029 806,072.6  35,917.1  29,000.0      -578.1  14,702.3 11,442.5 34,594.0    6,197.0      0.0
+2030 836,703.4  37,190.8  30,000.0      -573.9  15,924.7 14,852.4 32,451.0    6,009.0      0.0
+2031 865,988.0  38,215.8  31,000.0      -548.3  16,912.9 18,612.1 29,851.0    5,821.0      0.0
+EV $334,855.577M | equity $291,806.577M | $36.7804/share | terminal share 82.03%
+Balance 0.00000000M | cash-flow 0.00000000M | debt roll 0.00000000M | finance-lease roll 0.00000000M | min cash $10,303.6M | max revolver $0.0M | statement controls PASS | DCF checks PASS
+
+UPSIDE — FEASIBLE
+Cause: Stronger digital/advertising and membership mix, resilient demand, productivity gains, and better inventory/supplier execution.
+Year Revenue     EBIT      CapEx  Change ONWC      FCFF     Cash  Debt  Lease debt Revolver
+2027 750,960.6  35,114.4  27,500.0    -9,022.0  21,533.4 18,718.7 41,220.0    6,573.0      0.0
+2028 790,010.6  36,927.5  29,500.0    -1,153.9  14,395.2 19,765.6 37,983.0    6,385.0      0.0
+2029 829,511.1  38,770.7  30,500.0    -1,165.7  16,223.5 22,359.7 34,594.0    6,197.0      0.0
+2030 869,327.7  40,629.0  31,500.0    -1,182.7  18,028.0 27,872.9 32,451.0    6,009.0      0.0
+2031 908,447.4  42,291.5  32,500.0    -1,161.0  19,609.2 34,328.8 29,851.0    5,821.0      0.0
+EV $392,133.308M | equity $349,084.308M | $43.9999/share | terminal share 81.21%
+Balance 0.00000000M | cash-flow 0.00000000M | debt roll 0.00000000M | finance-lease roll 0.00000000M | min cash $18,718.7M | max revolver $0.0M | statement controls PASS | DCF checks PASS
+
+Scenario feasibility does not verify source assumptions or valuation-date inputs.
+
+### Reverse DCF run
+Command: /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -B walmart_project1_reverse_dcf_v3.py
+Exit code: 0
+WALMART PROJECT 1 V3 REVERSE DCF -- DIAGNOSTIC, NOT FINAL
+Market close $110.53 on 2026-09-23
+V3 base $36.78042728
+Growth-path additive shift: 11.18448276%
+Solved growth path: 15.4845%, 15.3845%, 15.1845%, 14.9845%, 14.6845%
+Cash-opex ratio reduction: 17.19207532%
+Solved cash-opex ratios: 58.0079%, 57.8079%, 57.6079%, 57.4079%, 57.3079%
+
+REVENUE-GROWTH SOLVE
+Year  Revenue      EBIT   EBIT margin      FCFF      Cash  Revolver
+2027  823,592.6   38,309.6     4.6515%   18,462.2   15,647.5       0.0
+2028  950,298.1   45,898.1     4.8299%   23,749.3   26,048.4       0.0
+2029  1,094,595.9   54,754.3     5.0022%   31,057.6   43,476.6       0.0
+2030  1,258,615.4   65,008.4     5.1651%   39,438.5   70,400.3       0.0
+2031  1,443,436.6   76,511.0     5.3006%   48,753.4  106,000.5       0.0
+EV $919,965.972M | equity $876,916.972M | price $110.53000000 | terminal share 86.06%
+
+OPERATING-EFFICIENCY SOLVE
+Year  Revenue      EBIT   EBIT margin      FCFF      Cash  Revolver
+2027  743,829.0   66,101.6     8.8867%   37,941.0   35,126.3       0.0
+2028  775,069.8   68,982.5     8.9002%   39,379.2   61,157.1       0.0
+2029  806,072.6   71,820.6     8.9099%   41,809.4   89,337.1       0.0
+2030  836,703.4   74,529.8     8.9076%   44,115.6  120,937.9       0.0
+2031  865,988.0   76,935.4     8.8841%   46,146.2  153,930.9       0.0
+EV $919,965.972M | equity $876,916.972M | price $110.53000000 | terminal share 81.46%
+
+Validation: growth solve PASS | efficiency solve PASS | unchanged V3 statement and DCF controls PASS
+
+### Comparable valuation run
+Command: /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -B walmart_project1_comparables_v3.py
+Exit code: 0
+WALMART PROJECT 1 V3 COMPARABLE VALUATION -- DIAGNOSTIC, NOT FINAL
+Market-price date: 2026-09-23
+Walmart TTM EBIT $32,280.0M | TTM diluted EPS $2.76
+TGT: EV $80,934.4M | EV/EBIT 13.4353x | P/E 16.2095x | Walmart EV/EBIT value $49.24 | no-finance-lease bridge $50.10 | Walmart P/E value $44.74
+COST: EV $386,985.3M | EV/EBIT 34.4753x | P/E 45.5080x | Walmart EV/EBIT value $134.84 | no-finance-lease bridge $135.70 | Walmart P/E value $125.60
+EV/EBIT range $49.24-$134.84 | P/E range $44.74-$125.60
+Validation: PASS
+
+### Synthetic known-answer bridge and supplied V2 arithmetic
+Command: /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -B walmart_project1_equity_bridge_validation.py
+Exit code: 0
+WALMART PROJECT 1 -- INDEPENDENT EQUITY-BRIDGE VALIDATION
+USD millions except per-share amounts
+Model imports: none
+
+Synthetic known-answer test
+Formula: EV + cash - debt - finance leases - NCI
+Equity value: $800.000000M | expected $800.000000M | difference $0.000000M
+Value/share: $8.000000 | expected $8.000000 | difference $0.000000
+Assertions: PASS
+
+Walmart V2 supplied rounded-value reconciliation
+$326,976.2M + $10,727.0M - $44,762.0M - $6,761.0M - $0.0M
+Equity value: $286,180.200000M
+Value/share: $35.674420344
+Value/share rounded to cents: $35.67
+Equity-value arithmetic difference: $0.000000M
+Per-share difference from displayed $35.67: $+0.004420344 before rounding; $0.00 after rounding
+Assertions: PASS
+Failures: none
+
+### Locked changed-input test (V2 one-point growth reduction)
+Command: /Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -B walmart_project1_revenue_growth_changed_input_test.py
+Exit code: 0
+WALMART PROJECT 1 V2 -- REVENUE-GROWTH CHANGED-INPUT TEST
+Diagnostic output; not a final valuation or investment recommendation
+Fixed valuation inputs: WACC 7.00% | terminal growth 2.50% | cash $10,727M | borrowings $44,762M | finance leases $6,761M | diluted shares 8,022M
+Independent-input isolation: PASS -- only revenue_growth changed
+Year   Base growth   Changed growth   Change
+2027        4.30%            3.30%    -1.00%
+2028        4.20%            3.20%    -1.00%
+2029        4.00%            3.00%    -1.00%
+2030        3.80%            2.80%    -1.00%
+2031        3.50%            2.50%    -1.00%
+
+Year      Base FCFF   Changed FCFF    FCFF change
+2027  $ 12,928.580M  $ 12,459.870M     -$468.710M
+2028  $ 13,139.341M  $ 12,293.383M     -$845.958M
+2029  $ 14,382.705M  $ 13,125.566M   -$1,257.139M
+2030  $ 15,558.358M  $ 13,859.148M   -$1,699.209M
+2031  $ 16,504.648M  $ 14,341.673M   -$2,162.975M
+Base controls: PASS | max balance gap 0.000000M | minimum cash $10,272.8M | maximum revolver $0.0M
+Base failures: none
+Changed-input controls: PASS | max balance gap 0.000000M | minimum cash $8,626.0M | maximum revolver $0.0M
+Changed-input failures: none
+
+Valuation results
+Base: EV $326,976.203M | equity $286,180.203M | $35.674421/share | terminal share 81.975218%
+Changed-input: EV $286,807.335M | equity $246,011.335M | $30.667082/share | terminal share 81.208598%
+Changed-input difference from reported $35.67 baseline: -$5.002918/share
+Changed-input difference from unrounded actual base ($35.674421): -$5.007338/share
+
+### Protected-file integrity
+SHA-256 before/after:
+Walmart_Project1_Comparable_Valuation_Triangulation.md: fb13774887cc9fefd2f5ec51edfa3a52c01c69b203887f99be9fd44e3ffc0e7e -> fb13774887cc9fefd2f5ec51edfa3a52c01c69b203887f99be9fd44e3ffc0e7e
+Walmart_Project1_Edition_B_Investment_Memo.md: f609dd673a008de15d468306fa0a4558f74c38b47b3c6dde28c545cd2782979e -> f609dd673a008de15d468306fa0a4558f74c38b47b3c6dde28c545cd2782979e
+Walmart_Project1_Equity_Bridge_Review.md: c97022401c7ef93fe734c3d3cd461cfb4cebfcb6dfb9bfcd07005b472b346013 -> c97022401c7ef93fe734c3d3cd461cfb4cebfcb6dfb9bfcd07005b472b346013
+Walmart_Project1_Equity_Bridge_Validation.md: e410367372a2b32774cc63c7e15873b7f3f8f2965a351fa11d4e89705e40047c -> e410367372a2b32774cc63c7e15873b7f3f8f2965a351fa11d4e89705e40047c
+Walmart_Project1_Final_Scenarios_and_Valuation_Range.md: d176a316a2831c007deef81cf9441595bed9bb0b9954f26719279c7da2f3eed2 -> d176a316a2831c007deef81cf9441595bed9bb0b9954f26719279c7da2f3eed2
+Walmart_Project1_Final_Valuation_Assumptions.md: 853f85796005dbbb05bdc2e19686e3983c414e194e80b8fd1660b5b5c11ccc0b -> 853f85796005dbbb05bdc2e19686e3983c414e194e80b8fd1660b5b5c11ccc0b
+Walmart_Project1_Independent_Source_Check.md: 092135e1801c499d63c98cb9c4c5563a7c8bc444f3d241949f4b3f685a0b7340 -> 092135e1801c499d63c98cb9c4c5563a7c8bc444f3d241949f4b3f685a0b7340
+Walmart_Project1_Locked_Changed_Input_Record.md: 0f5111929a27008234671d7aabe6ffb3a12567bf6f38da74d62429579a2801c7 -> 0f5111929a27008234671d7aabe6ffb3a12567bf6f38da74d62429579a2801c7
+Walmart_Project1_Model_Correction_Plan.md: 10ba9f4281b1b061a826309bd713cc809bc6223f590b0620b2f1bcb769accce5 -> 10ba9f4281b1b061a826309bd713cc809bc6223f590b0620b2f1bcb769accce5
+Walmart_Project1_Model_V3_Changes.md: 1b6cd5ffbc8bf3edfe47bf235e045a3df69c8967408963ab9d0b45e5a8d41c63 -> 1b6cd5ffbc8bf3edfe47bf235e045a3df69c8967408963ab9d0b45e5a8d41c63
+Walmart_Project1_Reverse_DCF_Evidence.md: 8d3826404f3ea5d5ae2474f5e2e3457493d96238a84cb54510f5a89d4a68150e -> 8d3826404f3ea5d5ae2474f5e2e3457493d96238a84cb54510f5a89d4a68150e
+Walmart_Project1_WACC_Evidence.md: a4afc81a06f8f61bea2359696a95f32877c9d065ceec5d77ba3cdbfc68515bb7 -> a4afc81a06f8f61bea2359696a95f32877c9d065ceec5d77ba3cdbfc68515bb7
+Walmart_Project_1_Edition_A.md: 19250cf5e480350a8a38acfe29ee489d94adce1dd3a56491635cf63f873ce424 -> 19250cf5e480350a8a38acfe29ee489d94adce1dd3a56491635cf63f873ce424
+Walmart_Project_1_Edition_B.md: 5f39c0c37273398ad844aaf69f92d4ed9902416d9d19e82e9bf745b1d733097f -> 5f39c0c37273398ad844aaf69f92d4ed9902416d9d19e82e9bf745b1d733097f
+project1_fcff_v2.py: 57db30adc4859211660c5fb1caed7d0b0f1a55a3892188e790a3394b4eab7541 -> 57db30adc4859211660c5fb1caed7d0b0f1a55a3892188e790a3394b4eab7541
+project1_fcff_v3.py: 8c44a40f481b2facd713d0487371498f0241114cf416636e32215b6dfab20c12 -> 8c44a40f481b2facd713d0487371498f0241114cf416636e32215b6dfab20c12
+walmart_project1_comparables_v3.py: b20747694ab4deff4c8ce95b051d068ea9c90b86bfb33e9940c29b54fff11d8d -> b20747694ab4deff4c8ce95b051d068ea9c90b86bfb33e9940c29b54fff11d8d
+walmart_project1_equity_bridge_validation.py: b29d164e568e8bc5b56ff74432a3c1fef0d226fb99e66aa70eb18fede34709de -> b29d164e568e8bc5b56ff74432a3c1fef0d226fb99e66aa70eb18fede34709de
+walmart_project1_proforma_v2.py: 927f77f20a507eceef20e76b6db783d7989551cc8c5e7e7fa710a9be6858d40b -> 927f77f20a507eceef20e76b6db783d7989551cc8c5e7e7fa710a9be6858d40b
+walmart_project1_proforma_v3.py: cbeb9110708ba93c8daed83b96ca7e8ffa1225e0d2fe5b67ee8d548cb4da834f -> cbeb9110708ba93c8daed83b96ca7e8ffa1225e0d2fe5b67ee8d548cb4da834f
+walmart_project1_revenue_growth_changed_input_test.py: bff333960aa2194514f60de9070e8580c829b0820b6f16c941c88dbf05a44792 -> bff333960aa2194514f60de9070e8580c829b0820b6f16c941c88dbf05a44792
+walmart_project1_reverse_dcf_v3.py: a3fcad7bcb5d84339699ea15ce5eb42e53ca0e6fb542d66773994aafc6388178 -> a3fcad7bcb5d84339699ea15ce5eb42e53ca0e6fb542d66773994aafc6388178
+walmart_project1_v3_final_scenarios.py: 55f6c22c5ae1553bc7499cec40b014dbb8d952d776ed300134ecb70941ead054 -> 55f6c22c5ae1553bc7499cec40b014dbb8d952d776ed300134ecb70941ead054
+Integrity status: PASS — 23 protected files unchanged.
+Command status: PASS — all commands exited 0.
+Interpretation: process exit and model assertions test arithmetic/reproducibility only; they do not independently verify economic assumptions, filing transcription, data provenance, or valuation-date completeness.
