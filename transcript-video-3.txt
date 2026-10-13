@@ -1,0 +1,18 @@
+FIN 43900 Project 1 — Video 3 Transcript
+Investment Committee
+
+Welcome back to project one. This is the final video, video three, where I will be sharing my investment recommendation for Walmart. And what I chose is a Watch–Defer. I would not initiate a position based on the September 23rd, 2026 closing price of $110.53. I do believe that Walmart has like great online oper, great growth opportunities and like online operations and membership, but I did want to like kind of determine whether its future cash flows could
+
+support their market price. So, what I did was I developed a 5-year financial model covering fiscal years 2027 through 2031. I used their provisional 7% WACC rate and 2.5% terminal growth rate. And my base case DCF just resulted in $36.78 per share for the basic share. But my broader reference zone was $31 to $49 per share, but I do consider that more provisional just because there are several assumptions that still need verification. But just moving on to like the scenario that
+
+demonstrates like the valuation the V3. this is just like operating assumptions and how it affected the valuation of Walmart. So this is just changing like revenue growth, margins, capital spending and also working capital rather than just like entering target stock prices. But the downside of this was like there are weaker performance in like the downside and then the upside is assuming like stronger results. So just to demonstrate this a little further
+
+I can open terminal and just run the command that I used. So this is a scenario where it's demonstrating like how our operating assumptions are affecting Walmart's valuation. So the downside scenario here just produced $32.40 per share. The base case produced $36.78 and then the upside is $44 per share. So even in like the upside scenario, the like estimated value is still below Walmart's reported market price of $110.53. And this is just
+
+supporting the Watch–Defer recommendation even more. Although I wouldn't consider these values like final without verifying the underlying assumptions, the watch defer recommendation is still in place. So just moving back to the GitHub using like reverse DCF evidence I did this just to understand what performance my model would require to support the ultimate market price of Walmart. And these results just showed that Walmart would need approximately 15%
+
+annual revenue growth over the forecast period compared to my base assumptions of 3.5% to 4.3%. But without like stronger evidence supporting that level of growth, I wouldn't recommend initiating a position with them. So just moving back to like this decision, there are like a lot of limitations to my valuations. So the WACC is still provisional as I said approximately 82% of the base case enterprise value comes from the terminal value and also some balance sheet and
+
+share count inputs come from like different dates. But my upside scenario also includes like about $9 billion in working capital released without like a separate operating plan that would support it. And these uncertainties could just really impact the overall valuation of Walmart. But overall, I would say that my ultimate decision is Watch–Defer still. I would reconsider this in the future, maybe if there was like more verification on valuation inputs and like if there
+
+was a trend in seeing stronger evidence of like sustainable growth and margins. But until then, I think that I would continue like monitoring Walmart rather than initiating a position with them and just staying with that Watch–Defer position. So yeah, thank you.

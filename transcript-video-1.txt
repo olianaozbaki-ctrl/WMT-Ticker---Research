@@ -1,0 +1,14 @@
+FIN 43900 Project 1 — Video 1 Transcript
+Research Evolution
+
+Hi, my name is Oliana Ozbaki and today I'll be going through my project one. So for project one, I analyzed Walmart and initially recommended a Watch–Defer method for them. I started with Walmart's annual report but didn't complete a valuation or determine whether like its future performance supported the stock price yet. So that's where this kind of led me into Edition A where I kind of ran like everything, the data and analysis, and then my partner in
+
+class kind of questioned, what could cause Walmart sales and profits to decline in the future? And this led me to consider like the downside risks. So that's where for Edition B, I built a 5-year financial model, completed the discounted cash flow, DCF, and compared Walmart with other retailers. So, my valuations here ranged from $32.40 all the way to $44 per share. And just because all of the DCFs were below the reported market price of Walmart, $110.53,
+
+that is why I kept the Watch–Defer because the like additional valuation evidence that I had supported my original concerns, rather than giving me like a reason to initiate an investment. So now this is where I kind of used my resources and AI. I used ChatGPT and Codex throughout this to help me build and review my financial models. So one AI assisted output that I had was my V2 discounted cash flow model where I checked by changing like a major assumption rather
+
+than just automatically trusting the result that AI had. So that is shown in this model where I predicted that lowering revenue growth would decrease the valuation. So I recorded this before actually testing the model, and then AI did help me refine the wording a little bit. So after reducing the annual revenue growth by one percentage point across five different forecast years, the V2 value decreased from $35.67 to $30.67 per share. So a $5 decrease and this
+
+is where I accepted that like the model responded correctly but the qualified but qualified like the valuation since the like underlying financial assumptions still needed that verification aspect. So that's where like overall, something that I kind of realized was that I needed to keep my Watch–Defer recommendation because in Edition A, I identified my research questions, and then Edition B provided like financial evidence and tests. But my biggest takeaway here was that
+
+model can pass its calculations, without proving all of its assumptions are correct. So thank you.
