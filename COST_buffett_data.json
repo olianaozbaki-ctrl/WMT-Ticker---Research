@@ -1,0 +1,269 @@
+{
+  "ticker": "COST",
+  "company_name": "COSTCO WHOLESALE CORP /NEW",
+  "cik": 909832,
+  "units": "USD; displayed financial statement values are USD millions",
+  "rows": [
+    {
+      "fiscal_year_end": "2022-08-28",
+      "revenue": {
+        "value": 226954000000,
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "filed": "2024-10-09",
+        "accession": "0000909832-24-000049",
+        "start": "2021-08-30",
+        "end": "2022-08-28"
+      },
+      "net_income": {
+        "value": 5844000000,
+        "tag": "NetIncomeLoss",
+        "filed": "2024-10-09",
+        "accession": "0000909832-24-000049",
+        "start": "2021-08-30",
+        "end": "2022-08-28"
+      },
+      "operating_cash_flow": {
+        "value": 7392000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "filed": "2024-10-09",
+        "accession": "0000909832-24-000049",
+        "start": "2021-08-30",
+        "end": "2022-08-28"
+      },
+      "capital_spending": {
+        "value": 3891000000,
+        "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "filed": "2024-10-09",
+        "accession": "0000909832-24-000049",
+        "start": "2021-08-30",
+        "end": "2022-08-28"
+      },
+      "equity": {
+        "value": 20642000000,
+        "tag": "StockholdersEquity",
+        "filed": "2023-10-11",
+        "accession": "0000909832-23-000042",
+        "start": null,
+        "end": "2022-08-28"
+      },
+      "roe": {
+        "value": 0.2831121015405484,
+        "tag": "calculated: NetIncomeLoss / StockholdersEquity"
+      },
+      "owner_earnings": {
+        "value": 3501000000,
+        "tag": "calculated: NetCashProvidedByUsedInOperatingActivities - PaymentsToAcquirePropertyPlantAndEquipment"
+      }
+    },
+    {
+      "fiscal_year_end": "2023-09-03",
+      "revenue": {
+        "value": 242290000000,
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "filed": "2025-10-08",
+        "accession": "0000909832-25-000101",
+        "start": "2022-08-29",
+        "end": "2023-09-03"
+      },
+      "net_income": {
+        "value": 6292000000,
+        "tag": "NetIncomeLoss",
+        "filed": "2025-10-08",
+        "accession": "0000909832-25-000101",
+        "start": "2022-08-29",
+        "end": "2023-09-03"
+      },
+      "operating_cash_flow": {
+        "value": 11068000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "filed": "2025-10-08",
+        "accession": "0000909832-25-000101",
+        "start": "2022-08-29",
+        "end": "2023-09-03"
+      },
+      "capital_spending": {
+        "value": 4323000000,
+        "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "filed": "2025-10-08",
+        "accession": "0000909832-25-000101",
+        "start": "2022-08-29",
+        "end": "2023-09-03"
+      },
+      "equity": {
+        "value": 25058000000,
+        "tag": "StockholdersEquity",
+        "filed": "2026-10-07",
+        "accession": "0000909832-26-000093",
+        "start": null,
+        "end": "2023-09-03"
+      },
+      "roe": {
+        "value": 0.2510974539069359,
+        "tag": "calculated: NetIncomeLoss / StockholdersEquity"
+      },
+      "owner_earnings": {
+        "value": 6745000000,
+        "tag": "calculated: NetCashProvidedByUsedInOperatingActivities - PaymentsToAcquirePropertyPlantAndEquipment"
+      }
+    },
+    {
+      "fiscal_year_end": "2024-09-01",
+      "revenue": {
+        "value": 254453000000,
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "filed": "2026-10-07",
+        "accession": "0000909832-26-000093",
+        "start": "2023-09-04",
+        "end": "2024-09-01"
+      },
+      "net_income": {
+        "value": 7367000000,
+        "tag": "NetIncomeLoss",
+        "filed": "2026-10-07",
+        "accession": "0000909832-26-000093",
+        "start": "2023-09-04",
+        "end": "2024-09-01"
+      },
+      "operating_cash_flow": {
+        "value": 11339000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "filed": "2026-10-07",
+        "accession": "0000909832-26-000093",
+        "start": "2023-09-04",
+        "end": "2024-09-01"
+      },
+      "capital_spending": {
+        "value": 4710000000,
+        "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "filed": "2026-10-07",
+        "accession": "0000909832-26-000093",
+        "start": "2023-09-04",
+        "end": "2024-09-01"
+      },
+      "equity": {
+        "value": 23622000000,
+        "tag": "StockholdersEquity",
+        "filed": "2026-10-07",
+        "accession": "0000909832-26-000093",
+        "start": null,
+        "end": "2024-09-01"
+      },
+      "roe": {
+        "value": 0.3118702904072475,
+        "tag": "calculated: NetIncomeLoss / StockholdersEquity"
+      },
+      "owner_earnings": {
+        "value": 6629000000,
+        "tag": "calculated: NetCashProvidedByUsedInOperatingActivities - PaymentsToAcquirePropertyPlantAndEquipment"
+      }
+    },
+    {
+      "fiscal_year_end": "2025-08-31",
+      "revenue": {
+        "value": 275235000000,
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "filed": "2026-10-07",
+        "accession": "0000909832-26-000093",
+        "start": "2024-09-02",
+        "end": "2025-08-31"
+      },
+      "net_income": {
+        "value": 8099000000,
+        "tag": "NetIncomeLoss",
+        "filed": "2026-10-07",
+        "accession": "0000909832-26-000093",
+        "start": "2024-09-02",
+        "end": "2025-08-31"
+      },
+      "operating_cash_flow": {
+        "value": 13335000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "filed": "2026-10-07",
+        "accession": "0000909832-26-000093",
+        "start": "2024-09-02",
+        "end": "2025-08-31"
+      },
+      "capital_spending": {
+        "value": 5498000000,
+        "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "filed": "2026-10-07",
+        "accession": "0000909832-26-000093",
+        "start": "2024-09-02",
+        "end": "2025-08-31"
+      },
+      "equity": {
+        "value": 29164000000,
+        "tag": "StockholdersEquity",
+        "filed": "2026-10-07",
+        "accession": "0000909832-26-000093",
+        "start": null,
+        "end": "2025-08-31"
+      },
+      "roe": {
+        "value": 0.27770539020710466,
+        "tag": "calculated: NetIncomeLoss / StockholdersEquity"
+      },
+      "owner_earnings": {
+        "value": 7837000000,
+        "tag": "calculated: NetCashProvidedByUsedInOperatingActivities - PaymentsToAcquirePropertyPlantAndEquipment"
+      }
+    },
+    {
+      "fiscal_year_end": "2026-08-30",
+      "revenue": {
+        "value": 303154000000,
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "filed": "2026-10-07",
+        "accession": "0000909832-26-000093",
+        "start": "2025-09-01",
+        "end": "2026-08-30"
+      },
+      "net_income": {
+        "value": 9226000000,
+        "tag": "NetIncomeLoss",
+        "filed": "2026-10-07",
+        "accession": "0000909832-26-000093",
+        "start": "2025-09-01",
+        "end": "2026-08-30"
+      },
+      "operating_cash_flow": {
+        "value": 15817000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "filed": "2026-10-07",
+        "accession": "0000909832-26-000093",
+        "start": "2025-09-01",
+        "end": "2026-08-30"
+      },
+      "capital_spending": {
+        "value": 6435000000,
+        "tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+        "filed": "2026-10-07",
+        "accession": "0000909832-26-000093",
+        "start": "2025-09-01",
+        "end": "2026-08-30"
+      },
+      "equity": {
+        "value": 35803000000,
+        "tag": "StockholdersEquity",
+        "filed": "2026-10-07",
+        "accession": "0000909832-26-000093",
+        "start": null,
+        "end": "2026-08-30"
+      },
+      "roe": {
+        "value": 0.25768790324833113,
+        "tag": "calculated: NetIncomeLoss / StockholdersEquity"
+      },
+      "owner_earnings": {
+        "value": 9382000000,
+        "tag": "calculated: NetCashProvidedByUsedInOperatingActivities - PaymentsToAcquirePropertyPlantAndEquipment"
+      }
+    }
+  ],
+  "checks": {
+    "roe_15_every_year": "pass",
+    "positive_owner_earnings_every_year": "pass",
+    "owner_earnings_growth": "pass"
+  },
+  "source": "SEC EDGAR company facts; 10-K only"
+}
