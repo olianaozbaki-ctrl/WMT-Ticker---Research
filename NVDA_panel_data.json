@@ -1,0 +1,491 @@
+{
+  "ticker": "NVDA",
+  "company_name": "NVIDIA CORP",
+  "cik": 1045810,
+  "units": "USD; displayed financial statement values are USD millions",
+  "rows": [
+    {
+      "fiscal_year_end": "2022-01-30",
+      "revenue": {
+        "value": 26914000000,
+        "tag": "RevenueFromContractWithCustomerExcludingAssessedTax",
+        "filed": "2022-03-18",
+        "accession": "0001045810-22-000036",
+        "start": "2021-02-01",
+        "end": "2022-01-30"
+      },
+      "net_income": {
+        "value": 9752000000,
+        "tag": "NetIncomeLoss",
+        "filed": "2024-02-21",
+        "accession": "0001045810-24-000029",
+        "start": "2021-02-01",
+        "end": "2022-01-30"
+      },
+      "operating_cash_flow": {
+        "value": 9108000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "filed": "2024-02-21",
+        "accession": "0001045810-24-000029",
+        "start": "2021-02-01",
+        "end": "2022-01-30"
+      },
+      "capital_spending": {
+        "value": 976000000,
+        "tag": "PaymentsToAcquireProductiveAssets",
+        "filed": "2024-02-21",
+        "accession": "0001045810-24-000029",
+        "start": "2021-02-01",
+        "end": "2022-01-30"
+      },
+      "equity": {
+        "value": 26612000000,
+        "tag": "StockholdersEquity",
+        "filed": "2025-02-26",
+        "accession": "0001045810-25-000023",
+        "start": null,
+        "end": "2022-01-30"
+      },
+      "roe": {
+        "value": 0.3664512250112731,
+        "tag": "calculated: NetIncomeLoss / StockholdersEquity"
+      },
+      "owner_earnings": {
+        "value": 8132000000,
+        "tag": "calculated: NetCashProvidedByUsedInOperatingActivities - PaymentsToAcquireProductiveAssets"
+      },
+      "liabilities": {
+        "value": 17575000000,
+        "tag": "Liabilities",
+        "filed": "2023-02-24",
+        "accession": "0001045810-23-000017",
+        "start": null,
+        "end": "2022-01-30"
+      },
+      "assets_current": {
+        "value": 28829000000,
+        "tag": "AssetsCurrent",
+        "filed": "2023-02-24",
+        "accession": "0001045810-23-000017",
+        "start": null,
+        "end": "2022-01-30"
+      },
+      "liabilities_current": {
+        "value": 4335000000,
+        "tag": "LiabilitiesCurrent",
+        "filed": "2023-02-24",
+        "accession": "0001045810-23-000017",
+        "start": null,
+        "end": "2022-01-30"
+      },
+      "research_and_development": {
+        "value": 5268000000,
+        "tag": "ResearchAndDevelopmentExpense",
+        "filed": "2024-02-21",
+        "accession": "0001045810-24-000029",
+        "start": "2021-02-01",
+        "end": "2022-01-30"
+      },
+      "current_ratio": {
+        "value": 6.650288350634371,
+        "tag": "calculated: AssetsCurrent / LiabilitiesCurrent"
+      },
+      "liabilities_to_equity": {
+        "value": 0.6604163535247257,
+        "tag": "calculated: Liabilities / StockholdersEquity"
+      }
+    },
+    {
+      "fiscal_year_end": "2023-01-29",
+      "revenue": {
+        "value": 26974000000,
+        "tag": "Revenues",
+        "filed": "2025-02-26",
+        "accession": "0001045810-25-000023",
+        "start": "2022-01-31",
+        "end": "2023-01-29"
+      },
+      "net_income": {
+        "value": 4368000000,
+        "tag": "NetIncomeLoss",
+        "filed": "2025-02-26",
+        "accession": "0001045810-25-000023",
+        "start": "2022-01-31",
+        "end": "2023-01-29"
+      },
+      "operating_cash_flow": {
+        "value": 5641000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "filed": "2025-02-26",
+        "accession": "0001045810-25-000023",
+        "start": "2022-01-31",
+        "end": "2023-01-29"
+      },
+      "capital_spending": {
+        "value": 1833000000,
+        "tag": "PaymentsToAcquireProductiveAssets",
+        "filed": "2025-02-26",
+        "accession": "0001045810-25-000023",
+        "start": "2022-01-31",
+        "end": "2023-01-29"
+      },
+      "equity": {
+        "value": 22101000000,
+        "tag": "StockholdersEquity",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": null,
+        "end": "2023-01-29"
+      },
+      "roe": {
+        "value": 0.19763811592235644,
+        "tag": "calculated: NetIncomeLoss / StockholdersEquity"
+      },
+      "owner_earnings": {
+        "value": 3808000000,
+        "tag": "calculated: NetCashProvidedByUsedInOperatingActivities - PaymentsToAcquireProductiveAssets"
+      },
+      "liabilities": {
+        "value": 19081000000,
+        "tag": "Liabilities",
+        "filed": "2024-02-21",
+        "accession": "0001045810-24-000029",
+        "start": null,
+        "end": "2023-01-29"
+      },
+      "assets_current": {
+        "value": 23073000000,
+        "tag": "AssetsCurrent",
+        "filed": "2024-02-21",
+        "accession": "0001045810-24-000029",
+        "start": null,
+        "end": "2023-01-29"
+      },
+      "liabilities_current": {
+        "value": 6563000000,
+        "tag": "LiabilitiesCurrent",
+        "filed": "2024-02-21",
+        "accession": "0001045810-24-000029",
+        "start": null,
+        "end": "2023-01-29"
+      },
+      "research_and_development": {
+        "value": 7339000000,
+        "tag": "ResearchAndDevelopmentExpense",
+        "filed": "2025-02-26",
+        "accession": "0001045810-25-000023",
+        "start": "2022-01-31",
+        "end": "2023-01-29"
+      },
+      "current_ratio": {
+        "value": 3.515617857687033,
+        "tag": "calculated: AssetsCurrent / LiabilitiesCurrent"
+      },
+      "liabilities_to_equity": {
+        "value": 0.8633545993393964,
+        "tag": "calculated: Liabilities / StockholdersEquity"
+      }
+    },
+    {
+      "fiscal_year_end": "2024-01-28",
+      "revenue": {
+        "value": 60922000000,
+        "tag": "Revenues",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": "2023-01-30",
+        "end": "2024-01-28"
+      },
+      "net_income": {
+        "value": 29760000000,
+        "tag": "NetIncomeLoss",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": "2023-01-30",
+        "end": "2024-01-28"
+      },
+      "operating_cash_flow": {
+        "value": 28090000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": "2023-01-30",
+        "end": "2024-01-28"
+      },
+      "capital_spending": {
+        "value": 1069000000,
+        "tag": "PaymentsToAcquireProductiveAssets",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": "2023-01-30",
+        "end": "2024-01-28"
+      },
+      "equity": {
+        "value": 42978000000,
+        "tag": "StockholdersEquity",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": null,
+        "end": "2024-01-28"
+      },
+      "roe": {
+        "value": 0.6924472986178976,
+        "tag": "calculated: NetIncomeLoss / StockholdersEquity"
+      },
+      "owner_earnings": {
+        "value": 27021000000,
+        "tag": "calculated: NetCashProvidedByUsedInOperatingActivities - PaymentsToAcquireProductiveAssets"
+      },
+      "liabilities": {
+        "value": 22750000000,
+        "tag": "Liabilities",
+        "filed": "2025-02-26",
+        "accession": "0001045810-25-000023",
+        "start": null,
+        "end": "2024-01-28"
+      },
+      "assets_current": {
+        "value": 44345000000,
+        "tag": "AssetsCurrent",
+        "filed": "2025-02-26",
+        "accession": "0001045810-25-000023",
+        "start": null,
+        "end": "2024-01-28"
+      },
+      "liabilities_current": {
+        "value": 10631000000,
+        "tag": "LiabilitiesCurrent",
+        "filed": "2025-02-26",
+        "accession": "0001045810-25-000023",
+        "start": null,
+        "end": "2024-01-28"
+      },
+      "research_and_development": {
+        "value": 8675000000,
+        "tag": "ResearchAndDevelopmentExpense",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": "2023-01-30",
+        "end": "2024-01-28"
+      },
+      "current_ratio": {
+        "value": 4.171291505973097,
+        "tag": "calculated: AssetsCurrent / LiabilitiesCurrent"
+      },
+      "liabilities_to_equity": {
+        "value": 0.529340592861464,
+        "tag": "calculated: Liabilities / StockholdersEquity"
+      }
+    },
+    {
+      "fiscal_year_end": "2025-01-26",
+      "revenue": {
+        "value": 130497000000,
+        "tag": "Revenues",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": "2024-01-29",
+        "end": "2025-01-26"
+      },
+      "net_income": {
+        "value": 72880000000,
+        "tag": "NetIncomeLoss",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": "2024-01-29",
+        "end": "2025-01-26"
+      },
+      "operating_cash_flow": {
+        "value": 64089000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": "2024-01-29",
+        "end": "2025-01-26"
+      },
+      "capital_spending": {
+        "value": 3236000000,
+        "tag": "PaymentsToAcquireProductiveAssets",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": "2024-01-29",
+        "end": "2025-01-26"
+      },
+      "equity": {
+        "value": 79327000000,
+        "tag": "StockholdersEquity",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": null,
+        "end": "2025-01-26"
+      },
+      "roe": {
+        "value": 0.9187288060811577,
+        "tag": "calculated: NetIncomeLoss / StockholdersEquity"
+      },
+      "owner_earnings": {
+        "value": 60853000000,
+        "tag": "calculated: NetCashProvidedByUsedInOperatingActivities - PaymentsToAcquireProductiveAssets"
+      },
+      "liabilities": {
+        "value": 32274000000,
+        "tag": "Liabilities",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": null,
+        "end": "2025-01-26"
+      },
+      "assets_current": {
+        "value": 80126000000,
+        "tag": "AssetsCurrent",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": null,
+        "end": "2025-01-26"
+      },
+      "liabilities_current": {
+        "value": 18047000000,
+        "tag": "LiabilitiesCurrent",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": null,
+        "end": "2025-01-26"
+      },
+      "research_and_development": {
+        "value": 12914000000,
+        "tag": "ResearchAndDevelopmentExpense",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": "2024-01-29",
+        "end": "2025-01-26"
+      },
+      "current_ratio": {
+        "value": 4.439851498864077,
+        "tag": "calculated: AssetsCurrent / LiabilitiesCurrent"
+      },
+      "liabilities_to_equity": {
+        "value": 0.4068476054811098,
+        "tag": "calculated: Liabilities / StockholdersEquity"
+      }
+    },
+    {
+      "fiscal_year_end": "2026-01-25",
+      "revenue": {
+        "value": 215938000000,
+        "tag": "Revenues",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": "2025-01-27",
+        "end": "2026-01-25"
+      },
+      "net_income": {
+        "value": 120067000000,
+        "tag": "NetIncomeLoss",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": "2025-01-27",
+        "end": "2026-01-25"
+      },
+      "operating_cash_flow": {
+        "value": 102718000000,
+        "tag": "NetCashProvidedByUsedInOperatingActivities",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": "2025-01-27",
+        "end": "2026-01-25"
+      },
+      "capital_spending": {
+        "value": 6042000000,
+        "tag": "PaymentsToAcquireProductiveAssets",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": "2025-01-27",
+        "end": "2026-01-25"
+      },
+      "equity": {
+        "value": 157293000000,
+        "tag": "StockholdersEquity",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": null,
+        "end": "2026-01-25"
+      },
+      "roe": {
+        "value": 0.7633333969089534,
+        "tag": "calculated: NetIncomeLoss / StockholdersEquity"
+      },
+      "owner_earnings": {
+        "value": 96676000000,
+        "tag": "calculated: NetCashProvidedByUsedInOperatingActivities - PaymentsToAcquireProductiveAssets"
+      },
+      "liabilities": {
+        "value": 49510000000,
+        "tag": "Liabilities",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": null,
+        "end": "2026-01-25"
+      },
+      "assets_current": {
+        "value": 125605000000,
+        "tag": "AssetsCurrent",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": null,
+        "end": "2026-01-25"
+      },
+      "liabilities_current": {
+        "value": 32163000000,
+        "tag": "LiabilitiesCurrent",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": null,
+        "end": "2026-01-25"
+      },
+      "research_and_development": {
+        "value": 18497000000,
+        "tag": "ResearchAndDevelopmentExpense",
+        "filed": "2026-02-25",
+        "accession": "0001045810-26-000021",
+        "start": "2025-01-27",
+        "end": "2026-01-25"
+      },
+      "current_ratio": {
+        "value": 3.905263812455306,
+        "tag": "calculated: AssetsCurrent / LiabilitiesCurrent"
+      },
+      "liabilities_to_equity": {
+        "value": 0.3147628947251308,
+        "tag": "calculated: Liabilities / StockholdersEquity"
+      }
+    }
+  ],
+  "checks": {
+    "roe_15_every_year": "pass",
+    "positive_owner_earnings_every_year": "pass",
+    "owner_earnings_growth": "pass"
+  },
+  "source": "SEC EDGAR company facts; 10-K only",
+  "wood_framework_note": "Course operational interpretation; not official ARK Invest rules",
+  "panel_checks": {
+    "Buffett": {
+      "roe_15_every_year": "pass",
+      "positive_owner_earnings_every_year": "pass",
+      "owner_earnings_growth": "pass"
+    },
+    "Wood": {
+      "innovation_exposure": "not known",
+      "revenue_growth": "pass",
+      "reported_rd_latest": "pass"
+    },
+    "Burry": {
+      "operating_cash_flow_covers_net_income": "fail",
+      "liabilities_no_more_than_twice_equity": "pass"
+    }
+  },
+  "verdicts": {
+    "Buffett": "own the business",
+    "Wood": "not known",
+    "Burry": "forensic concern"
+  }
+}
