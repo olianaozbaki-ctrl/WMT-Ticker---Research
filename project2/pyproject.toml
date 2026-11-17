@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "meridian-project2"
+version = "0.1.0"
+description = "FIN 43900 Project 2 Phase 1 financial engine"
+requires-python = ">=3.10"
+dependencies = [
+  "streamlit==1.32.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
