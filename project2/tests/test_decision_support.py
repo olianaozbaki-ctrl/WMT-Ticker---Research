@@ -47,6 +47,7 @@ def sample_inputs():
         "portfolios": [],
     }
     mandate = {
+        "objective": {"real_return_spread": .04},
         "turnover": {
             "actual_starting_holdings_status": "unavailable",
             "maximum": .25,
@@ -129,6 +130,23 @@ class DecisionSupportTests(unittest.TestCase):
         self.assertIn("2025-08-01=323.976", phase2_markdown)
         self.assertIn("2026-08-01=334.98", phase2_markdown)
         self.assertNotIn("{result['stress_matrix']", phase2_markdown)
+
+    def test_configured_return_spread_controls_decision_report_labels(self):
+        phase, mandate, provenance = sample_inputs()
+        mandate["objective"]["real_return_spread"] = .05
+        report = build_decision_support(phase, mandate, provenance)
+        markdown = render_decision_markdown(report)
+
+        cpi_evidence = next(
+            item for item in report["evidence_requirements"]
+            if item["requirement"].startswith("S2 configured")
+        )
+        self.assertIn("CPI + 5%", cpi_evidence["requirement"])
+        self.assertEqual(report["configured_objective_label"], "CPI + 5%")
+        self.assertIn("arithmetic CPI + 5% hurdle", cpi_evidence["available_evidence"])
+        self.assertIn("configured arithmetic CPI + 5% modeled hurdle", markdown)
+        self.assertIn("configured CPI + 5%", markdown)
+        self.assertIn("original client S2 wording remains CPI + 4%", markdown)
 
 
 if __name__ == "__main__":

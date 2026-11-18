@@ -1,5 +1,6 @@
 """Known-answer tests for individual Meridian mandate verdicts."""
 
+import copy
 import unittest
 from pathlib import Path
 
@@ -131,6 +132,21 @@ class MandateKnownAnswers(unittest.TestCase):
         self.assertEqual(report["turnover"].status, RuleStatus.NOT_TESTABLE)
         self.assertEqual(
             report["return_objective_proxy"].status, RuleStatus.NOT_TESTABLE
+        )
+
+    def test_return_objective_label_uses_configured_spread(self):
+        mandate = copy.deepcopy(self.mandate)
+        mandate["objective"]["real_return_spread"] = 0.05
+        report = validate_mandate(
+            {"Cash": 0.03, "Treasury": 0.47, "Global fund": 0.50},
+            self.assets,
+            mandate,
+            investment_horizon_years=7,
+            rebalance_interval_years=1,
+        ).by_id()
+        self.assertEqual(
+            report["return_objective_proxy"].label,
+            "CPI + 5% after-cost expected-return proxy",
         )
 
 

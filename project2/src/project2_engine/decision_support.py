@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from .labels import cpi_objective_label
+
 
 def evaluate_decision(*, unmitigated_hard_failure: bool, approval_ready: bool, pilot_ready: bool) -> str:
     """Return a framework outcome without converting missing evidence to a pass."""
@@ -21,6 +23,7 @@ def build_decision_support(
 ) -> dict[str, Any]:
     """Summarize model outputs, range stability, evidence gaps, and review gates."""
     stress = phase_result["stress_matrix"]
+    objective_label = cpi_objective_label(mandate["objective"]["real_return_spread"])
     decision_date = stress["decision_date"]
     cpi = provenance["cpi_data"]
     cpi_current_available = cpi.get("current_availability_date")
@@ -122,9 +125,9 @@ def build_decision_support(
             ],
         },
         {
-            "requirement": "S2 CPI + 4% point-in-time hurdle",
+            "requirement": f"S2 configured {objective_label} point-in-time hurdle",
             "status": "BLS_POINT_IN_TIME_RELEASE_VERIFIED" if cpi_source_verified else "LOOKAHEAD_OR_VINTAGE_UNVERIFIED",
-            "available_evidence": f"The CPI pair is {cpi.get('prior_year_observation_date')}={cpi.get('prior_year_value')} and {cpi.get('current_observation_date')}={cpi.get('current_value')} ({cpi.get('units')}); release availability is {cpi_current_available}, {cpi_availability_phrase} decision date {decision_date}. Inflation is {cpi_rate_text}; the arithmetic CPI + 4% hurdle is {hurdle_text}. Source: {cpi.get('source_url') or 'not supplied'}. This is BLS release evidence, not an ALFRED API vintage.",
+            "available_evidence": f"The CPI pair is {cpi.get('prior_year_observation_date')}={cpi.get('prior_year_value')} and {cpi.get('current_observation_date')}={cpi.get('current_value')} ({cpi.get('units')}); release availability is {cpi_current_available}, {cpi_availability_phrase} decision date {decision_date}. Inflation is {cpi_rate_text}; the arithmetic {objective_label} hurdle is {hurdle_text}. Source: {cpi.get('source_url') or 'not supplied'}. This is BLS release evidence, not an ALFRED API vintage.",
             "needed": "For exact revised-series vintage reproduction, archive the underlying ALFRED response; this run relies on the contemporaneous BLS release and does not claim ALFRED API verification.",
             "sources": [
                 {"title": "FRED observations API and vintage_dates parameter", "url": "https://fred.stlouisfed.org/docs/api/fred/series_observations.html"},
@@ -149,7 +152,7 @@ def build_decision_support(
         {"trigger": "Verified five-day liquid share falls below 90% or a position-sized liquidation test fails", "response": "STOP new allocations and obtain committee-approved remediation; ETF headline volume or median spread alone is insufficient."},
         {"trigger": "Aggregated nonexempt issuer exposure exceeds 8% under a CIO-confirmed S6 interpretation", "response": "Block the proposed trade and obtain committee direction; no exemption is presumed."},
         {"trigger": "Actual one-way turnover exceeds 25%", "response": "Do not rebalance absent the committee approval explicitly required by S7; current holdings are missing, so modeled turnover is illustrative only."},
-        {"trigger": "Rolling five-year after-cost return falls below the CPI + 4% objective using admissible vintages", "response": "Trigger committee review and rerun the analysis; this is an objective review trigger, not a guaranteed return or automatic liquidation rule."},
+        {"trigger": f"Rolling five-year after-cost return falls below the configured {objective_label} objective using admissible vintages", "response": "Trigger committee review and rerun the analysis; this is an objective review trigger, not a guaranteed return or automatic liquidation rule."},
         {"trigger": "DGS10 is unavailable at the decision date", "response": "Mark the signal unavailable and proceed without an automatic portfolio tilt; obtain a fresh permitted observation before using it as a review input."},
         {"trigger": "Calendar-year loss approaches or crosses -10%", "response": "Human-review alert only pending CIO definition of S9. Do not represent this as a verified breach or automatic sell rule."},
         {"trigger": "Proposed weights lie outside a subsequently committee-approved allocation range", "response": "STOP that trade pending review. The current stress envelope is not an approved range."},
@@ -185,6 +188,7 @@ def build_decision_support(
     return {
         "phase": "4A",
         "generated_by": "scripts/generate_phase2_results.py",
+        "configured_objective_label": objective_label,
         "evaluation_date": phase_result["analysis_date"],
         "candidate_disposition_for_student_review": disposition,
         "candidate_action": "HOLD funded deployment and do not authorize an allocation range yet; continue evidence collection and permit paper-only rehearsal if separately approved.",
@@ -241,7 +245,7 @@ def build_decision_support(
         "monitoring_triggers_and_stop_conditions": triggers,
         "reversal_conditions": reversals,
         "committee_decisions_requested": [
-            "Confirm that the archived BLS not-seasonally-adjusted CPI-U release is the preferred operational interpretation of the CPI + 4% mandate, or require a contemporaneous ALFRED CPIAUCSL vintage before adoption.",
+            f"Confirm that the archived BLS not-seasonally-adjusted CPI-U release is the preferred operational interpretation of the configured {objective_label} model input. The original client S2 wording remains CPI + 4%; require a contemporaneous ALFRED CPIAUCSL vintage before adoption if needed.",
             "Provide Meridian's actual holdings and holdings as-of date, plus an approved transaction-cost estimate or execution evidence.",
             "Confirm whether the S6 exemptions in config/mandate.json govern despite their absence from the S6 sentence in Lab_13.md; approve look-through and issuer aggregation treatment.",
             "Provide position-sized five-business-day sale and settlement evidence for the 90% liquidity rule.",
@@ -280,7 +284,7 @@ def render_decision_markdown(report: dict[str, Any]) -> str:
         "",
         "## Decision-date and CPI check",
         "",
-        f"The stress decision date is **{cpi['decision_date']}**. The CPI inputs are {cpi['prior_cpi_observation_date']} and {cpi['current_cpi_observation_date']}, published {cpi['current_cpi_availability_date']} and available by the decision date. BLS point-in-time source verified: **{cpi['point_in_time_source_verified']}** (this is not an ALFRED API vintage). Inflation is {cpi_inflation_text}; the arithmetic CPI + 4% modeled hurdle is {cpi_hurdle_text}. The earlier September 2026 current-snapshot input was unavailable on October 5 and is retained in validation history as a corrected look-ahead error.",
+        f"The stress decision date is **{cpi['decision_date']}**. The CPI inputs are {cpi['prior_cpi_observation_date']} and {cpi['current_cpi_observation_date']}, published {cpi['current_cpi_availability_date']} and available by the decision date. BLS point-in-time source verified: **{cpi['point_in_time_source_verified']}** (this is not an ALFRED API vintage). Inflation is {cpi_inflation_text}; the configured arithmetic {report['configured_objective_label']} modeled hurdle is {cpi_hurdle_text}. The earlier September 2026 current-snapshot input was unavailable on October 5 and is retained in validation history as a corrected look-ahead error.",
         "",
         "## Window sensitivity and model-only envelope",
         "",

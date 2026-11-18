@@ -17,6 +17,7 @@ from .calculations import (
 from .config import load_mandate
 from .data import estimate_from_monthly_prices, load_point_in_time_cpi
 from .decision_support import build_decision_support
+from .labels import cpi_objective_label
 from .mandate import validate_mandate
 from .models import AssetDefinition
 from .optimizer import maximum_net_return_grid, minimum_volatility_grid
@@ -58,12 +59,21 @@ def run_phase2(project_root: Path | str) -> dict[str, Any]:
     """Run the frozen Phase 2 analysis and return JSON-serializable results."""
     root = Path(project_root)
     mandate = load_mandate(root / "config" / "mandate.json")
+    objective_label = cpi_objective_label(mandate["objective"]["real_return_spread"])
     estimates = estimate_from_monthly_prices(root / "data" / "prices_monthly.csv", as_of_date=DECISION_DATE)
     provenance = json.loads(
         (root / "data" / "market_data_provenance.json").read_text(encoding="utf-8")
     )
     signal = load_dgs10_signal(root / "data" / "dgs10_pit.csv", DECISION_DATE)
     cpi_yoy, pit_cpi = load_point_in_time_cpi(root / "data" / "cpi_pit_2026-10-05.csv", DECISION_DATE)
+    pit_cpi = {
+        **pit_cpi,
+        "transformations": (
+            f"Inflation = {pit_cpi['current_value']:.3f} / "
+            f"{pit_cpi['prior_year_value']:.3f} - 1. {objective_label} target uses "
+            "arithmetic addition, matching the configured modeling convention."
+        ),
+    }
     provenance["cpi_data"] = {
         **pit_cpi,
         "current_observation_date": pit_cpi["current_observation_date"],
@@ -207,7 +217,7 @@ def run_phase2(project_root: Path | str) -> dict[str, Any]:
                 "long-only",
                 "weights sum to 100%",
                 "BIL reserve at least 3%",
-                "provisional CPI + 4% after illustrative one-way trading cost",
+                f"provisional {objective_label} after illustrative one-way trading cost",
             ],
             "constraints_not_claimed_as_verified": [
                 "turnover: actual Meridian holdings and as-of date unavailable",

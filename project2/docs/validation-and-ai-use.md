@@ -28,7 +28,15 @@ Tests cover:
 
 ## Locked Changed-Input Record
 
-**Not created in Phase 1.** The human-authored AI-off prediction must be written and committed before the selected changed-input run. It must not be drafted or reconstructed by AI after the run.
+The human-authored pre-run prediction was committed before execution in `1fd3c8ba1895424dcea5a0c1eb76f4934f09f346`. It remains exactly as committed in the Pre-Run Record of `docs/locked-changed-input-record.md`; Codex did not draft or reconstruct it after the run.
+
+The locked script `scripts/run_locked_test.sh` changed only `objective.real_return_spread` from 0.04 to 0.05 for the reserved run, generated the reports, copied the evidence, and restored the tracked configuration and normal output files. The preserved baseline and changed-input SHA-256 manifests both verify. The artifact timestamps show baseline preservation at 11:58:43 PM EST, changed-input report generation at 11:58:58 PM EST, and completion of the changed-input checksum evidence at 11:59:03 PM EST on November 17, 2026. They do not prove an exact command-start timestamp. The script's repository path resolution was made portable after the run; the locked outputs were not regenerated or modified.
+
+The locked artifacts are preserved without modification under `outputs/locked-changed-input-test-1fd3c8b/`. Numerical comparison of the saved JSON confirms the hurdle changed from 7.3965478924% to 8.3965478924%; the selected weights changed from 48% BIL / 52% VT to 35% BIL / 65% VT; after-cost expected return changed from 7.4516786376% to 8.4127459731%; and annualized volatility changed from 7.8242283789% to 9.7460880081%. The disposition stayed HOLD, full mandate feasibility stayed false, and the hypothetical 25% turnover-constrained optimization stayed infeasible.
+
+Codex assisted only with post-run evidence reconciliation, documentation, diagnosis, and the reporting-label correction after the locked execution. The saved changed-input artifacts exposed that numerical calculations used 5% while generated labels still said CPI + 4%. Configuration-derived labels now use `objective.real_return_spread`; quoted original client wording remains CPI + 4% where explicitly identified as original policy. Regression tests cover 4%, 5%, and fractional-spread formatting plus mandate and decision-report propagation. The active `config/mandate.json` remains at 0.04.
+
+Completion validation on November 18, 2026 used `PYTHONPATH=src python -m unittest discover -s tests -p 'test*.py' -v`: **58 tests passed in 49.729 seconds; 0 failed; 0 skipped; OK.** Both locked artifact checksum manifests were also reverified after the reporting correction, and the normal active-configuration reports were regenerated without rerunning the locked changed-input script.
 
 ## Mandate finalization update — 2026-11-17
 
@@ -122,7 +130,7 @@ The prior CPI look-ahead issue and its correction are documented above. The subs
 
 The initial AI-assisted correlation stress multiplied each historical pairwise correlation by 1.25 and clipped values independently. Pairwise-valid values do not ensure a positive-semidefinite matrix; the existing covariance validator rejected the resulting covariance and the test suite exposed the error. That first method was rejected. The corrected stress forms a 50% convex combination of the original valid correlation matrix and a valid four-asset equicorrelation matrix (off-diagonal 0.75), then restores the original volatilities. A convex combination of PSD matrices is PSD. Covariance symmetry/PSD validation remains enabled; regression tests check the stressed covariance and verify a deliberately invalid covariance is still rejected. This preserves the failed AI output, the validation evidence, and the reason for accepting the correction.
 
-The Locked Changed-Input Record has **not** been executed, and its reserved scenario result is not included here. This work does not alter previous labs or Project 1.
+The later Locked Changed-Input run is documented above and in `docs/locked-changed-input-record.md`. Its reserved artifacts remain separate from the normal generated outputs. This work does not alter previous labs or Project 1.
 
 ### Earlier CPI error and correction audit trail
 

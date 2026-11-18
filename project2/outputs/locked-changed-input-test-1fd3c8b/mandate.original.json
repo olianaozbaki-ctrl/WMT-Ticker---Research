@@ -1,0 +1,183 @@
+{
+  "mandate_name": "Meridian Foundation Reserve",
+  "status": "proposed_for_project_2",
+  "decision_context": {
+    "intended_user": "Meridian Foundation CIO and investment committee",
+    "committee_question": "Should the Meridian Foundation reject, pilot, or adopt the proposed constrained ETF allocation process and, if piloted or adopted, what allocation ranges should the committee authorize?"
+  },
+  "original_policy": {
+    "source": "../../Lab_13.md",
+    "authority": "authoritative_client_policy_for_project_2",
+    "statements": {
+      "S1": "The portfolio has a seven-year investment horizon and needs to be rebalanced annually.",
+      "S2": "The foundation wants to earn a return of CPI + 4% annually after costs over rolling five-year periods.",
+      "S3": "The foundation needs enough cash or eligible government securities to cover twelve months of quarterly distributions.",
+      "S4": "The 60% equity and 40% bond benchmark provides a reference for comparing portfolio performance rather than a required allocation.",
+      "S5": "The portfolio cannot use borrowing, short selling, or derivatives.",
+      "S6": "No single issuer can account for more than 8% of the portfolio.",
+      "S7": "Annual turnover cannot exceed 25% without committee approval.",
+      "S8": "At least 90% of the portfolio must be redeemable within five business days.",
+      "S9": "The foundation wants to avoid annual losses greater than 10%, but this cannot be guaranteed and the CIO has not defined how a breach would be measured or handled.",
+      "S10": "The CIO has not specified what the portfolio should optimize, so more information is needed before selecting the best portfolio."
+    }
+  },
+  "portfolio_size_usd_millions": 100.0,
+  "horizon_years": 7,
+  "rebalance_frequency": "annual",
+  "objective": {
+    "type": "real_return",
+    "real_return_spread": 0.04,
+    "after_costs": true,
+    "measurement_window_years": 5,
+    "optimization_objective": "minimum_annualized_volatility_subject_to_feasibility",
+    "optimization_status": "approved_project_2_modeling_assumption_not_original_policy"
+  },
+  "cpi": {
+    "series_id": "CPIAUCSL",
+    "description": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average, seasonally adjusted",
+    "source_url": "https://fred.stlouisfed.org/series/CPIAUCSL",
+    "frequency": "monthly",
+    "units": "Index 1982-1984=100",
+    "calculation": "year_over_year_percent_change",
+    "as_of_rule": "Use the ALFRED vintage available on the decision date. Record each input's observation_date and availability_date, and use it only when availability_date is on or before the decision date. Compute year-over-year inflation only when both required observations pass that test.",
+    "required_provenance_fields": [
+      "decision_date",
+      "observation_date_current",
+      "availability_date_current",
+      "observation_date_prior_year",
+      "availability_date_prior_year",
+      "vintage_date",
+      "retrieval_date"
+    ],
+    "status": "approved_project_2_modeling_assumption_no_value_loaded"
+  },
+  "reserve": {
+    "quarterly_distribution_usd_millions": 0.75,
+    "quarters_to_cover": 4,
+    "minimum_weight": 0.03,
+    "definition": "cash or committee-approved daily-liquid government securities"
+  },
+  "liquidity": {
+    "minimum_weight": 0.90,
+    "maximum_business_days": 5,
+    "definition": "portfolio market value reasonably saleable and settled within the stated business-day window under normal market conditions"
+  },
+  "issuer_limit": {
+    "maximum_weight": 0.08,
+    "exempt_issuers": [
+      "none",
+      "U.S. Treasury",
+      "diversified fund"
+    ],
+    "aggregation_rule": "Aggregate all nonexempt securities issued by the same company; diversified funds are exempt without look-through under the Lab 13 case."
+  },
+  "turnover": {
+    "maximum": 0.25,
+    "formula": "0.5 * sum(abs(target_weight - current_weight))",
+    "requires": "current portfolio weights and their as-of date",
+    "actual_starting_holdings_status": "unavailable",
+    "illustrative_starting_allocation": {
+      "label": "Hypothetical equal-weight starting allocation for illustrative turnover analysis only; not actual Meridian holdings",
+      "as_of_date": null,
+      "weights": {
+        "BIL": 0.25,
+        "IEF": 0.25,
+        "LQD": 0.25,
+        "VT": 0.25
+      }
+    }
+  },
+  "restrictions": {
+    "long_only": true,
+    "borrowing_allowed": false,
+    "short_sales_allowed": false,
+    "derivatives_allowed": false
+  },
+  "risk": {
+    "optimization_measure": "annualized_volatility",
+    "loss_monitor": "calendar_year_total_return",
+    "loss_threshold": -0.10,
+    "loss_rule_status": "unresolved_unverifiable_promise_not_a_hard_constraint",
+    "compliance_treatment": "Always report UNRESOLVED until the CIO defines measurement and breach handling; do not include this statement in model feasibility and do not create an automatic prohibition."
+  },
+  "costs": {
+    "fund_expense_treatment": "Historical adjusted-close total returns are treated as net of fund operating expenses when the provider definition confirms that treatment.",
+    "trading_cost_formula": "one_way_turnover * transaction_cost_bps / 10000",
+    "transaction_cost_bps": 10.0,
+    "transaction_cost_label": "Illustrative one-way transaction-cost assumption; not an observed Meridian trading cost",
+    "sensitivity_bps": [
+      0.0,
+      10.0,
+      25.0
+    ],
+    "status": "approved_illustrative_modeling_assumption_observed_cost_unavailable"
+  },
+  "benchmark": {
+    "description": "60% global equities / 40% U.S. investment-grade bonds",
+    "weights_by_role": {
+      "global_equity": 0.60,
+      "investment_grade_bonds": 0.40
+    },
+    "purpose": "comparison portfolio; it receives a mandate verdict but is not required to pass"
+  },
+  "project_universe": [
+    {
+      "ticker": "BIL",
+      "role": "cash_and_reserve",
+      "reserve_eligible": true,
+      "liquidity_business_days": null,
+      "policy_status": "reserve_eligible_by_project_2_decision_liquidity_still_pending"
+    },
+    {
+      "ticker": "IEF",
+      "role": "government_bonds",
+      "reserve_eligible": false,
+      "liquidity_business_days": null,
+      "policy_status": "treasury_bond_holding_not_reserve_eligible_liquidity_pending"
+    },
+    {
+      "ticker": "LQD",
+      "role": "investment_grade_bonds",
+      "reserve_eligible": false,
+      "liquidity_business_days": null,
+      "policy_status": "pending_verification"
+    },
+    {
+      "ticker": "VT",
+      "role": "global_equity",
+      "reserve_eligible": false,
+      "liquidity_business_days": null,
+      "policy_status": "pending_verification"
+    }
+  ],
+  "allocation_ranges": {
+    "status": "not_yet_derived",
+    "rule": "Derive ranges only after optimization and the declared estimate, window, cost, and constraint stresses; do not create judgmental bands around one solution."
+  },
+  "unresolved_decisions": [
+    {
+      "id": "U1",
+      "question": "What actual Meridian starting holdings and as-of date, if any, should replace the explicitly hypothetical equal-weight turnover illustration?"
+    },
+    {
+      "id": "U2",
+      "question": "What observed or committee-approved trading-cost evidence, if any, should replace the illustrative 10 bps assumption?"
+    },
+    {
+      "id": "U3",
+      "question": "What decision date will govern the CPIAUCSL ALFRED vintage and documented observation/availability dates?"
+    },
+    {
+      "id": "U4",
+      "question": "Is the S9 annual-loss statement a measurable limit, and if so, how is a breach measured and handled? Until answered it remains UNRESOLVED and outside model feasibility."
+    },
+    {
+      "id": "U5",
+      "question": "What independent evidence establishes each ETF's normal-market liquidation and settlement within five business days?"
+    },
+    {
+      "id": "U6",
+      "question": "Lab_13.md states an 8% issuer limit without listing exemptions, while the Lab 13 case checker exempts cash, the U.S. Treasury, and diversified funds. Confirm that those case exemptions govern Project 2."
+    }
+  ]
+}

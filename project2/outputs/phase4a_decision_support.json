@@ -1,6 +1,7 @@
 {
   "phase": "4A",
   "generated_by": "scripts/generate_phase2_results.py",
+  "configured_objective_label": "CPI + 4%",
   "evaluation_date": "2026-11-18",
   "candidate_disposition_for_student_review": "HOLD",
   "candidate_action": "HOLD funded deployment and do not authorize an allocation range yet; continue evidence collection and permit paper-only rehearsal if separately approved.",
@@ -348,7 +349,7 @@
       ]
     },
     {
-      "requirement": "S2 CPI + 4% point-in-time hurdle",
+      "requirement": "S2 configured CPI + 4% point-in-time hurdle",
       "status": "BLS_POINT_IN_TIME_RELEASE_VERIFIED",
       "available_evidence": "The CPI pair is 2025-08-01=323.976 and 2026-08-01=334.98 (Index 1982-84=100); release availability is 2026-09-11, before decision date 2026-10-05. Inflation is 3.3965%; the arithmetic CPI + 4% hurdle is 7.3965%. Source: https://www.bls.gov/news.release/archives/cpi_09112026.htm. This is BLS release evidence, not an ALFRED API vintage.",
       "needed": "For exact revised-series vintage reproduction, archive the underlying ALFRED response; this run relies on the contemporaneous BLS release and does not claim ALFRED API verification.",
@@ -410,7 +411,7 @@
       "response": "Do not rebalance absent the committee approval explicitly required by S7; current holdings are missing, so modeled turnover is illustrative only."
     },
     {
-      "trigger": "Rolling five-year after-cost return falls below the CPI + 4% objective using admissible vintages",
+      "trigger": "Rolling five-year after-cost return falls below the configured CPI + 4% objective using admissible vintages",
       "response": "Trigger committee review and rerun the analysis; this is an objective review trigger, not a guaranteed return or automatic liquidation rule."
     },
     {
@@ -449,7 +450,7 @@
     }
   ],
   "committee_decisions_requested": [
-    "Confirm that the archived BLS not-seasonally-adjusted CPI-U release is the preferred operational interpretation of the CPI + 4% mandate, or require a contemporaneous ALFRED CPIAUCSL vintage before adoption.",
+    "Confirm that the archived BLS not-seasonally-adjusted CPI-U release is the preferred operational interpretation of the configured CPI + 4% model input. The original client S2 wording remains CPI + 4%; require a contemporaneous ALFRED CPIAUCSL vintage before adoption if needed.",
     "Provide Meridian's actual holdings and holdings as-of date, plus an approved transaction-cost estimate or execution evidence.",
     "Confirm whether the S6 exemptions in config/mandate.json govern despite their absence from the S6 sentence in Lab_13.md; approve look-through and issuer aggregation treatment.",
     "Provide position-sized five-business-day sale and settlement evidence for the 90% liquidity rule.",

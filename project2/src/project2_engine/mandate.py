@@ -10,6 +10,7 @@ from .calculations import (
     portfolio_expected_return,
     weight_total,
 )
+from .labels import cpi_objective_label
 from .models import AssetDefinition, RuleResult, RuleStatus
 
 
@@ -308,6 +309,7 @@ def validate_mandate(
             )
         )
 
+    objective_label = cpi_objective_label(mandate["objective"]["real_return_spread"])
     objective_inputs_available = all(
         value is not None
         for value in (expected_returns, current_weights, transaction_cost_bps, cpi_yoy)
@@ -316,7 +318,7 @@ def validate_mandate(
         results.append(
             _untestable(
                 "return_objective_proxy",
-                "CPI + 4% after-cost expected-return proxy",
+                f"{objective_label} after-cost expected-return proxy",
                 "Expected returns, CPI, current weights, and transaction cost are all required. "
                 "Passing this proxy will not prove the rolling five-year realized objective.",
             )
@@ -334,7 +336,7 @@ def validate_mandate(
         results.append(
             _result(
                 "return_objective_proxy",
-                "CPI + 4% after-cost expected-return proxy",
+                f"{objective_label} after-cost expected-return proxy",
                 net_return + WEIGHT_TOLERANCE >= hurdle,
                 net_return,
                 hurdle,

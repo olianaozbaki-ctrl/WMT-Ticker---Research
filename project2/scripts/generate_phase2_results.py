@@ -8,6 +8,7 @@ from pathlib import Path
 from project2_engine.config import load_mandate
 from project2_engine.data import estimate_from_monthly_prices
 from project2_engine.decision_support import render_decision_markdown
+from project2_engine.labels import cpi_objective_label
 from project2_engine.phase2 import TICKERS, run_phase2
 from project2_engine.precision import compare_optimizer_precision
 
@@ -22,6 +23,7 @@ def percent(value: float) -> str:
 def main() -> None:
     result = run_phase2(ROOT)
     mandate = load_mandate(ROOT / "config" / "mandate.json")
+    objective_label = cpi_objective_label(mandate["objective"]["real_return_spread"])
     estimates = estimate_from_monthly_prices(ROOT / "data" / "prices_monthly.csv", as_of_date="2026-10-05")
     result["optimizer_precision_validation"] = compare_optimizer_precision(
         estimates.annual_expected_returns,
@@ -58,7 +60,7 @@ def main() -> None:
         f"- Price observations: **{result['price_observations']} monthly adjusted closes**",
         f"- Return observations: **{result['monthly_return_observations']} monthly simple returns**",
         f"- Point-in-time CPI-U year-over-year: **{result['cpi_yoy']:.4%}**",
-        f"- CPI + 4% after-cost hurdle: **{result['provisional_after_cost_hurdle']:.4%}**",
+        f"- {objective_label} after-cost hurdle: **{result['provisional_after_cost_hurdle']:.4%}**",
         f"- Point-in-time CPI source verified: **{result['cpi_point_in_time_source_verified']}** (BLS release; not ALFRED API vintage)",
         f"- CPI input pair: **{result['cpi_point_in_time_source']['prior_year_observation_date']} {result['cpi_point_in_time_source']['prior_year_value']} / {result['cpi_point_in_time_source']['current_observation_date']} {result['cpi_point_in_time_source']['current_value']}** ({result['cpi_point_in_time_source']['units']}); released {result['cpi_point_in_time_source']['availability_date']}",
         f"- DGS10 point-in-time signal: **{result['dgs10_signal']['value_percent']:.2f}%** (observation {result['dgs10_signal']['observation_date']}; available {result['dgs10_signal']['availability_date']}; decision {result['dgs10_signal']['decision_date']})",
@@ -158,7 +160,7 @@ def main() -> None:
     lines.extend(["## Limitations", ""] + [f"- {item}" for item in result["limitations"]])
     lines.extend(["", "## DGS10 point-in-time signal", "", json.dumps(result["dgs10_signal"], indent=2)])
     cpi = result["stress_matrix"]["return_hurdle_cpi"]
-    lines.extend(["", "## Phase 3B stress matrix", "", result["stress_matrix"]["assumptions"], "", f"Decision date: **{result['stress_matrix']['decision_date']}**; aligned market return data through **{result['stress_matrix']['market_data_as_of']}** ({result['stress_matrix']['market_return_observations']} monthly returns). Signal and market boundaries consistent: **{result['stress_matrix']['signal_boundary_consistent']}**.", "", f"**CPI gate:** point-in-time valid: **{cpi['point_in_time_valid_for_decision_date']}**; BLS observation pair {cpi['prior_observation_date']}={cpi['prior_year_value']} and {cpi['current_observation_date']}={cpi['current_value']} was available {cpi['current_availability_date']}. Inflation **{cpi['inflation_rate']:.4%}**; CPI + 4% target **{result['provisional_after_cost_hurdle']:.4%}**. This is based on the archived BLS release, not an ALFRED API vintage.", "", "All scenarios use the hypothetical equal-weight starting allocation for turnover and cost; these are not actual Meridian holdings. Optimizer feasibility is provisional and does not imply full mandate compliance.", "", "| Scenario | Category | Window | Status | Weights | Gross return | Net return | Volatility | Turnover | Cost | Optimizer feasible | Mandate verdicts |", "|---|---|---|---|---|---:|---:|---:|---:|---:|---|---|"])
+    lines.extend(["", "## Phase 3B stress matrix", "", result["stress_matrix"]["assumptions"], "", f"Decision date: **{result['stress_matrix']['decision_date']}**; aligned market return data through **{result['stress_matrix']['market_data_as_of']}** ({result['stress_matrix']['market_return_observations']} monthly returns). Signal and market boundaries consistent: **{result['stress_matrix']['signal_boundary_consistent']}**.", "", f"**CPI gate:** point-in-time valid: **{cpi['point_in_time_valid_for_decision_date']}**; BLS observation pair {cpi['prior_observation_date']}={cpi['prior_year_value']} and {cpi['current_observation_date']}={cpi['current_value']} was available {cpi['current_availability_date']}. Inflation **{cpi['inflation_rate']:.4%}**; {objective_label} target **{result['provisional_after_cost_hurdle']:.4%}**. This is based on the archived BLS release, not an ALFRED API vintage.", "", "All scenarios use the hypothetical equal-weight starting allocation for turnover and cost; these are not actual Meridian holdings. Optimizer feasibility is provisional and does not imply full mandate compliance.", "", "| Scenario | Category | Window | Status | Weights | Gross return | Net return | Volatility | Turnover | Cost | Optimizer feasible | Mandate verdicts |", "|---|---|---|---|---|---:|---:|---:|---:|---:|---|---|"])
     for row in result["stress_matrix"]["scenarios"]:
         w = "STOP" if row["weights"] is None else ", ".join(f"{k} {v:.0%}" for k,v in row["weights"].items() if v)
         fmt=lambda x: "—" if x is None else percent(x)

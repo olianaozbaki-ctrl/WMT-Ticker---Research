@@ -6,6 +6,7 @@ import altair as alt
 import streamlit as st
 
 from project2_engine.config import load_mandate
+from project2_engine.labels import cpi_objective_label
 from project2_engine.phase2 import TICKERS, run_phase2
 
 
@@ -55,6 +56,7 @@ def main() -> None:
         "not investment advice."
     )
     mandate = load_mandate(PROJECT_ROOT / "config" / "mandate.json")
+    objective_label = cpi_objective_label(mandate["objective"]["real_return_spread"])
     decision = result["decision_support"]
     summary = st.container(border=True)
     with summary:
@@ -70,8 +72,8 @@ def main() -> None:
             f"**Candidate disposition**  \n{decision['candidate_disposition_for_student_review']} — for your review"
         )
         st.write(
-            "**Investment objective:** seek CPI + 4% annually after costs over rolling "
-            "five-year periods. The current CPI + 4% expected-return hurdle is a modeled "
+            "**Original client mandate:** seek CPI + 4% annually after costs over rolling "
+            f"five-year periods. The current configured {objective_label} expected-return hurdle is a modeled "
             "feasibility proxy, not evidence that the rolling realized objective will be met."
         )
         st.caption(
@@ -106,7 +108,7 @@ def main() -> None:
     cards[0].metric("Market data as of", result["market_data_as_of"])
     cards[1].metric("Monthly return observations", result["monthly_return_observations"])
     cards[2].metric("CPI-U inflation (BLS)", f"{result['cpi_yoy']:.4%}")
-    cards[3].metric("CPI + 4% target", f"{result['provisional_after_cost_hurdle']:.4%}")
+    cards[3].metric(f"{objective_label} target", f"{result['provisional_after_cost_hurdle']:.4%}")
     cpi = result["stress_matrix"]["return_hurdle_cpi"]
     st.write(
         "**Prices:** Yahoo Finance daily adjusted close (USD, split- and distribution-adjusted), "
@@ -212,7 +214,7 @@ def main() -> None:
         )
     )
     target_value = result["provisional_after_cost_hurdle"]
-    target_data = [{"target": target_value, "label": f"CPI + 4% return target ({target_value:.2%})"}]
+    target_data = [{"target": target_value, "label": f"{objective_label} return target ({target_value:.2%})"}]
     target_rule = alt.Chart(alt.Data(values=target_data)).mark_rule(color="#a33", strokeDash=[6, 4]).encode(
         y=alt.Y("target:Q", axis=alt.Axis(format=".0%"))
     )
@@ -220,7 +222,7 @@ def main() -> None:
         align="left", baseline="bottom", dx=8, dy=-5, color="#a33"
     ).encode(y="target:Q", x=alt.value(8), text="label:N")
     st.altair_chart(net_points + target_rule + target_label, use_container_width=True)
-    st.caption(f"Dashed reference line: CPI + 4% expected-return target = {target_value:.4%}.")
+    st.caption(f"Dashed reference line: {objective_label} expected-return target = {target_value:.4%}.")
 
     st.subheader("Rule-by-rule mandate assessment")
     st.caption("A feasible model portfolio is not the same as verified full mandate compliance. Unknown or unverified evidence remains NOT_TESTABLE or UNRESOLVED in the rule results below.")
@@ -345,7 +347,7 @@ def main() -> None:
     cpi_status = decision["point_in_time_cpi"]
     if cpi_status["admissible_for_stress_decision"]:
         st.info(
-            f"CPI + 4% objective inputs are point-in-time admissible for {cpi_status['decision_date']}: "
+            f"{objective_label} objective inputs are point-in-time admissible for {cpi_status['decision_date']}: "
             f"August 2025/2026 CPI-U observations were both available {cpi_status['current_cpi_availability_date']}. "
             f"Inflation: {cpi_status['inflation_rate']:.4%}; modeled target: {cpi_status['modeled_hurdle_used']:.4%}. "
             "BLS release evidence is used; no ALFRED API vintage is claimed."
