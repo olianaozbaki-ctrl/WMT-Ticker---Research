@@ -1,0 +1,30 @@
+DRAFT TEMPLATE — NOT AN ACTUAL RECORDING OR TRANSCRIPT
+
+Video 3 title: [INSERT FINAL YOUTUBE TITLE]
+Final video URL: [INSERT AFTER UPLOAD]
+Actual duration: [INSERT AFTER RECORDING; MAXIMUM 5:00]
+Recording date: [INSERT]
+
+[00:00–00:__] LIVE APP, AI USE, OWNERSHIP, AND DISCLAIMER
+[Open with the running application. State the AI tools actually used and any exposed model/version identifiers. State that you own the analysis and investment decision. State: Educational project only; not investment advice.]
+
+[00:__–00:__] RECOMMENDATION
+[Lead with HOLD funded deployment. Explain that no adoption, allocation, rebalancing, funded pilot, or allocation range is recommended now.]
+
+[00:__–00:__] KEY RESULTS
+[Give the October 5 decision boundary, 48% BIL / 52% VT weights, 7.5017% gross return, 7.4517% illustrative after-cost expected return, and 7.8242% volatility.]
+
+[00:__–00:__] SENSITIVITY AND RANGE
+[Explain the 5.51 bp margin, full-window versus 36-month shift, and diagnostic-only envelope.]
+
+[00:__–00:__] RISKS, STOPS, AND REVERSAL CONDITIONS
+[Explain the actual-holdings, issuer, liquidity, turnover/cost, rolling-objective, and S9 gaps. State what would maintain HOLD, cause REJECT, or permit reconsideration of a conditional pilot.]
+
+[00:__–END] COMMITTEE ASK
+[Ask the committee to accept HOLD, decline funded deployment and an allocation range, and direct staff to obtain the specified evidence and policy rulings.]
+
+POST-RECORDING TRANSCRIPT CHECKLIST
+- Replace every bracketed prompt with words actually spoken.
+- Make timestamps match the final uploaded video.
+- Correct tickers, dates, percentages, mandate rules, and committee ask.
+- Do not leave this draft notice in the final corrected transcript.

@@ -4,6 +4,29 @@
 
 **Educational project only; not investment advice.**
 
+## Final-submission AI disclosure status
+
+| Tool | Recorded use | Interaction date | Model/version evidence | Disposition |
+|---|---|---|---|---|
+| OpenAI Codex | Architecture, Python implementation, tests, data-pipeline design, documentation, diagnosis, and reconciliation | 2026-11-17 through 2026-11-18 | Exact model/version is not recorded in the repository evidence; do not infer it | Outputs were tested, corrected, qualified, or retained as documented below; the student owns the analysis and decision |
+| Google Gemini | Independent validation response preserved in `docs/gemini-independent-validation.md` | Supplied for reconciliation on 2026-11-18 | Exact model/version is not recorded in the preserved response; do not infer it | Numerical checks were accepted; policy conclusions were accepted, qualified, or corrected in `docs/gemini-validation-reconciliation.md` |
+
+If the interfaces exposed exact model/version identifiers, add those identifiers before freezing the Brightspace copy. Otherwise retain the explicit “not recorded” limitation rather than guessing.
+
+## Final written recommendation status — 2026-11-18
+
+The student-owned written recommendation in `docs/decision-memo.md` is **HOLD funded deployment**: do not adopt, allocate, rebalance, authorize a funded pilot, or authorize an allocation range on current evidence. The engine-generated decision-support schema retains its historical `candidate_disposition_for_student_review` field name, but its value is also `HOLD`; the application labels it as the model-generated disposition and points to the final memo for the student-owned recommendation. The diagnostic BIL 21–80% / VT 20–79% stress envelope is not an authorized range.
+
+## Submission evidence not yet complete
+
+- The three required videos have not been recorded or uploaded. `docs/transcript-video-1.txt`, `docs/transcript-video-2.txt`, and `docs/transcript-video-3.txt` are explicitly marked draft templates, not actual transcripts.
+- YouTube URLs, final titles, actual durations, and timestamp evidence indices remain pending in `project-submission-manifest.csv`.
+- Logged-out video access and instructional-team repository access have not been checked for the final pushed state.
+- The final frozen commit ID, final GitHub push, Brightspace attachments, manifest entry, and submission receipt do not yet exist.
+- Exact Codex and Gemini model/version identifiers are not present in the available evidence. Add them only if the original interfaces exposed them; do not infer them.
+
+Final pre-recording verification on November 18 used `PYTHONPATH=src python -m unittest discover -s tests -p 'test*.py' -v`: **60 tests passed in 50.757 seconds; 0 failed; 0 skipped; OK.** The suite includes regression assertions for the executed BLS non-seasonally adjusted CPI-U methodology, September 11 availability date, October 5 decision date, and unresolved CIO approval. A separate consistency audit verified the 12 manifest rows, local README/memo links, draft transcript markers, output locations, 48% BIL / 52% VT weights, 7.5017% gross return, 7.4517% illustrative after-cost expected return, 7.8242% volatility, and HOLD across the engine, application labels, README, memo, and video scripts. Both Locked Changed-Input checksum manifests verified after output regeneration. Altair emitted `jsonschema.RefResolver` deprecation warnings during the headless app test; these were warnings, not test failures.
+
 ## Gemini independent validation reconciliation — 2026-11-18
 
 Gemini's complete independent response is preserved unchanged in `docs/gemini-independent-validation.md`. At reconciliation it contained 245 lines and 18,195 bytes with SHA-256 `e70329a15907e5a17bd7a1c2d54129ff36b2b67f239aba078f07bd95d84ac38a`. The response independently reproduced the principal portfolio, stress, and Locked Changed-Input calculations; agreed with HOLD; and found no remaining look-ahead bias in the corrected inputs.
@@ -16,7 +39,7 @@ Post-reconciliation verification: `PYTHONPATH=src python -m unittest discover -s
 
 ## Partner cold run — 2026-11-18
 
-The completed independent cold-run record is preserved in `docs/partner-cold-run.md`. A course peer opened the repository, installed dependencies, and launched the application with `PYTHONPATH=src python -m streamlit run app.py`. No application error was reported. The session took approximately five minutes and reached the current displayed result: 48% BIL / 52% VT, 7.4517% illustrative after-cost expected return, 7.8242% annualized volatility, and candidate disposition HOLD because full mandate evidence remains incomplete.
+The completed independent cold-run record is preserved in `docs/partner-cold-run.md`. A course peer opened the repository, installed dependencies, and launched the application with `PYTHONPATH=src python -m streamlit run app.py`. No application error was reported. The session took approximately five minutes and reached the current displayed result: 48% BIL / 52% VT, 7.4517% illustrative after-cost expected return, 7.8242% annualized volatility, and model-generated disposition HOLD because full mandate evidence remains incomplete.
 
 The evidence is sufficient for the Week 12 cold-run fields of command, first failure, elapsed time, and result location. Its scope is application startup and displayed-result verification: the recorded Streamlit command does not regenerate output artifacts, and the exact dependency-install commands were not captured. Follow-up execution of `PYTHONPATH=src python scripts/generate_phase2_results.py` reproduced all four active JSON/Markdown outputs byte-for-byte. This limitation is retained rather than reconstructing unrecorded partner actions.
 
@@ -56,6 +79,34 @@ Codex assisted only with post-run evidence reconciliation, documentation, diagno
 
 Completion validation on November 18, 2026 used `PYTHONPATH=src python -m unittest discover -s tests -p 'test*.py' -v`: **58 tests passed in 49.729 seconds; 0 failed; 0 skipped; OK.** Both locked artifact checksum manifests were also reverified after the reporting correction, and the normal active-configuration reports were regenerated without rerunning the locked changed-input script.
 
+### Complete Locked Changed-Input Record for submission
+
+The original record remains unchanged in `docs/locked-changed-input-record.md`. The complete submission copy is reproduced here so this validation record contains every required field.
+
+#### Pre-run record
+
+- Test-only changed input: `objective.real_return_spread`
+- Baseline value: `0.04`
+- Proposed value: `0.05`
+- Units: annual return above CPI, expressed as a decimal
+- Baseline commit: `05853e3`
+- Baseline output artifact: `outputs/phase2_results.md`
+- Expected output direction: lower probability of achieving the investment objective because the required annual return increases from 4% to 5% above inflation.
+- Expected decision effect: potential change in the recommended portfolio allocation toward investments with higher expected returns, depending on the application's constraints and decision rules.
+- Prediction written at: November 17, 2026, 11:30 PM EST
+
+#### Post-run record
+
+- Changed input actually used: `objective.real_return_spread` increased from `0.04` to `0.05`.
+- Run command and timing: `bash scripts/run_locked_test.sh` on November 17, 2026. Preserved file-system evidence bounds the completed run: baseline files were preserved at 11:58:43 PM EST, changed-input reports were generated at 11:58:58 PM EST, and changed-input checksum evidence was completed at 11:59:03 PM EST. The evidence does not establish an exact command-start timestamp, so none is asserted.
+- Pre-run prediction commit: `1fd3c8ba1895424dcea5a0c1eb76f4934f09f346` (`1fd3c8b`).
+- Preserved evidence: baseline and changed-input Markdown, JSON, mandate, and SHA-256 manifests under `outputs/locked-changed-input-test-1fd3c8b/`.
+- Actual output direction: the hurdle increased from 7.3965% to 8.3965%; weights changed from 48% BIL / 52% VT to 35% BIL / 65% VT; illustrative after-cost expected return increased from 7.45% to 8.41%; annualized volatility increased from 7.82% to 9.75%.
+- Actual decision effect: HOLD remained unchanged; full mandate compliance remained unverified and the hypothetical 25%-turnover case remained infeasible.
+- Reconciliation: the allocation shifted toward the higher-return asset as predicted. The predicted lower probability of meeting the objective could not be verified because the application does not calculate that probability.
+- Failure diagnosis: the decision remained HOLD because the changed return requirement did not resolve missing actual holdings, liquidity, issuer exposure, turnover evidence, or S9 policy. The higher hurdle also increased volatility and estimation-window sensitivity.
+- Additional validation finding: the locked reports retained a stale CPI + 4% label although the numerical 5% spread was applied correctly. The saved artifacts remain unchanged; configuration-derived label tests now cover the correction.
+
 ## Mandate finalization update — 2026-11-17
 
 Codex assisted with reconciling eight user-approved Project 2 modeling decisions against `Lab_13.md`, updating the machine-readable configuration, and extending deterministic configuration tests. No portfolio optimization, stress result, recommendation, or Locked Changed-Input run was performed.
@@ -70,7 +121,7 @@ The preceding Phase 3B/Phase 4A run used September 2026 CPI for a historical dec
 - Corrected portfolios: equal weight estimates 3.0128% return / 7.5482% volatility; 60% VT / 40% LQD estimates 6.2591% / 12.3335%; minimum-volatility optimizer selects 48% BIL / 52% VT with 7.5017% gross return, 7.4517% net after the illustrative 10 bps one-way transaction charge, and 7.8242% volatility. All are historical/model outputs, not forecasts or verified full mandate compliance.
 - Stress outcomes: full-window optimizer is 48% BIL / 52% VT (7.5017% gross return, 7.8242% volatility); 36-month is 80% BIL / 20% VT (7.5422%, 2.3730%). BIL changes 32 percentage points. Across feasible reoptimized stresses, the diagnostic envelope is BIL 21–80%, IEF 0%, LQD 0%, VT 20–79%. Hypothetical equal-weight starting holdings under a 25% turnover cap remain `STOP_INFEASIBLE`; this says nothing about actual Meridian holdings.
 - Precision check: exhaustive 1% grid 48% BIL / 52% VT, net return 7.4517%, volatility 7.8242%; exhaustive 0.5% grid 48.5% / 51.5%, net 7.4147%, volatility 7.7503%; continuous SLSQP 48.7457% / 51.2543%, net 7.3965%, volatility 7.7140%. The maximum production-grid weight difference is 0.7457 percentage points and volatility gap 0.1102 points. Solver is successful; this is retained as numerical comparison evidence, not proof of financial robustness.
-- CPI source/measurement choice aside, actual holdings, position-sized ETF liquidity, issuer exemptions and look-through, actual transaction costs, and S9 remain unresolved or unverified. Issuer is `NOT_TESTABLE`, never PASS. Candidate disposition remains HOLD for student/committee review and is not a final decision.
+- CPI source/measurement choice aside, actual holdings, position-sized ETF liquidity, issuer exemptions and look-through, actual transaction costs, and S9 remain unresolved or unverified. Issuer is `NOT_TESTABLE`, never PASS. The engine-generated disposition remains HOLD; the final student-owned HOLD recommendation is stated in the decision memo.
 
 The result generator writes the corresponding JSON and Markdown directly from the engine. The previous September CPI snapshots remain preserved as historical evidence but are not inputs to the corrected October 5 analysis.
 
@@ -127,7 +178,7 @@ Signal interpretation and process effect are modeling assumptions: treat the yie
 
 ## Phase 4A — investment decision support and AI-output checks (corrected numbers below)
 
-The generated decision-support artifacts are `outputs/phase4a_decision_support.json` and `outputs/phase4a_decision_support.md`; reproduce them and the Phase 2/3B outputs with `PYTHONPATH=src python scripts/generate_phase2_results.py`. `app.py` displays the decision framework, portfolio/window comparison, diagnostic allocation envelope, evidence gates, monitoring triggers, and approval questions. Its current candidate disposition is **HOLD funded deployment**, for the student's review; it is not a final investment judgment.
+The generated decision-support artifacts are `outputs/phase4a_decision_support.json` and `outputs/phase4a_decision_support.md`; reproduce them and the Phase 2/3B outputs with `PYTHONPATH=src python scripts/generate_phase2_results.py`. `app.py` displays the decision framework, portfolio/window comparison, diagnostic allocation envelope, evidence gates, monitoring triggers, and approval questions. Its model-generated disposition is **HOLD**, aligned with the final student-owned HOLD recommendation in the decision memo.
 
 ### Result interpretation and range
 

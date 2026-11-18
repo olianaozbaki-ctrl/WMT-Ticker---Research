@@ -6,7 +6,7 @@
 
 ## Decision and intended user
 
-This application supports the Meridian Foundation CIO and investment committee in deciding whether to reject, pilot, or adopt a constrained ETF allocation process. It compares two baselines with a provisional constrained minimum-volatility portfolio and supplies a Phase 4A evidence-gated decision framework; it does **not** make the student's final investment judgment. See the [official Project 2 brief](https://github.com/CinderZhang/FIN43900-Fall2026/blob/main/projects/project-2-investment-management-application.md).
+This application supports the Meridian Foundation CIO and investment committee in deciding whether to reject, pilot, or adopt a constrained ETF allocation process. It compares two baselines with a provisional constrained minimum-volatility portfolio and supplies a Phase 4A evidence-gated decision framework. The final written recommendation is **HOLD funded deployment: do not adopt, allocate, rebalance, authorize a funded pilot, or authorize an allocation range on the current evidence**. See the [official Project 2 brief](https://github.com/CinderZhang/FIN43900-Fall2026/blob/main/projects/project-2-investment-management-application.md).
 
 ## Run from a clean checkout
 
@@ -61,8 +61,13 @@ These figures are generated in [outputs/phase2_results.md](outputs/phase2_result
 - `scripts/` — reproducible data refresh and visible-output generation.
 - `tests/` — known-answer, integrity, feasible/infeasible optimizer, baseline, and rule-verdict tests.
 - `outputs/` — code-generated Phase 2/3B and Phase 4A JSON and Markdown results.
-- `docs/partner-cold-run.md` — independent application-launch and result-verification evidence.
-- `docs/gemini-independent-validation.md` and `docs/gemini-validation-reconciliation.md` — preserved independent response and the finding-by-finding reconciliation.
+- [Decision memo](docs/decision-memo.md) — final HOLD process recommendation and committee ask.
+- [Validation and AI-use record](docs/validation-and-ai-use.md) — complete working validation record and AI disclosure.
+- [Partner cold run](docs/partner-cold-run.md) — independent application-launch and result-verification evidence.
+- [Gemini response](docs/gemini-independent-validation.md) and [reconciliation](docs/gemini-validation-reconciliation.md) — preserved independent response and finding-by-finding disposition.
+- [Video recording outlines](docs/video-recording-outlines.md) — required video purposes, screens, and recording plan.
+- [Video 1 transcript template](docs/transcript-video-1.txt), [Video 2 transcript template](docs/transcript-video-2.txt), and [Video 3 transcript template](docs/transcript-video-3.txt) — drafts that must be replaced with corrected actual transcripts after recording.
+- [Submission manifest](project-submission-manifest.csv) — 12 rows with unresolved video/access fields marked pending.
 
 ## Known limitations and approvals needed
 
@@ -74,7 +79,7 @@ These figures are generated in [outputs/phase2_results.md](outputs/phase2_result
 - The 1% grid solution is discrete and sensitive to historical expected-return estimates.
 - ETF issuer exposure, the diversified-fund exemption, and look-through treatment are unverified; issuer compliance remains `NOT_TESTABLE`.
 - S9 remains `UNRESOLVED`; no loss guarantee is claimed.
-- The candidate disposition is HOLD and no allocation range is authorized. A partner cold run launched the application without error and reproduced the displayed result; its evidence and command-scope limitation are recorded in [docs/partner-cold-run.md](docs/partner-cold-run.md). The Locked Changed-Input test has been completed and its checksummed artifacts are preserved under `outputs/locked-changed-input-test-1fd3c8b/`.
+- The final written recommendation is HOLD funded deployment and no allocation range is authorized. The generated engine independently returns the same HOLD disposition. A partner cold run launched the application without error and reproduced the displayed result; its evidence and command-scope limitation are recorded in [docs/partner-cold-run.md](docs/partner-cold-run.md). The Locked Changed-Input test has been completed and its checksummed artifacts are preserved under `outputs/locked-changed-input-test-1fd3c8b/`.
 - Independent validation confirms the reported arithmetic but highlights the 5.51 bp modeled margin, missing rolling-five-year compounded evidence, and one-time cost treatment. The complete response and reconciliation are preserved under `docs/`.
 
 ## Phase 3B stress testing
@@ -89,7 +94,7 @@ Correlation stress blends the historical correlation matrix 50% with a valid fou
 
 ## Phase 4A investment decision support
 
-The application and [generated decision report](outputs/phase4a_decision_support.md) provide an evidence-gated framework for `APPROVE`, `CONDITIONAL_PILOT`, `HOLD`, or `REJECT`. The candidate disposition is **HOLD funded deployment** for student/committee review, not a final investment judgment. The tested model-feasible allocation envelope is BIL 21–80%, IEF 0%, LQD 0%, VT 20–79%; it is explicitly **not an authorization range**. Full-window versus 36-month optimization changes BIL from 48% to 80% (32 percentage points), and the mandate defines no tolerance for this variation.
+The application and [generated decision report](outputs/phase4a_decision_support.md) provide an evidence-gated framework for `APPROVE`, `CONDITIONAL_PILOT`, `HOLD`, or `REJECT`. The engine's generated disposition is **HOLD**, consistent with the final written recommendation to hold funded deployment. The tested model-feasible allocation envelope is BIL 21–80%, IEF 0%, LQD 0%, VT 20–79%; it is explicitly **not an authorization range**. Full-window versus 36-month optimization changes BIL from 48% to 80% (32 percentage points), and the mandate defines no tolerance for this variation.
 
 The initial Phase 3B calculation used September 2026 CPI, released after the 2026-10-05 decision date. That look-ahead error is retained as validation history in `docs/validation-and-ai-use.md`. The corrected run uses the August 2026 BLS archived release, filters every ETF-price calculation through 2026-09-30, and retains the DGS10 observation dated 2026-10-02 and available 2026-10-05. The optimized allocation is 48% BIL / 52% VT; the 36-month result is 80% BIL / 20% VT. The remaining 32 percentage-point BIL window difference and unresolved mandate evidence support a HOLD for review, not an authorized allocation.
 

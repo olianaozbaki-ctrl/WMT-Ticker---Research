@@ -33,23 +33,38 @@
     "optimization_status": "approved_project_2_modeling_assumption_not_original_policy"
   },
   "cpi": {
-    "series_id": "CPIAUCSL",
-    "description": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average, seasonally adjusted",
-    "source_url": "https://fred.stlouisfed.org/series/CPIAUCSL",
-    "frequency": "monthly",
-    "units": "Index 1982-1984=100",
     "calculation": "year_over_year_percent_change",
-    "as_of_rule": "Use the ALFRED vintage available on the decision date. Record each input's observation_date and availability_date, and use it only when availability_date is on or before the decision date. Compute year-over-year inflation only when both required observations pass that test.",
-    "required_provenance_fields": [
-      "decision_date",
-      "observation_date_current",
-      "availability_date_current",
-      "observation_date_prior_year",
-      "availability_date_prior_year",
-      "vintage_date",
-      "retrieval_date"
-    ],
-    "status": "approved_project_2_modeling_assumption_no_value_loaded"
+    "methodology_approval_status": "unresolved_pending_cio_approval",
+    "original_modeling_assumption": {
+      "series_id": "CPIAUCSL",
+      "description": "Consumer Price Index for All Urban Consumers: All Items in U.S. City Average, seasonally adjusted",
+      "provider": "FRED with point-in-time vintage verification intended through ALFRED",
+      "source_url": "https://fred.stlouisfed.org/series/CPIAUCSL",
+      "frequency": "monthly",
+      "units": "Index 1982-1984=100",
+      "as_of_rule": "Use the ALFRED vintage available on the decision date. Record each input's observation date and availability date, and use it only when availability is on or before the decision date.",
+      "status": "original_project_2_modeling_assumption_not_used_by_the_executed_october_5_analysis"
+    },
+    "executed_analysis_methodology": {
+      "series_label": "CPI-U all items, U.S. city average, not seasonally adjusted",
+      "provider": "U.S. Bureau of Labor Statistics",
+      "source": "Archived August 2026 CPI news release, Table 1",
+      "source_url": "https://www.bls.gov/news.release/archives/cpi_09112026.htm",
+      "frequency": "monthly",
+      "seasonal_adjustment": "not_seasonally_adjusted",
+      "units": "Index 1982-84=100",
+      "current_observation_date": "2026-08-01",
+      "current_value": 334.980,
+      "prior_year_observation_date": "2025-08-01",
+      "prior_year_value": 323.976,
+      "availability_date": "2026-09-11",
+      "decision_date": "2026-10-05",
+      "point_in_time_verified": true,
+      "alfred_vintage_verified": false,
+      "data_file": "data/cpi_pit_2026-10-05.csv",
+      "provenance_file": "data/cpi_pit_2026-10-05.json",
+      "status": "executed_project_2_methodology_pending_cio_approval"
+    }
   },
   "reserve": {
     "quarterly_distribution_usd_millions": 0.75,
@@ -165,7 +180,7 @@
     },
     {
       "id": "U3",
-      "question": "What decision date will govern the CPIAUCSL ALFRED vintage and documented observation/availability dates?"
+      "question": "Will the CIO approve the executed October 5, 2026 CPI methodology—August 2026 non-seasonally adjusted CPI-U from the archived BLS release published September 11, 2026—or require the original seasonally adjusted CPIAUCSL/ALFRED methodology or another convention? Until approved, the CPI methodology remains an unresolved modeling decision."
     },
     {
       "id": "U4",

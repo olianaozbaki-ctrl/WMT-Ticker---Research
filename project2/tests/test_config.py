@@ -15,11 +15,51 @@ class MandateConfigurationTests(unittest.TestCase):
         mandate = load_mandate(PROJECT_ROOT / "config" / "mandate.json")
         self.assertEqual(mandate["horizon_years"], 7)
         self.assertEqual(mandate["reserve"]["minimum_weight"], 0.03)
-        self.assertEqual(mandate["cpi"]["series_id"], "CPIAUCSL")
+        self.assertEqual(
+            mandate["cpi"]["original_modeling_assumption"]["series_id"],
+            "CPIAUCSL",
+        )
         self.assertEqual(
             set(mandate["original_policy"]["statements"]),
             {f"S{number}" for number in range(1, 11)},
         )
+
+    def test_executed_cpi_methodology_and_dates_are_explicit(self):
+        mandate = load_mandate(PROJECT_ROOT / "config" / "mandate.json")
+        cpi = mandate["cpi"]
+        executed = cpi["executed_analysis_methodology"]
+
+        self.assertEqual(
+            executed["series_label"],
+            "CPI-U all items, U.S. city average, not seasonally adjusted",
+        )
+        self.assertEqual(executed["provider"], "U.S. Bureau of Labor Statistics")
+        self.assertEqual(executed["seasonal_adjustment"], "not_seasonally_adjusted")
+        self.assertEqual(executed["current_observation_date"], "2026-08-01")
+        self.assertEqual(executed["prior_year_observation_date"], "2025-08-01")
+        self.assertEqual(executed["availability_date"], "2026-09-11")
+        self.assertEqual(executed["decision_date"], "2026-10-05")
+        self.assertTrue(executed["point_in_time_verified"])
+        self.assertFalse(executed["alfred_vintage_verified"])
+        self.assertEqual(
+            executed["status"],
+            "executed_project_2_methodology_pending_cio_approval",
+        )
+
+    def test_cpi_methodology_approval_remains_unresolved(self):
+        mandate = load_mandate(PROJECT_ROOT / "config" / "mandate.json")
+        self.assertEqual(
+            mandate["cpi"]["methodology_approval_status"],
+            "unresolved_pending_cio_approval",
+        )
+        unresolved = {
+            item["id"]: item["question"]
+            for item in mandate["unresolved_decisions"]
+        }
+        self.assertIn("U3", unresolved)
+        self.assertIn("executed October 5, 2026 CPI methodology", unresolved["U3"])
+        self.assertIn("non-seasonally adjusted CPI-U", unresolved["U3"])
+        self.assertIn("CPIAUCSL/ALFRED", unresolved["U3"])
 
     def test_reserve_minimum_must_reconcile_to_cash_need(self):
         mandate = load_mandate(PROJECT_ROOT / "config" / "mandate.json")

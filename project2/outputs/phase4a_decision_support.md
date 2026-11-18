@@ -1,10 +1,10 @@
 # Phase 4A Investment Decision Support
 
-Generated from the Phase 2/3B financial engine. This is candidate decision support for the student's review, not the final investment judgment.
+Generated from the Phase 2/3B financial engine. This is model-generated decision support; the final student-owned process recommendation is in `docs/decision-memo.md`.
 
 - Evaluation date: **2026-11-18**
-- Candidate disposition: **HOLD**
-- Candidate action: HOLD funded deployment and do not authorize an allocation range yet; continue evidence collection and permit paper-only rehearsal if separately approved.
+- Model-generated disposition: **HOLD**
+- Model-generated action: HOLD funded deployment and do not authorize an allocation range yet; continue evidence collection and permit paper-only rehearsal if separately approved.
 
 ## Decision framework
 

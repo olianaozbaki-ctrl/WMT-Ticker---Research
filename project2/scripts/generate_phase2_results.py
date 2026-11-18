@@ -176,7 +176,7 @@ def main() -> None:
         "",
         "## Phase 4A candidate decision support",
         "",
-        f"Candidate disposition for student review: **{decision['candidate_disposition_for_student_review']}**. No allocation range is recommended for authorization. See [the complete generated decision-support report](phase4a_decision_support.md).",
+        f"Model-generated disposition: **{decision['candidate_disposition_for_student_review']}**. This aligns with the final written HOLD recommendation in `docs/decision-memo.md`; no allocation range is recommended for authorization. See [the complete generated decision-support report](phase4a_decision_support.md).",
     ])
     (output_dir / "phase2_results.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(

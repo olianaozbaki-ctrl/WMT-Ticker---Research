@@ -1,56 +1,60 @@
-# Meridian Foundation Decision Memo — Phase 2 Interim Review
+# Meridian Foundation Decision Memo — Final Project 2 Recommendation
 
-**AI use:** OpenAI Codex assisted with Phase 1–2 architecture, implementation, tests, data-pipeline design, and documentation. The analysis and investment decision remain the student's responsibility.
+**AI use:** OpenAI Codex assisted with architecture, implementation, tests, data-pipeline design, and documentation; Google Gemini supplied an independently reconciled validation response. The analysis and investment decision remain the student's responsibility.
 
 **Educational project only; not investment advice.**
 
-## Interim status
+## Recommendation
 
-Do not adopt or allocate from the Phase 2 output yet. The application now executes real dated market inputs and compares two baselines with a provisional constrained portfolio, but critical compliance evidence remains unavailable. This is a hold for committee review, not the final Project 2 recommendation.
+**HOLD funded deployment. Do not adopt the process, allocate capital, rebalance Meridian's portfolio, authorize a funded pilot, or authorize an allocation range on the current evidence.** Continue evidence collection; a paper-only rehearsal may be considered only if the committee separately approves its scope.
 
-## Intended committee question
+This is a process recommendation to the Meridian Foundation CIO and investment committee, not a recommendation to buy or sell BIL, IEF, LQD, or VT.
 
-Should the Meridian Foundation reject, pilot, or adopt the proposed constrained ETF allocation process and, if piloted or adopted, what allocation ranges should the committee authorize?
+## Evidence as of October 5, 2026
 
-## Executed evidence
+Market-price inputs end September 30 and contain 59 monthly returns. The corrected CPI input uses the BLS August release published September 11: `334.980 / 323.976 − 1 = 3.3965%`. The project's arithmetic CPI + 4% proxy is 7.3965%.
 
-For the October 5, 2026 decision boundary, ETF prices end September 30, producing 59 monthly returns. The BLS August CPI pair gives 3.3965% year-over-year inflation and an arithmetic CPI + 4% hurdle of 7.3965%. The equal-weight portfolio estimates 3.01% annual return and 7.55% volatility; 60% VT / 40% LQD estimates 6.26% and 12.33%; the provisional minimum-volatility portfolio is 48% BIL / 52% VT at 7.50% gross return and 7.82% volatility.
+| Portfolio | Weights: BIL / IEF / LQD / VT | Gross return | Illustrative net return | Volatility |
+|---|---|---:|---:|---:|
+| Equal weight | 25% / 25% / 25% / 25% | 3.0128% | 3.0128% | 7.5482% |
+| 60/40 reference | 0% / 0% / 40% / 60% | 6.2591% | 6.2091% | 12.3335% |
+| Constrained minimum volatility | 48% / 0% / 0% / 52% | 7.5017% | 7.4517% | 7.8242% |
 
-These are historical estimates, not promised returns. The constrained mix clears the 7.3965% point-in-time CPI + 4% after-cost modeling hurdle by a small margin using one illustrative rebalance cost. The CPI source is the BLS archived August 2026 release dated September 11, 2026, not an ALFRED API vintage.
+The modeled portfolio clears the return proxy by only 5.51 basis points. “Net” deducts one illustrative 10 bps one-way transition charge from hypothetical equal-weight holdings; it is not an observed or recurring Meridian cost. Historical arithmetic means are estimates, not forecasts or proof of rolling five-year compounded performance.
 
-The modeled margin is only about 5.51 basis points. The application does not establish compounded after-cost performance over rolling five-year periods, and its one modeled transition cost is not a recurring annual rebalancing-cost forecast. Those limitations prevent the point estimate from being treated as verified S2 compliance.
+## Mandate status
 
-## Why no decision is requested yet
+| Rule | Current treatment and implication |
+|---|---|
+| S1 — seven-year horizon; annual rebalance | Modeled horizon and frequency pass, but implementation feasibility is not established. |
+| S2 — CPI + 4% after costs over rolling five years | Arithmetic proxy only; full rule is `NOT_TESTABLE`. The 5.51 bp margin is not rolling five-year proof. |
+| S3 — twelve months of distributions in cash/eligible government securities | Modeled 3% floor passes with 48% BIL; BIL eligibility remains a committee-review assumption. |
+| S4 — 60/40 reference | Used only for comparison. Its modeled reserve failure does not make it the proposed portfolio. |
+| S5 — no borrowing, short selling, or derivatives | Passes in the long-only ETF construction; no constraint is relaxed. |
+| S6 — maximum 8% per issuer | `NOT_TESTABLE`; exemptions, ETF look-through, and dated issuer aggregation require CIO direction and evidence. |
+| S7 — maximum 25% annual turnover without approval | `NOT_TESTABLE` without actual holdings. The hypothetical equal-weight case is infeasible at the cap but is not an actual Meridian verdict. |
+| S8 — at least 90% redeemable within five business days | `NOT_TESTABLE`; no position-sized sale and settlement study is available. |
+| S9 — avoid annual losses greater than 10% | `UNRESOLVED`; measurement and breach response are undefined, so no guarantee is claimed. |
+| S10 — objective unspecified | Minimum volatility subject to the return proxy is a modeling assumption requiring CIO approval. |
 
-- Actual Meridian holdings and their as-of date are unavailable, so turnover compliance cannot be tested.
-- Under the explicitly hypothetical equal-weight start, the 25% turnover cap makes the provisional return hurdle infeasible; this is a stop condition, not evidence about actual holdings.
-- Independent five-business-day ETF liquidity evidence is unavailable.
-- ETF issuer exposure and exemption treatment are unverified.
-- CPI measurement remains a modeling decision: the corrected run uses unadjusted CPI-U from the contemporaneous BLS release rather than seasonally adjusted CPIAUCSL or an ALFRED API vintage.
-- S9 remains unresolved, and the completed stress matrix does not support a robust or authorized allocation range.
-- As an additional declared diagnostic, a −25% one-year VT return with BIL left at its historical annual arithmetic estimate produces approximately −11.24% gross for the 48% BIL / 52% VT mix. This reinforces the need for an S9 ruling but is not a forecast or compliance test.
+No candidate portfolio has verified full-mandate compliance.
 
-The next committee action is to resolve the missing evidence and modeling decisions before a committee decision or funded implementation. The Locked Changed-Input Record has been completed and preserved separately; it did not change the HOLD disposition.
+## Sensitivity, range, and principal risks
 
-## Phase 4A candidate recommendation — for student review, not final judgment
+The 36-month window selects 80% BIL / 20% VT rather than 48% / 52%, a 32 percentage-point BIL shift. Feasible modeled stresses span BIL 21–80% and VT 20–79%, with IEF and LQD at 0%. This is a **diagnostic envelope, not an authorization range**: it is unstable across estimation windows and depends on incomplete mandate evidence.
 
-**Candidate disposition: HOLD funded deployment. Do not authorize an allocation range on the current evidence.** This is a rule-based decision-support output for the student's personal review; the student retains the investment judgment. The current record does not support a full approval or a funded conditional pilot. A paper-only rehearsal may be considered if separately approved.
+A declared −25% VT / unchanged-BIL diagnostic produces approximately −11.24% gross for the 48% / 52% mix. It reinforces the need for an S9 ruling but is not a forecast, VaR estimate, or compliance test. Other decision-critical gaps are actual holdings, execution costs, position-sized liquidity, issuer treatment/exposure, the additive-versus-compounded CPI convention, and recurring annual cost treatment.
 
-### What the results say
+The analysis corrected an earlier look-ahead error: September 2026 CPI was released October 14, after the decision date. The current run uses August CPI available September 11, excludes October 30 prices, and uses DGS10 dated October 2 and available October 5. The failed input and correction remain in the validation record.
 
-The corrected full-window reoptimization is 48% BIL / 52% VT; the 36-month window selects 80% BIL / 20% VT. The BIL weight shifts 32 percentage points. Gross annual expected return/volatility are 7.5017%/7.8242% and 7.5422%/2.3730%, respectively. These historical sample statistics are not forecasts. The stress envelope spans BIL 21–80%, IEF 0%, LQD 0%, VT 20–79%. This is a diagnostic envelope, not an authorization range: the window shift is large and mandate evidence remains incomplete.
+## Monitoring and reversal conditions
 
-### Point-in-time feasibility stop
+- Stop if a required CPI, market, or signal observation was unavailable by the decision boundary; never substitute a later release.
+- Stop and report the failure if optimization is infeasible, covariance validation fails, or a mandatory constraint cannot be evaluated; never silently relax a rule.
+- Block funding if confirmed issuer exposure exceeds 8%, actual turnover exceeds 25% without approval, or position-sized five-day liquidity fails the 90% requirement.
+- Reconsider a conditional pilot only after actual holdings and costs are supplied; S6 and S8 are verified; S9 and S10 are approved; and pilot size, duration, review cadence, and abort conditions are defined.
+- Change HOLD to REJECT if a hard mandate violation is verified and no approved remedy exists.
 
-The earlier Phase 3B run contained a CPI look-ahead error: September 2026 CPI was released October 14, after the October 5 decision. That failed result remains preserved in the validation record. The corrected run uses BLS-published August 2025 CPI-U 323.976 and August 2026 CPI-U 334.980; both appear in the archived release published September 11. It also excludes ETF price observations after September 30 and uses DGS10 dated October 2, available October 5. The generated output reports point-in-time release verification while explicitly stating this is not an ALFRED API vintage. [BLS August 2026 release](https://www.bls.gov/news.release/archives/cpi_09112026.htm); [BLS 2026 release schedule](https://www.bls.gov/schedule/2026/home.htm).
+## Committee action requested
 
-### Decision gates and requested action
-
-- **Liquidity (S8):** SEC Rule 6c-11 and fund pages expose prior-day holdings, NAV/market information, and 30-day median spreads. Those indicators do not prove that at least 90% of Meridian's position can be sold and settled within five business days at the actual order size. Obtain a dated, position-sized liquidation analysis.
-- **Issuer limit (S6):** `Lab_13.md` says 8% per issuer and does not state exemptions. Configuration exemptions are unconfirmed; decide whether to apply them and whether to look through ETFs, then aggregate dated holdings as needed.
-- **Rolling objective (S2):** Confirm additive versus compounded CPI-plus-spread treatment and the recurring cost convention, then obtain enough point-in-time history to test rolling five-year after-cost outcomes. The current arithmetic expected-return proxy is not a compliance verdict.
-- **Turnover and costs (S7):** Actual holdings/as-of date and observed execution costs are missing. The 25% cap is infeasible from hypothetical equal-weight holdings, which is not evidence about Meridian's real portfolio.
-- **S9:** The annual-loss statement has no defined measurement or breach response. Keep it `UNRESOLVED`; any -10% alert is human-review only until the CIO specifies the policy.
-- **CPI convention:** Confirm whether BLS not-seasonally-adjusted CPI-U from a release archive is the committee's preferred target input or require an archived contemporaneous ALFRED CPIAUCSL vintage before operational use.
-
-Use the [generated Phase 4A decision-support report](../outputs/phase4a_decision_support.md) for the full outcome framework, model envelope, portfolio-by-window comparisons, evidence references, monitoring triggers, and committee questions. The candidate disposition is not a recommendation to buy or sell a fund.
+Accept HOLD, decline funded deployment and an allocation range, and direct staff to obtain the missing holdings, cost, liquidity, issuer, CPI-convention, and S9 evidence. The complete framework and triggers are in the [generated decision-support report](../outputs/phase4a_decision_support.md); AI use, the Locked Changed-Input Record, cold run, and independent validation are in [validation-and-ai-use.md](validation-and-ai-use.md).

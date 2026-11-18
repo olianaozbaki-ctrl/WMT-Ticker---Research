@@ -1,0 +1,27 @@
+DRAFT TEMPLATE — NOT AN ACTUAL RECORDING OR TRANSCRIPT
+
+Video 1 title: [INSERT FINAL YOUTUBE TITLE]
+Final video URL: [INSERT AFTER UPLOAD]
+Actual duration: [INSERT AFTER RECORDING; MAXIMUM 3:00]
+Recording date: [INSERT]
+
+[00:00–00:__] AI USE, OWNERSHIP, AND DISCLAIMER
+[State the AI tools actually used and any exposed model/version identifiers. State that you own the analysis and investment decision. State: Educational project only; not investment advice.]
+
+[00:__–00:__] SYSTEM AND THINKING CHANGE
+[Describe the corrected point-in-time CPI/market boundary and how the current 48% BIL / 52% VT result and HOLD differ from the earlier state.]
+
+[00:__–00:__] CHECKED AI OUTPUT
+[Identify the exact Gemini grid-step claim. Show the source file and the reconciliation. Recompute the change as approximately 7.39 bp and explain that the 73.9 bp statement was corrected.]
+
+[00:__–00:__] EFFECT ON JUDGMENT
+[Explain the 5.51 bp margin, window instability, and why no allocation range is authorized.]
+
+[00:__–END] CLOSE
+[State the remaining evidence and policy gaps.]
+
+POST-RECORDING TRANSCRIPT CHECKLIST
+- Replace every bracketed prompt with words actually spoken.
+- Make timestamps match the final uploaded video.
+- Correct tickers, dates, percentages, and finance terms.
+- Do not leave this draft notice in the final corrected transcript.

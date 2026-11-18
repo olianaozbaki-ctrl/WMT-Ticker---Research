@@ -194,4 +194,4 @@ Turnover and costs below are measured from the hypothetical equal-weight startin
 
 ## Phase 4A candidate decision support
 
-Candidate disposition for student review: **HOLD**. No allocation range is recommended for authorization. See [the complete generated decision-support report](phase4a_decision_support.md).
+Model-generated disposition: **HOLD**. This aligns with the final written HOLD recommendation in `docs/decision-memo.md`; no allocation range is recommended for authorization. See [the complete generated decision-support report](phase4a_decision_support.md).

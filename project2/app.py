@@ -69,7 +69,7 @@ def main() -> None:
             f"**Investment horizon**  \n{mandate['horizon_years']} years; annual rebalancing"
         )
         summary_columns[2].markdown(
-            f"**Candidate disposition**  \n{decision['candidate_disposition_for_student_review']} — for your review"
+            f"**Model-generated disposition**  \n{decision['candidate_disposition_for_student_review']} — aligned with the final written HOLD recommendation"
         )
         st.write(
             "**Original client mandate:** seek CPI + 4% annually after costs over rolling "
@@ -341,8 +341,8 @@ def main() -> None:
             mime="text/markdown",
         )
     st.warning(
-        f"Candidate disposition for your review: {decision['candidate_disposition_for_student_review']}. "
-        f"{decision['candidate_action']} This is decision support, not a final investment judgment."
+        f"Model-generated disposition: {decision['candidate_disposition_for_student_review']}. "
+        f"{decision['candidate_action']} The final student-owned process recommendation is documented in the decision memo."
     )
     cpi_status = decision["point_in_time_cpi"]
     if cpi_status["admissible_for_stress_decision"]:
@@ -375,7 +375,7 @@ def main() -> None:
     st.write("**Decisions requiring your or the committee's approval**")
     for item in decision["committee_decisions_requested"]:
         st.write(f"- {item}")
-    st.write("**Conditions that change the candidate disposition**")
+    st.write("**Conditions that would change the current disposition**")
     st.dataframe([{"Current outcome": row["current_outcome"], "Change to": row["change_to"], "Condition": row["condition"]} for row in decision["reversal_conditions"]], use_container_width=True, hide_index=True)
 
 
