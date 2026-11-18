@@ -7,6 +7,7 @@ from pathlib import Path
 
 from project2_engine.config import load_mandate
 from project2_engine.data import estimate_from_monthly_prices
+from project2_engine.decision_support import render_decision_markdown
 from project2_engine.phase2 import TICKERS, run_phase2
 from project2_engine.precision import compare_optimizer_precision
 
@@ -37,6 +38,13 @@ def main() -> None:
     output_dir.mkdir(exist_ok=True)
     (output_dir / "phase2_results.json").write_text(
         json.dumps(result, indent=2) + "\n", encoding="utf-8"
+    )
+    decision = result["decision_support"]
+    (output_dir / "phase4a_decision_support.json").write_text(
+        json.dumps(decision, indent=2) + "\n", encoding="utf-8"
+    )
+    (output_dir / "phase4a_decision_support.md").write_text(
+        render_decision_markdown(decision), encoding="utf-8"
     )
 
     lines = [
@@ -148,7 +156,7 @@ def main() -> None:
 
     lines.extend(["## Limitations", ""] + [f"- {item}" for item in result["limitations"]])
     lines.extend(["", "## DGS10 point-in-time signal", "", json.dumps(result["dgs10_signal"], indent=2)])
-    lines.extend(["", "## Phase 3B stress matrix", "", result["stress_matrix"]["assumptions"], "", f"Decision date: **{result['stress_matrix']['decision_date']}**; aligned market return data through **{result['stress_matrix']['market_data_as_of']}** ({result['stress_matrix']['market_return_observations']} monthly returns). Signal and market boundaries consistent: **{result['stress_matrix']['signal_boundary_consistent']}**.", "", "All scenarios use the hypothetical equal-weight starting allocation for turnover and cost; these are not actual Meridian holdings. Optimizer feasibility is provisional and does not imply full mandate compliance.", "", "| Scenario | Category | Window | Status | Weights | Gross return | Net return | Volatility | Turnover | Cost | Optimizer feasible | Mandate verdicts |", "|---|---|---|---|---|---:|---:|---:|---:|---:|---|---|"])
+    lines.extend(["", "## Phase 3B stress matrix", "", result["stress_matrix"]["assumptions"], "", f"Decision date: **{result['stress_matrix']['decision_date']}**; aligned market return data through **{result['stress_matrix']['market_data_as_of']}** ({result['stress_matrix']['market_return_observations']} monthly returns). Signal and market boundaries consistent: **{result['stress_matrix']['signal_boundary_consistent']}**.", "", f"**Decision stop:** return-hurdle CPI valid for this decision date: **{result['stress_matrix']['return_hurdle_cpi']['point_in_time_valid_for_decision_date']}**. The September 2026 CPI observation was released after this stress decision date, so the grid results below are conditional numerical diagnostics, not point-in-time feasible portfolios.", "", "All scenarios use the hypothetical equal-weight starting allocation for turnover and cost; these are not actual Meridian holdings. Optimizer feasibility is provisional and does not imply full mandate compliance.", "", "| Scenario | Category | Window | Status | Weights | Gross return | Net return | Volatility | Turnover | Cost | Optimizer feasible | Mandate verdicts |", "|---|---|---|---|---|---:|---:|---:|---:|---:|---|---|"])
     for row in result["stress_matrix"]["scenarios"]:
         w = "STOP" if row["weights"] is None else ", ".join(f"{k} {v:.0%}" for k,v in row["weights"].items() if v)
         fmt=lambda x: "—" if x is None else percent(x)
@@ -160,10 +168,16 @@ def main() -> None:
             weights = "STOP" if item["weights"] is None else " / ".join(percent(item["weights"][ticker]) for ticker in TICKERS)
             verdicts = ", ".join(f"{rule}: {status}" for rule,status in item["mandate_verdicts"].items()) or item.get("stop_reason", "—")
             lines.append("| " + " | ".join([scenario["scenario"], item["portfolio"], weights, fmt(item["annual_expected_return"]), fmt(item["net_expected_return"]), fmt(item["annual_volatility"]), fmt(item["turnover_from_hypothetical_equal_weight"]), fmt(item["cost_rate"]), str(item["optimizer_feasible"]), verdicts]) + " |")
+    lines.extend([
+        "",
+        "## Phase 4A candidate decision support",
+        "",
+        f"Candidate disposition for student review: **{decision['candidate_disposition_for_student_review']}**. No allocation range is recommended for authorization. See [the complete generated decision-support report](phase4a_decision_support.md).",
+    ])
     (output_dir / "phase2_results.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(
         f"Generated {len(result['portfolios'])} portfolio results through "
-        f"{result['market_data_as_of']}."
+        f"{result['market_data_as_of']} plus Phase 4A decision support."
     )
 
 

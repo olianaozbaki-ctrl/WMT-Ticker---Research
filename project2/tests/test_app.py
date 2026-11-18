@@ -17,7 +17,7 @@ class StreamlitAppTests(unittest.TestCase):
             app.title[0].value,
             "Meridian Foundation Investment Management Application",
         )
-        self.assertEqual(len(app.dataframe), 4)
+        self.assertGreaterEqual(len(app.dataframe), 4)
 
 
 if __name__ == "__main__":

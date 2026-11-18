@@ -129,6 +129,8 @@ Each numerical scenario is a modeling stress. Historical asset returns/covarianc
 
 Decision date: **2026-10-05**; aligned market return data through **2026-09-30** (59 monthly returns). Signal and market boundaries consistent: **True**.
 
+**Decision stop:** return-hurdle CPI valid for this decision date: **False**. The September 2026 CPI observation was released after this stress decision date, so the grid results below are conditional numerical diagnostics, not point-in-time feasible portfolios.
+
 All scenarios use the hypothetical equal-weight starting allocation for turnover and cost; these are not actual Meridian holdings. Optimizer feasibility is provisional and does not imply full mandate compliance.
 
 | Scenario | Category | Window | Status | Weights | Gross return | Net return | Volatility | Turnover | Cost | Optimizer feasible | Mandate verdicts |
@@ -188,3 +190,7 @@ Turnover and costs below are measured from the hypothetical equal-weight startin
 | signal_unavailable_no_tilt | Equal weight | 25.00% / 25.00% / 25.00% / 25.00% | 3.01% | 3.01% | 7.55% | 0.00% | 0.00% | True | weights_sum: PASS, long_only: PASS, no_borrowing: PASS, no_derivatives: PASS, reserve: PASS, liquidity: NOT_TESTABLE, issuer_limit: NOT_TESTABLE, turnover: NOT_TESTABLE, horizon: PASS, rebalance_frequency: PASS, return_objective_proxy: NOT_TESTABLE, calendar_year_loss: UNRESOLVED |
 | signal_unavailable_no_tilt | 60/40 benchmark | 0.00% / 0.00% / 40.00% / 60.00% | 6.26% | 6.21% | 12.33% | 50.00% | 0.05% | True | weights_sum: PASS, long_only: PASS, no_borrowing: PASS, no_derivatives: PASS, reserve: FAIL, liquidity: NOT_TESTABLE, issuer_limit: NOT_TESTABLE, turnover: NOT_TESTABLE, horizon: PASS, rebalance_frequency: PASS, return_objective_proxy: NOT_TESTABLE, calendar_year_loss: UNRESOLVED |
 | signal_unavailable_no_tilt | Reoptimized minimum volatility | 44.00% / 0.00% / 0.00% / 56.00% | 7.80% | 7.75% | 8.42% | 50.00% | 0.05% | True | weights_sum: PASS, long_only: PASS, no_borrowing: PASS, no_derivatives: PASS, reserve: PASS, liquidity: NOT_TESTABLE, issuer_limit: NOT_TESTABLE, turnover: NOT_TESTABLE, horizon: PASS, rebalance_frequency: PASS, return_objective_proxy: NOT_TESTABLE, calendar_year_loss: UNRESOLVED |
+
+## Phase 4A candidate decision support
+
+Candidate disposition for student review: **HOLD**. No allocation range is recommended for authorization. See [the complete generated decision-support report](phase4a_decision_support.md).

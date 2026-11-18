@@ -32,4 +32,4 @@ Sources: [FRED CPIAUCSL series](https://fred.stlouisfed.org/series/CPIAUCSL), [F
 
 ## Remaining policy ambiguity
 
-`Lab_13.md` states the 8% issuer rule but does not list exemptions. The existing Lab 13 checker and the official common case exempt cash, the U.S. Treasury, and diversified funds. The configuration retains those case exemptions but flags confirmation as unresolved because the Markdown mandate is authoritative for this project.
+`Lab_13.md` states the 8% issuer rule but does not list exemptions. `config/mandate.json` retains cash, U.S. Treasury, and diversified-fund exemptions as a prior case assumption, but the accessible authoritative Markdown does not substantiate it. The exemption and look-through treatment require CIO confirmation; issuer status remains `NOT_TESTABLE` in the meantime.

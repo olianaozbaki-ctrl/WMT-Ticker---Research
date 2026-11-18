@@ -46,8 +46,8 @@ This document resolves calculation conventions where the Meridian mandate is suf
 ## Issuer exposure
 
 - Nonexempt securities from the same issuer are aggregated.
-- The Lab 13 Meridian case explicitly exempts cash, the U.S. Treasury, and diversified funds.
-- Phase 1 follows the case's fund-level exemption without look-through. Any later look-through analysis is supplemental unless the committee changes the rule.
+- The accessible `Lab_13.md` S6 text states an 8% issuer limit but lists no exemptions.
+- `config/mandate.json` preserves cash, U.S. Treasury, and diversified-fund exemptions as an unconfirmed case assumption. Do not treat it as verified client policy or report issuer compliance as PASS until the CIO confirms the exemptions and look-through treatment. Dated holdings and issuer aggregation are required if look-through applies.
 
 ## Risk and the -10% statement
 

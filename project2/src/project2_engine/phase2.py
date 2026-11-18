@@ -16,6 +16,7 @@ from .calculations import (
 )
 from .config import load_mandate
 from .data import estimate_from_monthly_prices, load_cpi_yoy
+from .decision_support import build_decision_support
 from .mandate import validate_mandate
 from .models import AssetDefinition
 from .optimizer import maximum_net_return_grid, minimum_volatility_grid
@@ -65,6 +66,24 @@ def run_phase2(project_root: Path | str) -> dict[str, Any]:
         root / "data" / "cpi_snapshot.csv", "2026-09-01", "2025-09-01"
     )
     stress = build_stress_matrix(mandate, estimates, cpi_yoy, signal)
+    cpi_data = provenance["cpi_data"]
+    pit_cpi_valid = bool(
+        cpi_data.get("alfred_vintage_verified")
+        and cpi_data.get("current_availability_date")
+        and cpi_data.get("prior_year_availability_date")
+        and cpi_data["current_availability_date"] <= stress["decision_date"]
+        and cpi_data["prior_year_availability_date"] <= stress["decision_date"]
+    )
+    stress["return_hurdle_cpi"] = {
+        "current_observation_date": cpi_data.get("current_observation_date"),
+        "current_availability_date": cpi_data.get("current_availability_date"),
+        "prior_observation_date": cpi_data.get("prior_year_observation_date"),
+        "prior_availability_date": cpi_data.get("prior_year_availability_date"),
+        "alfred_vintage_verified": bool(cpi_data.get("alfred_vintage_verified")),
+        "point_in_time_valid_for_decision_date": pit_cpi_valid,
+        "status": "VALID" if pit_cpi_valid else "STOP_LOOKAHEAD_OR_UNVERIFIED_VINTAGE",
+        "modeled_hurdle_still_shown_as_conditional_diagnostic": cpi_yoy + mandate["objective"]["real_return_spread"],
+    }
     hurdle = cpi_yoy + mandate["objective"]["real_return_spread"]
     illustrative_current = mandate["turnover"]["illustrative_starting_allocation"]["weights"]
     cost_bps = mandate["costs"]["transaction_cost_bps"]
@@ -145,7 +164,7 @@ def run_phase2(project_root: Path | str) -> dict[str, Any]:
             }
         )
 
-    return {
+    phase_output = {
         "phase": 2,
         "generated_by": "scripts/generate_phase2_results.py",
         "analysis_date": datetime.now(timezone.utc).date().isoformat(),
@@ -206,3 +225,5 @@ def run_phase2(project_root: Path | str) -> dict[str, Any]:
             "The 1% grid solution is discrete and may differ from a continuous optimum.",
         ],
     }
+    phase_output["decision_support"] = build_decision_support(phase_output, mandate, provenance)
+    return phase_output

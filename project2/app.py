@@ -148,6 +148,8 @@ def main() -> None:
         f"available by the historical signal decision date {result['stress_matrix']['decision_date']}. "
         "The DGS10 row is historical validation evidence, not a current quote."
     )
+    if not result["stress_matrix"]["return_hurdle_cpi"]["point_in_time_valid_for_decision_date"]:
+        st.error("Stress decision stop: the CPI hurdle was not point-in-time valid for the DGS10 decision date. Numerical optimizer feasibility below is conditional only.")
     stress_rows = result["stress_matrix"]["scenarios"]
     selected_stress = st.multiselect("Scenarios", [row["scenario"] for row in stress_rows], default=[row["scenario"] for row in stress_rows])
     st.dataframe([{ "Scenario": row["scenario"], "Type": row["category"], "Estimation window": row["window"], "Status": row["status"], "Weights": row["weights"], "Gross return": row["annual_expected_return"], "Net return": row["net_expected_return"], "Volatility": row["annual_volatility"], "Turnover": row["turnover"], "Cost": row["cost_rate"], "Optimizer feasible": row["feasible"], "Rule verdicts": row["mandate_verdicts"] } for row in stress_rows if row["scenario"] in selected_stress], use_container_width=True, hide_index=True)
@@ -158,6 +160,47 @@ def main() -> None:
         for item in scenario["portfolio_comparisons"]:
             comparison_rows.append({"Scenario": scenario["scenario"], "Portfolio": item["portfolio"], "Weights": item["weights"], "Gross return": item["annual_expected_return"], "Net return": item["net_expected_return"], "Volatility": item["annual_volatility"], "Turnover from hypothetical equal weight": item["turnover_from_hypothetical_equal_weight"], "Cost": item["cost_rate"], "Optimizer feasible": item["optimizer_feasible"], "Mandate verdicts": item["mandate_verdicts"]})
     st.dataframe(comparison_rows, use_container_width=True, hide_index=True)
+
+    st.subheader("Phase 4A investment decision support")
+    decision = result["decision_support"]
+    decision_output_path = PROJECT_ROOT / "outputs" / "phase4a_decision_support.md"
+    if decision_output_path.exists():
+        st.download_button(
+            "Download generated Phase 4A decision support",
+            data=decision_output_path.read_text(encoding="utf-8"),
+            file_name="phase4a_decision_support.md",
+            mime="text/markdown",
+        )
+    st.warning(
+        f"Candidate disposition for your review: {decision['candidate_disposition_for_student_review']}. "
+        f"{decision['candidate_action']} This is decision support, not a final investment judgment."
+    )
+    cpi_status = decision["point_in_time_cpi"]
+    st.error(
+        f"Historical point-in-time stop: decision {cpi_status['decision_date']}; "
+        f"September CPI availability {cpi_status['current_cpi_availability_date']}; "
+        f"admissible: {cpi_status['admissible_for_stress_decision']}. The hurdle used in the existing stress run is not valid for this decision date."
+    )
+    st.write("**Full window versus 36 months:**")
+    window_rows = []
+    for group in decision["portfolio_comparisons"]:
+        for item in group["portfolios"]:
+            window_rows.append({"Estimation window": group["scenario"], "Portfolio": item["portfolio"], "Weights": item["weights"], "Gross expected return": item["annual_expected_return"], "Net expected return": item["net_expected_return"], "Volatility": item["annual_volatility"], "Mandate verdicts": item["mandate_verdicts"]})
+    st.dataframe(window_rows, use_container_width=True, hide_index=True)
+    st.write("**Model-feasible stress envelope (diagnostic only):**")
+    envelope = decision["modeled_feasible_stress_envelope"]
+    st.dataframe([{"Ticker": ticker, "Minimum": bounds["minimum"], "Maximum": bounds["maximum"]} for ticker,bounds in envelope["weights_by_ticker"].items()], use_container_width=True, hide_index=True)
+    st.caption("Not an authorization range. Full-window versus 36-month estimates change the BIL allocation materially, and critical mandate evidence remains incomplete.")
+    with st.expander("Decision rules and evidence requirements"):
+        st.dataframe([{"Outcome": row["outcome"], "Decision rule": row["rule"]} for row in decision["decision_framework"]], use_container_width=True, hide_index=True)
+        st.dataframe([{"Requirement": row["requirement"], "Status": row["status"], "Evidence and next requirement": row["available_evidence"] + " Needed: " + row["needed"], "Sources": ", ".join(source["title"] + ": " + source.get("url", source.get("repository_path", "")) for source in row["sources"])} for row in decision["evidence_requirements"]], use_container_width=True, hide_index=True)
+    st.write("**Monitoring triggers and stop conditions**")
+    st.dataframe([{"Trigger": row["trigger"], "Response": row["response"]} for row in decision["monitoring_triggers_and_stop_conditions"]], use_container_width=True, hide_index=True)
+    st.write("**Decisions requiring your or the committee's approval**")
+    for item in decision["committee_decisions_requested"]:
+        st.write(f"- {item}")
+    st.write("**Conditions that change the candidate disposition**")
+    st.dataframe([{"Current outcome": row["current_outcome"], "Change to": row["change_to"], "Condition": row["condition"]} for row in decision["reversal_conditions"]], use_container_width=True, hide_index=True)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,456 @@
+{
+  "phase": "4A",
+  "generated_by": "scripts/generate_phase2_results.py",
+  "evaluation_date": "2026-11-18",
+  "candidate_disposition_for_student_review": "HOLD",
+  "candidate_action": "HOLD funded deployment and do not authorize an allocation range yet; continue evidence collection and permit paper-only rehearsal if separately approved.",
+  "not_final_investment_judgment": true,
+  "decision_framework": [
+    {
+      "outcome": "APPROVE",
+      "rule": "Only after every applicable hard rule has documented PASS evidence, point-in-time objective inputs are valid, actual-holdings turnover and costs are supportable, the committee accepts S10's optimization objective and S9 handling, and allocation ranges remain acceptable across approved stresses."
+    },
+    {
+      "outcome": "CONDITIONAL_PILOT",
+      "rule": "Only after hard legal/mandate constraints and point-in-time data gates are verified, with actual holdings, pilot size, duration, authority, monitoring cadence, and abort conditions approved in writing. A paper-only rehearsal may be considered while capital gates remain open."
+    },
+    {
+      "outcome": "HOLD",
+      "rule": "Use when material evidence or policy interpretation remains unknown, the estimate window produces material allocation dispersion, or feasibility depends on an inadmissible input. Do not authorize funded allocation."
+    },
+    {
+      "outcome": "REJECT",
+      "rule": "Use when a verified hard constraint is breached or no feasible portfolio exists under confirmed policy and evidence, with no approved remedy. A hypothetical-start infeasibility alone is not grounds to reject Meridian's actual portfolio."
+    }
+  ],
+  "approval_gates": {
+    "point_in_time_cpi_valid": false,
+    "actual_holdings_and_asof_known": false,
+    "five_day_liquidity_verified": false,
+    "issuer_policy_and_exposure_verified": false,
+    "s9_handling_approved": false,
+    "full_mandate_feasibility_verified": false,
+    "stress_range_robust_and_approved": false
+  },
+  "hard_failure_observed": false,
+  "point_in_time_cpi": {
+    "decision_date": "2026-10-05",
+    "current_cpi_observation_date": "2026-09-01",
+    "current_cpi_availability_date": "2026-10-14",
+    "prior_cpi_observation_date": "2025-09-01",
+    "prior_cpi_availability_date": "2025-10-24",
+    "alfred_vintage_verified": false,
+    "admissible_for_stress_decision": false,
+    "modeled_hurdle_used": 0.07717250844268994,
+    "status": "STOP_LOOKAHEAD_OR_UNVERIFIED_VINTAGE"
+  },
+  "window_sensitivity": {
+    "full_window_scenario": "baseline_full_window",
+    "full_window_weights": {
+      "BIL": 0.44,
+      "IEF": 0.0,
+      "LQD": 0.0,
+      "VT": 0.56
+    },
+    "full_window_return_observations": 59,
+    "36_month_scenario": "last_36_months",
+    "36_month_weights": {
+      "BIL": 0.78,
+      "IEF": 0.0,
+      "LQD": 0.0,
+      "VT": 0.22
+    },
+    "bil_allocation_difference_percentage_points": 34.0,
+    "interpretation": "The optimized BIL weight changes materially between the tested full and 36-month windows. The mandate supplies no approved tolerance for this dispersion; do not call the resulting envelope robust or authorize it as a band."
+  },
+  "modeled_feasible_stress_envelope": {
+    "weights_by_ticker": {
+      "BIL": {
+        "minimum": 0.17,
+        "maximum": 0.78
+      },
+      "IEF": {
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "LQD": {
+        "minimum": 0.0,
+        "maximum": 0.0
+      },
+      "VT": {
+        "minimum": 0.22,
+        "maximum": 0.83
+      }
+    },
+    "feasible_reoptimized_scenario_count": 11,
+    "supporting_scenarios": [
+      "baseline_full_window",
+      "return_estimates_minus_2pp",
+      "return_estimates_plus_2pp",
+      "last_36_months",
+      "transaction_cost_0bps",
+      "transaction_cost_25bps",
+      "reserve_minimum_10pct",
+      "volatility_plus_25pct",
+      "correlations_psd_convex_blend_50pct",
+      "signal_available_review_only",
+      "signal_unavailable_no_tilt"
+    ],
+    "status": "DIAGNOSTIC_ONLY_NOT_AN_AUTHORIZATION_RANGE",
+    "reasons_not_robust": [
+      "Full versus 36-month estimation changes BIL by the reported percentage-point amount.",
+      "The mandate does not set a numerical tolerance for allocation stability, so a robust band cannot be inferred without committee judgment.",
+      "Stress optimization uses a September 2026 CPI snapshot that became available after the 2026-10-05 historical signal decision date; the modeled hurdle is not point-in-time admissible for that stress date.",
+      "Actual holdings, turnover, transaction costs, liquidity, issuer treatment/exposure, and S9 handling remain unverified."
+    ]
+  },
+  "portfolio_comparisons": [
+    {
+      "scenario": "baseline_full_window",
+      "portfolios": [
+        {
+          "portfolio": "Equal weight",
+          "weights": {
+            "BIL": 0.25,
+            "IEF": 0.25,
+            "LQD": 0.25,
+            "VT": 0.25
+          },
+          "annual_expected_return": 0.03012767841617308,
+          "net_expected_return": 0.03012767841617308,
+          "annual_volatility": 0.07548216967095926,
+          "turnover_from_hypothetical_equal_weight": 0.0,
+          "cost_rate": 0.0,
+          "optimizer_feasible": true,
+          "mandate_verdicts": {
+            "weights_sum": "PASS",
+            "long_only": "PASS",
+            "no_borrowing": "PASS",
+            "no_derivatives": "PASS",
+            "reserve": "PASS",
+            "liquidity": "NOT_TESTABLE",
+            "issuer_limit": "NOT_TESTABLE",
+            "turnover": "NOT_TESTABLE",
+            "horizon": "PASS",
+            "rebalance_frequency": "PASS",
+            "return_objective_proxy": "NOT_TESTABLE",
+            "calendar_year_loss": "UNRESOLVED"
+          }
+        },
+        {
+          "portfolio": "60/40 benchmark",
+          "weights": {
+            "BIL": 0.0,
+            "IEF": 0.0,
+            "LQD": 0.4,
+            "VT": 0.6
+          },
+          "annual_expected_return": 0.06259084572114725,
+          "net_expected_return": 0.062090845721147245,
+          "annual_volatility": 0.12333533891932873,
+          "turnover_from_hypothetical_equal_weight": 0.5,
+          "cost_rate": 0.0005,
+          "optimizer_feasible": true,
+          "mandate_verdicts": {
+            "weights_sum": "PASS",
+            "long_only": "PASS",
+            "no_borrowing": "PASS",
+            "no_derivatives": "PASS",
+            "reserve": "FAIL",
+            "liquidity": "NOT_TESTABLE",
+            "issuer_limit": "NOT_TESTABLE",
+            "turnover": "NOT_TESTABLE",
+            "horizon": "PASS",
+            "rebalance_frequency": "PASS",
+            "return_objective_proxy": "NOT_TESTABLE",
+            "calendar_year_loss": "UNRESOLVED"
+          }
+        },
+        {
+          "portfolio": "Reoptimized minimum volatility",
+          "weights": {
+            "BIL": 0.44,
+            "IEF": 0.0,
+            "LQD": 0.0,
+            "VT": 0.56
+          },
+          "annual_expected_return": 0.07797391663945755,
+          "net_expected_return": 0.07747391663945755,
+          "annual_volatility": 0.08415429139128262,
+          "turnover_from_hypothetical_equal_weight": 0.5,
+          "cost_rate": 0.0005,
+          "optimizer_feasible": true,
+          "mandate_verdicts": {
+            "weights_sum": "PASS",
+            "long_only": "PASS",
+            "no_borrowing": "PASS",
+            "no_derivatives": "PASS",
+            "reserve": "PASS",
+            "liquidity": "NOT_TESTABLE",
+            "issuer_limit": "NOT_TESTABLE",
+            "turnover": "NOT_TESTABLE",
+            "horizon": "PASS",
+            "rebalance_frequency": "PASS",
+            "return_objective_proxy": "NOT_TESTABLE",
+            "calendar_year_loss": "UNRESOLVED"
+          }
+        }
+      ]
+    },
+    {
+      "scenario": "last_36_months",
+      "portfolios": [
+        {
+          "portfolio": "Equal weight",
+          "weights": {
+            "BIL": 0.25,
+            "IEF": 0.25,
+            "LQD": 0.25,
+            "VT": 0.25
+          },
+          "annual_expected_return": 0.08131376379077304,
+          "net_expected_return": 0.08131376379077304,
+          "annual_volatility": 0.05884327628326941,
+          "turnover_from_hypothetical_equal_weight": 0.0,
+          "cost_rate": 0.0,
+          "optimizer_feasible": true,
+          "mandate_verdicts": {
+            "weights_sum": "PASS",
+            "long_only": "PASS",
+            "no_borrowing": "PASS",
+            "no_derivatives": "PASS",
+            "reserve": "PASS",
+            "liquidity": "NOT_TESTABLE",
+            "issuer_limit": "NOT_TESTABLE",
+            "turnover": "NOT_TESTABLE",
+            "horizon": "PASS",
+            "rebalance_frequency": "PASS",
+            "return_objective_proxy": "NOT_TESTABLE",
+            "calendar_year_loss": "UNRESOLVED"
+          }
+        },
+        {
+          "portfolio": "60/40 benchmark",
+          "weights": {
+            "BIL": 0.0,
+            "IEF": 0.0,
+            "LQD": 0.4,
+            "VT": 0.6
+          },
+          "annual_expected_return": 0.14085425160034507,
+          "net_expected_return": 0.14035425160034506,
+          "annual_volatility": 0.0945392892456814,
+          "turnover_from_hypothetical_equal_weight": 0.5,
+          "cost_rate": 0.0005,
+          "optimizer_feasible": true,
+          "mandate_verdicts": {
+            "weights_sum": "PASS",
+            "long_only": "PASS",
+            "no_borrowing": "PASS",
+            "no_derivatives": "PASS",
+            "reserve": "FAIL",
+            "liquidity": "NOT_TESTABLE",
+            "issuer_limit": "NOT_TESTABLE",
+            "turnover": "NOT_TESTABLE",
+            "horizon": "PASS",
+            "rebalance_frequency": "PASS",
+            "return_objective_proxy": "NOT_TESTABLE",
+            "calendar_year_loss": "UNRESOLVED"
+          }
+        },
+        {
+          "portfolio": "Reoptimized minimum volatility",
+          "weights": {
+            "BIL": 0.78,
+            "IEF": 0.0,
+            "LQD": 0.0,
+            "VT": 0.22
+          },
+          "annual_expected_return": 0.07859830008334094,
+          "net_expected_return": 0.07806830008334094,
+          "annual_volatility": 0.026057400446251523,
+          "turnover_from_hypothetical_equal_weight": 0.53,
+          "cost_rate": 0.0005300000000000001,
+          "optimizer_feasible": true,
+          "mandate_verdicts": {
+            "weights_sum": "PASS",
+            "long_only": "PASS",
+            "no_borrowing": "PASS",
+            "no_derivatives": "PASS",
+            "reserve": "PASS",
+            "liquidity": "NOT_TESTABLE",
+            "issuer_limit": "NOT_TESTABLE",
+            "turnover": "NOT_TESTABLE",
+            "horizon": "PASS",
+            "rebalance_frequency": "PASS",
+            "return_objective_proxy": "NOT_TESTABLE",
+            "calendar_year_loss": "UNRESOLVED"
+          }
+        }
+      ]
+    }
+  ],
+  "hypothetical_turnover_stop": {
+    "scenario": "turnover_cap_25pct_hypothetical",
+    "starting_holdings": "Hypothetical equal-weight starting allocation for illustrative turnover analysis only; not actual Meridian holdings",
+    "maximum_turnover": 0.25,
+    "status": "STOP_INFEASIBLE",
+    "feasible": false,
+    "reason": "no grid portfolio satisfies every supplied constraint",
+    "actual_meridian_holdings_inferred": false
+  },
+  "evidence_requirements": [
+    {
+      "requirement": "S8 five-business-day liquidity",
+      "status": "NOT_VERIFIED",
+      "available_evidence": "SEC Rule 6c-11 materials and fund-provider pages disclose prior-day holdings, market/NAV information, and/or 30-day median bid-ask spread. These are useful diligence inputs, not proof that the proposed portfolio's required 90% can be sold and settled within five business days at the intended trade size.",
+      "needed": "Dated holdings and executable, position-sized liquidation/settlement analysis for each proposed allocation under normal-market conditions; confirm treatment of ETF secondary-market sale versus fund redemption.",
+      "sources": [
+        {
+          "title": "SEC ETF Rule 6c-11 compliance guide",
+          "url": "https://www.sec.gov/investment/exchange-traded-funds-small-entity-compliance-guide"
+        },
+        {
+          "title": "State Street BIL product data",
+          "url": "https://www.ssga.com/us/en/individual/etfs/state-street-spdr-bloomberg-1-3-month-t-bill-etf-bil"
+        },
+        {
+          "title": "iShares IEF product data",
+          "url": "https://www.ishares.com/us/products/239456/ishares-710-year-treasury-bond-etf"
+        },
+        {
+          "title": "iShares LQD product data",
+          "url": "https://www.ishares.com/us/products/239566/ishares-iboxx-investment-grade-corporate-bond-etf"
+        },
+        {
+          "title": "Vanguard VT product data",
+          "url": "https://advisors.vanguard.com/investments/products/vt/vanguard-total-world-stock-etf"
+        }
+      ]
+    },
+    {
+      "requirement": "S6 issuer cap and exemptions",
+      "status": "POLICY_INTERPRETATION_AND_LOOKTHROUGH_UNVERIFIED",
+      "available_evidence": "Lab_13.md says: No single issuer can account for more than 8% of the portfolio. The machine-readable project configuration carries case-exemption assumptions, but the quoted client rule does not state them. Public daily ETF holdings disclosures can support look-through aggregation; no dated constituents or CIO ruling is loaded in this project.",
+      "needed": "CIO confirmation of exemptions and look-through method; dated underlying holdings and issuer aggregation if exemptions do not apply.",
+      "sources": [
+        {
+          "title": "SEC ETF Rule 6c-11 compliance guide (daily holdings disclosure)",
+          "url": "https://www.sec.gov/investment/exchange-traded-funds-small-entity-compliance-guide"
+        },
+        {
+          "title": "Lab_13.md S6 source",
+          "repository_path": "../../Lab_13.md"
+        }
+      ]
+    },
+    {
+      "requirement": "S2 CPI + 4% point-in-time hurdle",
+      "status": "LOOKAHEAD_MISMATCH_FOR_HISTORICAL_SIGNAL_DECISION",
+      "available_evidence": "The loaded CPI snapshot uses 2026-09-01 with availability 2026-10-14; the stress/signal decision date is 2026-10-05. The availability is after that date, and ALFRED vintage verification is False. BLS scheduled the August CPI release for September 11, before this decision, but the local snapshot lacks the prior-year August input and no matching ALFRED pair is verified. Therefore the modeled 7.7173% hurdle is not admissible as a point-in-time hurdle for this historical stress date.",
+      "needed": "Retrieve both CPI levels from the ALFRED vintage available on the chosen decision date, retaining observation and availability dates. No replacement value is fabricated here.",
+      "sources": [
+        {
+          "title": "FRED observations API and vintage_dates parameter",
+          "url": "https://fred.stlouisfed.org/docs/api/fred/series_observations.html"
+        },
+        {
+          "title": "FRED real-time periods",
+          "url": "https://fred.stlouisfed.org/docs/api/fred/realtime_period.html"
+        },
+        {
+          "title": "BLS archived September 2026 CPI release",
+          "url": "https://www.bls.gov/news.release/archives/cpi_10142026.htm"
+        },
+        {
+          "title": "BLS 2026 release schedule",
+          "url": "https://www.bls.gov/schedule/2026/home.htm"
+        }
+      ]
+    },
+    {
+      "requirement": "S9 annual loss statement",
+      "status": "UNRESOLVED_CLIENT_POLICY",
+      "available_evidence": "Lab_13.md describes an annual loss greater than 10% as an unverifiable promise and does not define measurement or breach handling. No external market source can supply this client-specific policy decision.",
+      "needed": "CIO definition of calendar/fiscal/rolling year, NAV or market-price total return, fee/cost treatment, and breach escalation. Until then, display a human-review alert only; do not promise or encode a loss guarantee.",
+      "sources": [
+        {
+          "title": "Lab_13.md S9 source",
+          "repository_path": "../../Lab_13.md"
+        }
+      ]
+    }
+  ],
+  "monitoring_triggers_and_stop_conditions": [
+    {
+      "trigger": "Point-in-time CPI or required market observation unavailable, revised without a recorded vintage, or dated after the decision boundary",
+      "response": "STOP the decision run; do not reuse the prior hurdle as current or substitute a later release."
+    },
+    {
+      "trigger": "Optimizer returns infeasible, covariance validation fails, or required constraint cannot be evaluated",
+      "response": "STOP and report the failed rule/input. Do not relax constraints or treat unknown as PASS."
+    },
+    {
+      "trigger": "Verified reserve falls below the mandate's required distribution coverage",
+      "response": "Escalate before trading and restore the committee-approved reserve; current modeled floor is 3% only under the stated $0.75m quarterly distribution assumption."
+    },
+    {
+      "trigger": "Verified five-day liquid share falls below 90% or a position-sized liquidation test fails",
+      "response": "STOP new allocations and obtain committee-approved remediation; ETF headline volume or median spread alone is insufficient."
+    },
+    {
+      "trigger": "Aggregated nonexempt issuer exposure exceeds 8% under a CIO-confirmed S6 interpretation",
+      "response": "Block the proposed trade and obtain committee direction; no exemption is presumed."
+    },
+    {
+      "trigger": "Actual one-way turnover exceeds 25%",
+      "response": "Do not rebalance absent the committee approval explicitly required by S7; current holdings are missing, so modeled turnover is illustrative only."
+    },
+    {
+      "trigger": "Rolling five-year after-cost return falls below the CPI + 4% objective using admissible vintages",
+      "response": "Trigger committee review and rerun the analysis; this is an objective review trigger, not a guaranteed return or automatic liquidation rule."
+    },
+    {
+      "trigger": "DGS10 is unavailable at the decision date",
+      "response": "Mark the signal unavailable and proceed without an automatic portfolio tilt; obtain a fresh permitted observation before using it as a review input."
+    },
+    {
+      "trigger": "Calendar-year loss approaches or crosses -10%",
+      "response": "Human-review alert only pending CIO definition of S9. Do not represent this as a verified breach or automatic sell rule."
+    },
+    {
+      "trigger": "Proposed weights lie outside a subsequently committee-approved allocation range",
+      "response": "STOP that trade pending review. The current stress envelope is not an approved range."
+    }
+  ],
+  "reversal_conditions": [
+    {
+      "current_outcome": "HOLD",
+      "change_to": "CONDITIONAL_PILOT",
+      "condition": "Point-in-time CPI and all required data are valid; actual holdings/costs are recorded; S3, S5, S6, S7 and S8 have documented treatment/evidence; the CIO approves S9 handling and the committee sets pilot size, authority, duration, review cadence, and abort conditions."
+    },
+    {
+      "current_outcome": "CONDITIONAL_PILOT",
+      "change_to": "HOLD",
+      "condition": "Any required observation is unavailable or revised without vintage evidence, an optimizer/covariance stop occurs, a mandatory rule becomes untestable, or a pilot monitoring trigger is breached."
+    },
+    {
+      "current_outcome": "ANY",
+      "change_to": "REJECT",
+      "condition": "A hard mandate violation is verified and no committee-approved exception or feasible remedy exists. Hypothetical equal-weight turnover infeasibility alone does not meet this condition."
+    },
+    {
+      "current_outcome": "CONDITIONAL_PILOT",
+      "change_to": "APPROVE",
+      "condition": "Only after the committee-defined pilot review period is complete, outcomes and actual costs reconcile to the pre-approved plan, constraints remain verified, and the committee accepts a stress-supported allocation range."
+    }
+  ],
+  "committee_decisions_requested": [
+    "Choose the governing decision date for a point-in-time stress rerun and authorize the matching ALFRED CPI vintage; do not use September CPI for the October 5 decision because its recorded availability is October 14.",
+    "Provide Meridian's actual holdings and holdings as-of date, plus an approved transaction-cost estimate or execution evidence.",
+    "Confirm whether the S6 exemptions in config/mandate.json govern despite their absence from the S6 sentence in Lab_13.md; approve look-through and issuer aggregation treatment.",
+    "Provide position-sized five-business-day sale and settlement evidence for the 90% liquidity rule.",
+    "Define how S9 is measured and handled, and confirm the minimum-volatility objective as a modeling choice under S10.",
+    "Decide whether the model-only stress envelope is useful for discussion; no allocation range is recommended for authorization in this report."
+  ]
+}
