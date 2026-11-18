@@ -1,56 +1,70 @@
 # Meridian Foundation Investment Management Application
 
-**AI use:** OpenAI Codex was used for Phase 1 software architecture, documentation, and test scaffolding. The analysis and investment decision remain the student's responsibility.
+**AI use:** OpenAI Codex assisted with Phase 1–2 architecture, implementation, tests, data-pipeline design, and documentation. The student owns the analysis and investment decision.
 
 **Educational project only; not investment advice.**
 
-## Phase 1 status
+## Decision and intended user
 
-This directory contains the initial financial engine and mandate-validation framework for FIN 43900 Project 2. It does not contain a final portfolio, recommendation, cold-run record, or Locked Changed-Input Record.
+This application supports the Meridian Foundation CIO and investment committee in deciding whether to reject, pilot, or adopt a constrained ETF allocation process. Phase 2 compares two baselines with a provisional constrained minimum-volatility portfolio; it does **not** make the final committee recommendation.
 
-The application is being designed to support this committee decision:
+## Run from a clean checkout
 
-> Should the Meridian Foundation reject, pilot, or adopt the proposed constrained ETF allocation process and, if piloted or adopted, what allocation ranges should the committee authorize?
-
-## Current structure
-
-- `config/mandate.json` — machine-readable Meridian mandate and policy status.
-- `src/project2_engine/` — reusable calculations, configuration loading, and rule-level mandate validation.
-- `tests/` — deterministic known-answer tests using synthetic fixtures, not investment results.
-- `docs/financial-conventions.md` — measurement conventions and unresolved CIO decisions.
-- `docs/mandate-review.md` — line-by-line separation of original policy and Project 2 modeling assumptions.
-- `docs/validation-and-ai-use.md` — working validation and AI-use record.
-- `docs/decision-memo.md` — Phase 1 placeholder; no recommendation has been made.
-- `data/` — reserved for traceable raw and processed data.
-- `outputs/` — reserved for code-generated visible output.
-
-## Setup and Phase 1 tests
-
-From `project2/`:
+Requires Python 3.10 or newer.
 
 ```bash
 python -m pip install -r requirements.txt
 python -m pip install -e .
 python -m unittest discover -s tests -v
-```
-
-To open the Phase 1 application shell:
-
-```bash
+python scripts/generate_phase2_results.py
 python -m streamlit run app.py
 ```
 
-The app intentionally shows the mandate and unresolved decisions only. It does not present preliminary calculations as a final recommendation.
+The committed input snapshot reproduces the analysis offline. To refresh external data deliberately, run `python scripts/fetch_market_data.py --refresh`. Refreshing changes the evidence boundary and may change results; preserve and review the new raw responses and provenance.
 
-## Remaining unresolved controls
+## Phase 2 method
 
-- Actual Meridian holdings and their as-of date; until supplied, equal weight is hypothetical and illustrative only.
-- Observed or committee-approved trading-cost evidence to replace the illustrative 10 bps assumption.
-- The analysis decision date and admissible CPIAUCSL observation/availability dates.
-- Independent five-business-day liquidity evidence for all four ETFs.
-- CIO measurement and handling of S9; it remains `UNRESOLVED`, not a hard prohibition.
-- Confirmation that the official case's issuer exemptions govern despite their omission from the local `Lab_13.md` wording.
+- Universe: BIL, IEF, LQD, and VT.
+- Price source: Yahoo Finance chart endpoint, retrieved 2026-11-17.
+- Price unit: USD adjusted close per ETF share; Yahoo states adjusted close incorporates applicable splits and distributions.
+- Window: 61 aligned calendar-month-end prices from 2021-10-29 through 2026-10-30, producing 60 monthly simple returns.
+- Missing values: zero in the raw adjusted-close fields and aligned panel.
+- Estimates: monthly arithmetic mean × 12; sample monthly covariance × 12; portfolio volatility is the square root of annual portfolio variance.
+- Equal-weight baseline: 25% each.
+- 60/40 benchmark: 60% VT global equity and 40% LQD investment-grade bonds; BIL and IEF are 0%.
+- Optimizer: deterministic 1%-weight grid, long-only, fully invested, BIL reserve at least 3%, and provisional CPI + 4% after illustrative trading cost. It never relaxes a supplied constraint.
+- CPI signal: September 2026 CPIAUCSL divided by September 2025 CPIAUCSL minus one. October is not used because the October 2025 all-items CPI was not published.
 
-## Reproducibility boundary
+## Executed Phase 2 result
 
-All rates use decimal units internally: `0.065` means 6.5%, and `10` transaction-cost basis points means `0.001` per unit of turnover. No final data or output should be added manually; later phases will generate visible output from the same tested engine used by the app.
+| Portfolio | Weights (BIL / IEF / LQD / VT) | Expected return | Volatility | Reserve |
+|---|---|---:|---:|---:|
+| Equal weight | 25% / 25% / 25% / 25% | 3.18% | 7.49% | 25% |
+| 60/40 benchmark | 0% / 0% / 40% / 60% | 6.16% | 12.23% | 0% |
+| Provisional constrained minimum volatility | 40% / 0% / 0% / 60% | 7.79% | 8.95% | 40% |
+
+These figures are generated in [outputs/phase2_results.md](outputs/phase2_results.md). Historical expected return is an estimate, not a forecast or promise.
+
+## Repository map
+
+- `app.py` — Streamlit comparison and individual rule verdicts.
+- `config/mandate.json` — exact S1–S10 policy plus separately labeled modeling assumptions.
+- `data/raw/` — preserved Yahoo responses.
+- `data/prices_monthly.csv` — aligned adjusted-price panel.
+- `data/market_data_provenance.json` — source, dates, units, adjustment, missingness, and transformations.
+- `src/project2_engine/` — calculations, loaders, optimizer, mandate checker, and Phase 2 orchestration.
+- `scripts/` — reproducible data refresh and visible-output generation.
+- `tests/` — known-answer, integrity, feasible/infeasible optimizer, baseline, and rule-verdict tests.
+- `outputs/` — code-generated JSON and Markdown results.
+
+## Known limitations and approvals needed
+
+- No actual Meridian holdings or holdings as-of date were supplied. Displayed turnover and costs are explicitly illustrative from a hypothetical equal-weight start; the mandate turnover verdict remains `NOT_TESTABLE`.
+- If hypothetical equal weight were treated as the starting portfolio, enforcing the 25% turnover cap makes the provisional return hurdle infeasible. This is a sensitivity stop condition, not an actual-holdings verdict.
+- No independent evidence establishes five-business-day liquidation and settlement for the ETFs. Liquidity remains `NOT_TESTABLE`.
+- The 10 bps one-way cost is illustrative, not observed Meridian execution evidence.
+- The CPI values are a current FRED snapshot with documented release dates, but the required ALFRED vintage has not been verified.
+- The 1% grid solution is discrete and sensitive to historical expected-return estimates.
+- ETF issuer exposure, the diversified-fund exemption, and look-through treatment are unverified; issuer compliance remains `NOT_TESTABLE`.
+- S9 remains `UNRESOLVED`; no loss guarantee is claimed.
+- Allocation ranges, stress runs, final recommendation, monitoring triggers, cold run, and Locked Changed-Input Record are intentionally deferred beyond Phase 2.

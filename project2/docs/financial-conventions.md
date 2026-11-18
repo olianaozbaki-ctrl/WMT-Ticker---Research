@@ -1,4 +1,4 @@
-# Phase 1 Financial Conventions
+# Phase 1–2 Financial Conventions
 
 This document resolves calculation conventions where the Meridian mandate is sufficiently clear and explicitly marks policy decisions that remain unresolved. Exact original S1-S10 language is stored separately under `original_policy` in `config/mandate.json`; the conventions below are Project 2 modeling assumptions, not rewritten client policy. It contains no final investment results.
 
@@ -60,3 +60,16 @@ This document resolves calculation conventions where the Meridian mandate is suf
 ## Allocation ranges
 
 No range is defined in Phase 1. A later phase should derive ranges from the set of portfolios that remain feasible across accepted estimate, window, cost, and constraint stresses. A cosmetic interval around one optimized point is not acceptable.
+
+## Phase 2 executed conventions
+
+- The frozen price panel uses Yahoo Finance adjusted close, which the provider defines as adjusted for applicable splits and dividend distributions.
+- Daily observations are transformed to the last nonmissing adjusted close in each calendar month and aligned by common month.
+- The current window contains 61 price observations and 60 simple monthly returns through 2026-10-30.
+- Expected returns equal monthly arithmetic mean × 12; covariance equals sample monthly covariance × 12.
+- The optimizer searches a 1% long-only grid. Its discrete result is not represented as a continuous optimum.
+- The provisional CPI hurdle uses September 2026 versus September 2025 because October 2025 all-items CPI is missing. It is not called vintage-verified.
+- The 60/40 comparison is 60% VT and 40% LQD, matching global equity and investment-grade bond roles.
+- Phase 2 turnover and costs are illustrative from the hypothetical equal-weight allocation only. The rule verdict remains `NOT_TESTABLE` until actual holdings are supplied.
+- Phase 2 issuer compliance is `NOT_TESTABLE` until ETF issuer exposure, the diversified-fund exemption, and look-through treatment are verified.
+- “Provisional optimizer feasible” means only that supported numerical model inputs pass; it never means full mandate compliance.

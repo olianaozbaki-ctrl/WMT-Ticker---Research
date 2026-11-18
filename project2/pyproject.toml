@@ -9,6 +9,8 @@ description = "FIN 43900 Project 2 Phase 1 financial engine"
 requires-python = ">=3.10"
 dependencies = [
   "streamlit==1.32.0",
+  "numpy==1.26.4",
+  "scipy==1.13.1",
 ]
 
 [tool.setuptools]

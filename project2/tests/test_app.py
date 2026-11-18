@@ -1,0 +1,24 @@
+"""Headless execution test for the Streamlit application."""
+
+import unittest
+from pathlib import Path
+
+from streamlit.testing.v1 import AppTest
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+class StreamlitAppTests(unittest.TestCase):
+    def test_app_executes_without_streamlit_exception(self):
+        app = AppTest.from_file(str(ROOT / "app.py")).run(timeout=20)
+        self.assertEqual(list(app.exception), [])
+        self.assertEqual(
+            app.title[0].value,
+            "Meridian Foundation Investment Management Application",
+        )
+        self.assertEqual(len(app.dataframe), 2)
+
+
+if __name__ == "__main__":
+    unittest.main()

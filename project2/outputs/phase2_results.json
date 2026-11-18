@@ -1,0 +1,543 @@
+{
+  "phase": 2,
+  "generated_by": "scripts/generate_phase2_results.py",
+  "analysis_date": "2026-11-17",
+  "source_retrieval_date": "2026-11-17",
+  "source_retrieved_at_utc": "2026-11-17",
+  "data_processed_at_utc": "2026-11-17T21:17:12+00:00",
+  "market_data_as_of": "2026-10-30",
+  "price_observations": 61,
+  "monthly_return_observations": 60,
+  "annual_expected_returns_by_asset": {
+    "BIL": 0.03667148357107799,
+    "IEF": -0.010805863647418512,
+    "LQD": -0.004150362412836906,
+    "VT": 0.10546773410390954
+  },
+  "cpi_yoy": 0.03717250844268993,
+  "provisional_after_cost_hurdle": 0.07717250844268994,
+  "cpi_vintage_verified": false,
+  "optimization": {
+    "provisional_feasible_on_supported_model_inputs": true,
+    "full_mandate_feasible": false,
+    "reason": "feasible",
+    "grid_step": 0.01,
+    "combinations_evaluated": 176851,
+    "feasible_combinations": 3847,
+    "constraints_enforced": [
+      "long-only",
+      "weights sum to 100%",
+      "BIL reserve at least 3%",
+      "provisional CPI + 4% after illustrative one-way trading cost"
+    ],
+    "constraints_not_claimed_as_verified": [
+      "turnover: actual Meridian holdings and as-of date unavailable",
+      "liquidity: independent five-business-day evidence unavailable",
+      "CPI vintage: current FRED snapshot is not an ALFRED-vintage verification",
+      "issuer exposure: diversified-fund exemption and look-through treatment are unverified"
+    ],
+    "hypothetical_turnover_cap_stop_condition": {
+      "starting_holdings": "Hypothetical equal weight; not actual Meridian holdings",
+      "maximum_turnover": 0.25,
+      "feasible": false,
+      "reason": "no grid portfolio satisfies every supplied constraint",
+      "combinations_evaluated": 176851,
+      "feasible_combinations": 0,
+      "maximum_net_expected_return": 0.06061414734151504,
+      "maximum_return_weights": {
+        "BIL": 0.25,
+        "IEF": 0.0,
+        "LQD": 0.25,
+        "VT": 0.5
+      },
+      "return_hurdle": 0.07717250844268994,
+      "return_shortfall": 0.016558361101174902
+    }
+  },
+  "portfolios": [
+    {
+      "name": "Equal weight",
+      "kind": "baseline",
+      "weights": {
+        "BIL": 0.25,
+        "IEF": 0.25,
+        "LQD": 0.25,
+        "VT": 0.25
+      },
+      "annual_expected_return": 0.03179574790368303,
+      "annual_volatility": 0.07493264601425156,
+      "reserve_allocation": 0.25,
+      "illustrative_turnover_from_equal_weight": 0.0,
+      "illustrative_transaction_cost_rate": 0.0,
+      "illustrative_net_expected_return": 0.03179574790368303,
+      "liquidity_status": "NOT_TESTABLE",
+      "verified_mandate_feasible": false,
+      "rules": [
+        {
+          "rule_id": "weights_sum",
+          "label": "Weights sum to 100%",
+          "status": "PASS",
+          "measured_value": 1.0,
+          "limit_value": 1.0,
+          "units": "decimal weight",
+          "explanation": "Portfolio weights must be fully invested and use decimal units.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "long_only",
+          "label": "No short sales",
+          "status": "PASS",
+          "measured_value": 0.25,
+          "limit_value": 0.0,
+          "units": "decimal weight",
+          "explanation": "Every direct portfolio weight must be nonnegative.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "no_borrowing",
+          "label": "No borrowing",
+          "status": "PASS",
+          "measured_value": 0.0,
+          "limit_value": 0.0,
+          "units": "Boolean indicator",
+          "explanation": "Borrowing is prohibited by the mandate.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "no_derivatives",
+          "label": "No derivatives",
+          "status": "PASS",
+          "measured_value": 0.0,
+          "limit_value": 0.0,
+          "units": "Boolean indicator",
+          "explanation": "Direct derivative use is prohibited by the mandate.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "reserve",
+          "label": "Twelve-month distribution reserve",
+          "status": "PASS",
+          "measured_value": 0.25,
+          "limit_value": 0.03,
+          "units": "decimal weight",
+          "explanation": "Approved reserve-eligible assets must cover four quarterly distributions.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "liquidity",
+          "label": "Five-business-day liquidity",
+          "status": "NOT_TESTABLE",
+          "measured_value": null,
+          "limit_value": null,
+          "units": "",
+          "explanation": "Liquidity evidence is missing for: BIL, IEF, LQD, VT",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "issuer_limit",
+          "label": "Maximum nonexempt issuer exposure",
+          "status": "NOT_TESTABLE",
+          "measured_value": null,
+          "limit_value": null,
+          "units": "",
+          "explanation": "Issuer metadata is missing for: BIL, IEF, LQD, VT",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "turnover",
+          "label": "Annual turnover limit",
+          "status": "NOT_TESTABLE",
+          "measured_value": null,
+          "limit_value": null,
+          "units": "",
+          "explanation": "Current weights and their as-of date are required for turnover.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "horizon",
+          "label": "Seven-year investment horizon",
+          "status": "PASS",
+          "measured_value": 7,
+          "limit_value": 7,
+          "units": "years",
+          "explanation": "The proposed process must be evaluated for the stated mandate horizon.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "rebalance_frequency",
+          "label": "Annual rebalancing",
+          "status": "PASS",
+          "measured_value": 1,
+          "limit_value": 1.0,
+          "units": "years",
+          "explanation": "The Meridian mandate specifies annual rebalancing.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "return_objective_proxy",
+          "label": "CPI + 4% after-cost expected-return proxy",
+          "status": "NOT_TESTABLE",
+          "measured_value": null,
+          "limit_value": null,
+          "units": "",
+          "explanation": "Expected returns, CPI, current weights, and transaction cost are all required. Passing this proxy will not prove the rolling five-year realized objective.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "calendar_year_loss",
+          "label": "Calendar-year loss threshold",
+          "status": "UNRESOLVED",
+          "measured_value": null,
+          "limit_value": -0.1,
+          "units": "annual decimal return",
+          "explanation": "The -10% statement lacks an approved measurement and breach rule. It is monitored and escalated, never reported as a guaranteed pass.",
+          "required_for_feasibility": false
+        }
+      ]
+    },
+    {
+      "name": "60/40 benchmark",
+      "kind": "baseline",
+      "weights": {
+        "BIL": 0.0,
+        "IEF": 0.0,
+        "LQD": 0.4,
+        "VT": 0.6
+      },
+      "annual_expected_return": 0.06162049549721096,
+      "annual_volatility": 0.1223049054476801,
+      "reserve_allocation": 0.0,
+      "illustrative_turnover_from_equal_weight": 0.5,
+      "illustrative_transaction_cost_rate": 0.0005,
+      "illustrative_net_expected_return": 0.06112049549721096,
+      "liquidity_status": "NOT_TESTABLE",
+      "verified_mandate_feasible": false,
+      "rules": [
+        {
+          "rule_id": "weights_sum",
+          "label": "Weights sum to 100%",
+          "status": "PASS",
+          "measured_value": 1.0,
+          "limit_value": 1.0,
+          "units": "decimal weight",
+          "explanation": "Portfolio weights must be fully invested and use decimal units.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "long_only",
+          "label": "No short sales",
+          "status": "PASS",
+          "measured_value": 0.0,
+          "limit_value": 0.0,
+          "units": "decimal weight",
+          "explanation": "Every direct portfolio weight must be nonnegative.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "no_borrowing",
+          "label": "No borrowing",
+          "status": "PASS",
+          "measured_value": 0.0,
+          "limit_value": 0.0,
+          "units": "Boolean indicator",
+          "explanation": "Borrowing is prohibited by the mandate.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "no_derivatives",
+          "label": "No derivatives",
+          "status": "PASS",
+          "measured_value": 0.0,
+          "limit_value": 0.0,
+          "units": "Boolean indicator",
+          "explanation": "Direct derivative use is prohibited by the mandate.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "reserve",
+          "label": "Twelve-month distribution reserve",
+          "status": "FAIL",
+          "measured_value": 0.0,
+          "limit_value": 0.03,
+          "units": "decimal weight",
+          "explanation": "Approved reserve-eligible assets must cover four quarterly distributions.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "liquidity",
+          "label": "Five-business-day liquidity",
+          "status": "NOT_TESTABLE",
+          "measured_value": null,
+          "limit_value": null,
+          "units": "",
+          "explanation": "Liquidity evidence is missing for: LQD, VT",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "issuer_limit",
+          "label": "Maximum nonexempt issuer exposure",
+          "status": "NOT_TESTABLE",
+          "measured_value": null,
+          "limit_value": null,
+          "units": "",
+          "explanation": "Issuer metadata is missing for: LQD, VT",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "turnover",
+          "label": "Annual turnover limit",
+          "status": "NOT_TESTABLE",
+          "measured_value": null,
+          "limit_value": null,
+          "units": "",
+          "explanation": "Current weights and their as-of date are required for turnover.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "horizon",
+          "label": "Seven-year investment horizon",
+          "status": "PASS",
+          "measured_value": 7,
+          "limit_value": 7,
+          "units": "years",
+          "explanation": "The proposed process must be evaluated for the stated mandate horizon.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "rebalance_frequency",
+          "label": "Annual rebalancing",
+          "status": "PASS",
+          "measured_value": 1,
+          "limit_value": 1.0,
+          "units": "years",
+          "explanation": "The Meridian mandate specifies annual rebalancing.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "return_objective_proxy",
+          "label": "CPI + 4% after-cost expected-return proxy",
+          "status": "NOT_TESTABLE",
+          "measured_value": null,
+          "limit_value": null,
+          "units": "",
+          "explanation": "Expected returns, CPI, current weights, and transaction cost are all required. Passing this proxy will not prove the rolling five-year realized objective.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "calendar_year_loss",
+          "label": "Calendar-year loss threshold",
+          "status": "UNRESOLVED",
+          "measured_value": null,
+          "limit_value": -0.1,
+          "units": "annual decimal return",
+          "explanation": "The -10% statement lacks an approved measurement and breach rule. It is monitored and escalated, never reported as a guaranteed pass.",
+          "required_for_feasibility": false
+        }
+      ]
+    },
+    {
+      "name": "Constrained minimum volatility",
+      "kind": "provisional_model_portfolio",
+      "weights": {
+        "BIL": 0.4,
+        "IEF": 0.0,
+        "LQD": 0.0,
+        "VT": 0.6
+      },
+      "annual_expected_return": 0.07794923389077692,
+      "annual_volatility": 0.08954966981493934,
+      "reserve_allocation": 0.4,
+      "illustrative_turnover_from_equal_weight": 0.5,
+      "illustrative_transaction_cost_rate": 0.0005,
+      "illustrative_net_expected_return": 0.07744923389077692,
+      "liquidity_status": "NOT_TESTABLE",
+      "verified_mandate_feasible": false,
+      "rules": [
+        {
+          "rule_id": "weights_sum",
+          "label": "Weights sum to 100%",
+          "status": "PASS",
+          "measured_value": 1.0,
+          "limit_value": 1.0,
+          "units": "decimal weight",
+          "explanation": "Portfolio weights must be fully invested and use decimal units.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "long_only",
+          "label": "No short sales",
+          "status": "PASS",
+          "measured_value": 0.0,
+          "limit_value": 0.0,
+          "units": "decimal weight",
+          "explanation": "Every direct portfolio weight must be nonnegative.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "no_borrowing",
+          "label": "No borrowing",
+          "status": "PASS",
+          "measured_value": 0.0,
+          "limit_value": 0.0,
+          "units": "Boolean indicator",
+          "explanation": "Borrowing is prohibited by the mandate.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "no_derivatives",
+          "label": "No derivatives",
+          "status": "PASS",
+          "measured_value": 0.0,
+          "limit_value": 0.0,
+          "units": "Boolean indicator",
+          "explanation": "Direct derivative use is prohibited by the mandate.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "reserve",
+          "label": "Twelve-month distribution reserve",
+          "status": "PASS",
+          "measured_value": 0.4,
+          "limit_value": 0.03,
+          "units": "decimal weight",
+          "explanation": "Approved reserve-eligible assets must cover four quarterly distributions.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "liquidity",
+          "label": "Five-business-day liquidity",
+          "status": "NOT_TESTABLE",
+          "measured_value": null,
+          "limit_value": null,
+          "units": "",
+          "explanation": "Liquidity evidence is missing for: BIL, VT",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "issuer_limit",
+          "label": "Maximum nonexempt issuer exposure",
+          "status": "NOT_TESTABLE",
+          "measured_value": null,
+          "limit_value": null,
+          "units": "",
+          "explanation": "Issuer metadata is missing for: BIL, VT",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "turnover",
+          "label": "Annual turnover limit",
+          "status": "NOT_TESTABLE",
+          "measured_value": null,
+          "limit_value": null,
+          "units": "",
+          "explanation": "Current weights and their as-of date are required for turnover.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "horizon",
+          "label": "Seven-year investment horizon",
+          "status": "PASS",
+          "measured_value": 7,
+          "limit_value": 7,
+          "units": "years",
+          "explanation": "The proposed process must be evaluated for the stated mandate horizon.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "rebalance_frequency",
+          "label": "Annual rebalancing",
+          "status": "PASS",
+          "measured_value": 1,
+          "limit_value": 1.0,
+          "units": "years",
+          "explanation": "The Meridian mandate specifies annual rebalancing.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "return_objective_proxy",
+          "label": "CPI + 4% after-cost expected-return proxy",
+          "status": "NOT_TESTABLE",
+          "measured_value": null,
+          "limit_value": null,
+          "units": "",
+          "explanation": "Expected returns, CPI, current weights, and transaction cost are all required. Passing this proxy will not prove the rolling five-year realized objective.",
+          "required_for_feasibility": true
+        },
+        {
+          "rule_id": "calendar_year_loss",
+          "label": "Calendar-year loss threshold",
+          "status": "UNRESOLVED",
+          "measured_value": null,
+          "limit_value": -0.1,
+          "units": "annual decimal return",
+          "explanation": "The -10% statement lacks an approved measurement and breach rule. It is monitored and escalated, never reported as a guaranteed pass.",
+          "required_for_feasibility": false
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Historical arithmetic means are estimates, not forecasts or promised returns.",
+    "Turnover and transaction costs use a hypothetical equal-weight starting allocation and illustrative 10 bps cost; neither is actual Meridian evidence.",
+    "ETF five-business-day liquidity remains unverified, so no portfolio is reported as fully mandate-compliant.",
+    "The CPI hurdle uses a current FRED snapshot; ALFRED vintage verification remains outstanding.",
+    "The 1% grid solution is discrete and may differ from a continuous optimum."
+  ],
+  "optimizer_precision_validation": {
+    "method": "Production exhaustive 1% grid compared with exhaustive 0.5% grid and SciPy SLSQP continuous variance minimization from four starting points; all use identical long-only, full-investment, reserve, provisional after-cost return, and illustrative-cost inputs.",
+    "scipy_version": "1.13.1",
+    "production_grid": {
+      "weights": {
+        "BIL": 0.4,
+        "IEF": 0.0,
+        "LQD": 0.0,
+        "VT": 0.6
+      },
+      "gross_expected_return": 0.07794923389077692,
+      "net_expected_return": 0.07744923389077692,
+      "annual_volatility": 0.08954966981493934,
+      "illustrative_turnover": 0.5,
+      "reserve_weight": 0.4,
+      "step": 0.01,
+      "combinations_evaluated": 176851,
+      "feasible_combinations": 3847
+    },
+    "finer_grid": {
+      "weights": {
+        "BIL": 0.4,
+        "IEF": 0.0,
+        "LQD": 0.0,
+        "VT": 0.6
+      },
+      "gross_expected_return": 0.07794923389077692,
+      "net_expected_return": 0.07744923389077692,
+      "annual_volatility": 0.08954966981493934,
+      "illustrative_turnover": 0.5,
+      "reserve_weight": 0.4,
+      "step": 0.005,
+      "combinations_evaluated": 1373701,
+      "feasible_combinations": 28348
+    },
+    "continuous_slsqp": {
+      "weights": {
+        "BIL": 0.4040223914231333,
+        "IEF": 3.754905423919667e-18,
+        "LQD": 1.7661621232173202e-17,
+        "VT": 0.5959776085768668
+      },
+      "gross_expected_return": 0.07767250844268994,
+      "net_expected_return": 0.07717250844268994,
+      "annual_volatility": 0.08895823127487526,
+      "illustrative_turnover": 0.5,
+      "reserve_weight": 0.4040223914231333,
+      "success": true,
+      "message": "Optimization terminated successfully",
+      "iterations": 4,
+      "return_constraint_slack": 0.0,
+      "reserve_constraint_slack": 0.3740223914231333
+    },
+    "maximum_weight_difference_percentage_points": 0.40223914231332647,
+    "production_volatility_gap_percentage_points": 0.05914385400640626,
+    "conclusion": "The 1% grid is sufficiently accurate for Phase 2 comparison."
+  }
+}

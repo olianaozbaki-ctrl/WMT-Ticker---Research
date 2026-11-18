@@ -1,0 +1,80 @@
+{
+  "retrieval_date": "2026-11-17",
+  "source_retrieved_at_utc": "2026-11-17",
+  "source_retrieval_timestamp_precision": "date_only_legacy_snapshot",
+  "processed_at_utc": "2026-11-17T21:17:12+00:00",
+  "price_data": {
+    "provider": "Yahoo Finance chart endpoint",
+    "provider_adjustment_definition": "Adjusted close includes applicable splits and dividend distributions.",
+    "provider_definition_url": "https://help.yahoo.com/kb/SLN28256.html",
+    "units": "USD per ETF share, back-adjusted by provider",
+    "requested_interval": "daily",
+    "transformation": "Select the last nonmissing adjusted close in each calendar month, intersect months across all tickers, retain the latest 61 prices to produce 60 simple monthly returns.",
+    "aligned_rows": 61,
+    "first_observation": "2021-10-29",
+    "as_of_date": "2026-10-30",
+    "aligned_missing_values": 0,
+    "tickers": {
+      "BIL": {
+        "source_url": "https://query2.finance.yahoo.com/v8/finance/chart/BIL?period1=1633046400&period2=1793491200&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+        "currency": "USD",
+        "exchange": "NYSEArca",
+        "raw_rows": 1276,
+        "raw_missing_adjusted_close": 0,
+        "first_daily_observation": "2021-10-01",
+        "last_daily_observation": "2026-10-30",
+        "monthly_observations_before_alignment": 61
+      },
+      "IEF": {
+        "source_url": "https://query2.finance.yahoo.com/v8/finance/chart/IEF?period1=1633046400&period2=1793491200&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+        "currency": "USD",
+        "exchange": "NasdaqGM",
+        "raw_rows": 1276,
+        "raw_missing_adjusted_close": 0,
+        "first_daily_observation": "2021-10-01",
+        "last_daily_observation": "2026-10-30",
+        "monthly_observations_before_alignment": 61
+      },
+      "LQD": {
+        "source_url": "https://query2.finance.yahoo.com/v8/finance/chart/LQD?period1=1633046400&period2=1793491200&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+        "currency": "USD",
+        "exchange": "NYSEArca",
+        "raw_rows": 1276,
+        "raw_missing_adjusted_close": 0,
+        "first_daily_observation": "2021-10-01",
+        "last_daily_observation": "2026-10-30",
+        "monthly_observations_before_alignment": 61
+      },
+      "VT": {
+        "source_url": "https://query2.finance.yahoo.com/v8/finance/chart/VT?period1=1633046400&period2=1793491200&interval=1d&events=div%2Csplits&includeAdjustedClose=true",
+        "currency": "USD",
+        "exchange": "NYSEArca",
+        "raw_rows": 1276,
+        "raw_missing_adjusted_close": 0,
+        "first_daily_observation": "2021-10-01",
+        "last_daily_observation": "2026-10-30",
+        "monthly_observations_before_alignment": 61
+      }
+    }
+  },
+  "cpi_data": {
+    "series": "CPIAUCSL",
+    "provider": "FRED, source U.S. Bureau of Labor Statistics",
+    "source_url": "https://fred.stlouisfed.org/graph/fredgraph.csv?id=CPIAUCSL&cosd=2025-09-01&coed=2026-09-01",
+    "units": "Index 1982-1984=100, seasonally adjusted",
+    "current_observation_date": "2026-09-01",
+    "current_availability_date": "2026-10-14",
+    "prior_year_observation_date": "2025-09-01",
+    "prior_year_availability_date": "2025-10-24",
+    "decision_date": "2026-11-17",
+    "vintage_date": null,
+    "alfred_vintage_verified": false,
+    "status": "Provisional current FRED snapshot; not verified against an ALFRED vintage.",
+    "missing_data_note": "October 2026 cannot be compared year over year because BLS did not publish the October 2025 all-items index.",
+    "release_sources": [
+      "https://www.bls.gov/news.release/archives/cpi_10142026.htm",
+      "https://www.bls.gov/schedule/2025/10_sched.htm",
+      "https://www.bls.gov/bls/news-release/cpi.htm"
+    ]
+  }
+}
