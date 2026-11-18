@@ -52,6 +52,7 @@ def main() -> None:
         f"- Provisional CPI year-over-year: **{percent(result['cpi_yoy'])}**",
         f"- Provisional after-cost hurdle: **{percent(result['provisional_after_cost_hurdle'])}**",
         f"- ALFRED vintage verified: **{result['cpi_vintage_verified']}**",
+        f"- DGS10 point-in-time signal: **{result['dgs10_signal']['value_percent']:.2f}%** (observation {result['dgs10_signal']['observation_date']}; available {result['dgs10_signal']['availability_date']}; decision {result['dgs10_signal']['decision_date']})",
         "",
         "## Portfolio comparison",
         "",
@@ -146,6 +147,7 @@ def main() -> None:
     )
 
     lines.extend(["## Limitations", ""] + [f"- {item}" for item in result["limitations"]])
+    lines.extend(["", "## DGS10 point-in-time signal", "", json.dumps(result["dgs10_signal"], indent=2)])
     (output_dir / "phase2_results.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(
         f"Generated {len(result['portfolios'])} portfolio results through "

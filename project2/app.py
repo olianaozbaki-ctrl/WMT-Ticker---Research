@@ -41,6 +41,15 @@ def main() -> None:
         )
 
     st.subheader("Data card and as-of boundary")
+    signal = result["dgs10_signal"]
+    st.subheader("DGS10 point-in-time signal")
+    if signal["available"]:
+        st.metric("10-year Treasury yield", f"{signal['value_percent']:.2f}%")
+        st.write(f"Observation: {signal['observation_date']} · Available: {signal['availability_date']} · Decision date: {signal['decision_date']}")
+        st.write(signal["interpretation"])
+        st.caption(signal["action"])
+    else:
+        st.warning(signal["interpretation"])
     cards = st.columns(4)
     cards[0].metric("Market data as of", result["market_data_as_of"])
     cards[1].metric("Monthly return observations", result["monthly_return_observations"])

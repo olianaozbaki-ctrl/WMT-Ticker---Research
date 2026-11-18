@@ -1,7 +1,7 @@
 {
   "phase": 2,
   "generated_by": "scripts/generate_phase2_results.py",
-  "analysis_date": "2026-11-17",
+  "analysis_date": "2026-11-18",
   "source_retrieval_date": "2026-11-17",
   "source_retrieved_at_utc": "2026-11-17",
   "data_processed_at_utc": "2026-11-17T21:17:12+00:00",
@@ -17,6 +17,19 @@
   "cpi_yoy": 0.03717250844268993,
   "provisional_after_cost_hurdle": 0.07717250844268994,
   "cpi_vintage_verified": false,
+  "dgs10_signal": {
+    "available": true,
+    "series_id": "DGS10",
+    "source": "Board of Governors of the Federal Reserve System, H.15, via FRED/ALFRED",
+    "source_url": "https://fred.stlouisfed.org/series/DGS10",
+    "decision_date": "2026-10-05",
+    "observation_date": "2026-10-02",
+    "availability_date": "2026-10-05",
+    "value_percent": 5.28,
+    "units": "percent, not seasonally adjusted",
+    "interpretation": "10-year Treasury constant-maturity yield; descriptive macro regime indicator, not a return forecast.",
+    "action": "Modeling assumption: use as a review trigger only; do not alter weights automatically. Rerun rates-sensitive valuation and approved stresses when elevated or materially changed."
+  },
   "optimization": {
     "provisional_feasible_on_supported_model_inputs": true,
     "full_mandate_feasible": false,

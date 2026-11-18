@@ -19,6 +19,7 @@ from .data import estimate_from_monthly_prices, load_cpi_yoy
 from .mandate import validate_mandate
 from .models import AssetDefinition
 from .optimizer import maximum_net_return_grid, minimum_volatility_grid
+from .signals import load_dgs10_signal
 
 
 TICKERS = ("BIL", "IEF", "LQD", "VT")
@@ -58,6 +59,7 @@ def run_phase2(project_root: Path | str) -> dict[str, Any]:
     provenance = json.loads(
         (root / "data" / "market_data_provenance.json").read_text(encoding="utf-8")
     )
+    signal = load_dgs10_signal(root / "data" / "dgs10_pit.csv", "2026-10-05")
     cpi_yoy = load_cpi_yoy(
         root / "data" / "cpi_snapshot.csv", "2026-09-01", "2025-09-01"
     )
@@ -155,6 +157,7 @@ def run_phase2(project_root: Path | str) -> dict[str, Any]:
         "cpi_yoy": cpi_yoy,
         "provisional_after_cost_hurdle": hurdle,
         "cpi_vintage_verified": provenance["cpi_data"]["alfred_vintage_verified"],
+        "dgs10_signal": signal,
         "optimization": {
             "provisional_feasible_on_supported_model_inputs": optimization.feasible,
             "full_mandate_feasible": False,

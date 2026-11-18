@@ -2,7 +2,7 @@
 
 Generated directly by `python scripts/generate_phase2_results.py`; values were not manually transcribed.
 
-- Analysis date: **2026-11-17**
+- Analysis date: **2026-11-18**
 - Source retrieval date: **2026-11-17**
 - Market-data as-of date: **2026-10-30**
 - Price observations: **61 monthly adjusted closes**
@@ -10,6 +10,7 @@ Generated directly by `python scripts/generate_phase2_results.py`; values were n
 - Provisional CPI year-over-year: **3.72%**
 - Provisional after-cost hurdle: **7.72%**
 - ALFRED vintage verified: **False**
+- DGS10 point-in-time signal: **5.28%** (observation 2026-10-02; available 2026-10-05; decision 2026-10-05)
 
 ## Portfolio comparison
 
@@ -105,3 +106,19 @@ Conclusion: **The 1% grid is sufficiently accurate for Phase 2 comparison.**
 - ETF five-business-day liquidity remains unverified, so no portfolio is reported as fully mandate-compliant.
 - The CPI hurdle uses a current FRED snapshot; ALFRED vintage verification remains outstanding.
 - The 1% grid solution is discrete and may differ from a continuous optimum.
+
+## DGS10 point-in-time signal
+
+{
+  "available": true,
+  "series_id": "DGS10",
+  "source": "Board of Governors of the Federal Reserve System, H.15, via FRED/ALFRED",
+  "source_url": "https://fred.stlouisfed.org/series/DGS10",
+  "decision_date": "2026-10-05",
+  "observation_date": "2026-10-02",
+  "availability_date": "2026-10-05",
+  "value_percent": 5.28,
+  "units": "percent, not seasonally adjusted",
+  "interpretation": "10-year Treasury constant-maturity yield; descriptive macro regime indicator, not a return forecast.",
+  "action": "Modeling assumption: use as a review trigger only; do not alter weights automatically. Rerun rates-sensitive valuation and approved stresses when elevated or materially changed."
+}

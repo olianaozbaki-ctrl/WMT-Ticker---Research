@@ -34,6 +34,7 @@ The committed input snapshot reproduces the analysis offline. To refresh externa
 - 60/40 benchmark: 60% VT global equity and 40% LQD investment-grade bonds; BIL and IEF are 0%.
 - Optimizer: deterministic 1%-weight grid, long-only, fully invested, BIL reserve at least 3%, and provisional CPI + 4% after illustrative trading cost. It never relaxes a supplied constraint.
 - CPI signal: September 2026 CPIAUCSL divided by September 2025 CPIAUCSL minus one. October is not used because the October 2025 all-items CPI was not published.
+- Point-in-time signal: DGS10 at 5.28% for October 2, 2026, available October 5, 2026, evaluated as known on October 5. These dates/value come from the documented Lab 17 ALFRED validation. The signal is a review trigger only and does not automatically change portfolio weights.
 
 ## Executed Phase 2 result
 

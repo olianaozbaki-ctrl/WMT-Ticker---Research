@@ -78,3 +78,9 @@ The production exhaustive 1% grid was compared with an exhaustive 0.5% grid and 
 The 1% grid is sufficiently accurate for Phase 2 comparison. The generated output preserves full-precision values, solver status, iteration count, grid counts, and constraint slack.
 
 No stress run, allocation range, committee recommendation, or Locked Changed-Input Record was created in Phase 2.
+
+## Phase 3A — DGS10 signal
+
+The point-in-time signal uses the Lab 17 documented ALFRED check: DGS10 observation 2026-10-02, availability 2026-10-05, value 5.28%, evaluated for decision date 2026-10-05. The prior verified row is September 29 at 5.26%, available September 30. Source: Board of Governors H.15 via FRED/ALFRED; units are percent, not seasonally adjusted. `data/dgs10_pit.csv` preserves only those documented rows. The loader filters by both observation and availability date and returns unavailable when no eligible observation exists.
+
+Signal interpretation and process effect are modeling assumptions: treat the yield as a descriptive macro regime review trigger, not a return forecast; it prompts a review of rates-sensitive valuation and approved stress scenarios but does not automatically tilt allocations. No CPI/portfolio outputs are changed by the signal. This date-specific educational fixture is not a live current quote.
