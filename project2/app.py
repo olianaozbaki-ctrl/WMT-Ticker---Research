@@ -2,8 +2,10 @@
 
 from pathlib import Path
 
+import altair as alt
 import streamlit as st
 
+from project2_engine.config import load_mandate
 from project2_engine.phase2 import TICKERS, run_phase2
 
 
@@ -19,9 +21,28 @@ def analysis() -> dict:
 
 
 def portfolio_label(name: str) -> str:
-    if name == "Constrained minimum volatility":
-        return "Constrained minimum-volatility model portfolio"
-    return name
+    labels = {
+        "Equal weight": "Equal Weight",
+        "60/40 benchmark": "60/40 Benchmark",
+        "Constrained minimum volatility": "Optimized",
+    }
+    return labels.get(name, name)
+
+
+def format_weights(weights: dict[str, float] | None) -> str:
+    if weights is None:
+        return "STOP — infeasible"
+    return " · ".join(f"{ticker} {weights[ticker]:.1%}" for ticker in TICKERS)
+
+
+def format_rule_verdicts(verdicts: dict[str, str]) -> str:
+    if not verdicts:
+        return "Not available — infeasible"
+    return "; ".join(f"{rule}: {status}" for rule, status in verdicts.items())
+
+
+def percent_or_dash(value: float | None) -> str:
+    return "—" if value is None else f"{value:.2%}"
 
 
 def main() -> None:
@@ -33,6 +54,30 @@ def main() -> None:
         "The student owns the analysis and investment decision. Educational project only; "
         "not investment advice."
     )
+    mandate = load_mandate(PROJECT_ROOT / "config" / "mandate.json")
+    decision = result["decision_support"]
+    summary = st.container(border=True)
+    with summary:
+        st.subheader("Mandate and candidate decision")
+        summary_columns = st.columns(3)
+        summary_columns[0].markdown(
+            f"**Intended committee user**  \n{mandate['decision_context']['intended_user']}"
+        )
+        summary_columns[1].markdown(
+            f"**Investment horizon**  \n{mandate['horizon_years']} years; annual rebalancing"
+        )
+        summary_columns[2].markdown(
+            f"**Candidate disposition**  \n{decision['candidate_disposition_for_student_review']} — for your review"
+        )
+        st.write(
+            "**Investment objective:** seek CPI + 4% annually after costs over rolling "
+            "five-year periods. The current CPI + 4% expected-return hurdle is a modeled "
+            "feasibility proxy, not evidence that the rolling realized objective will be met."
+        )
+        st.caption(
+            "Current candidate: HOLD funded deployment while material mandate evidence remains "
+            "unverified. This is decision support; the investment judgment remains yours."
+        )
     st.warning(
         "Portfolio analysis for committee review. Model feasibility is separate from verified "
         "mandate compliance; actual holdings, position-sized liquidity evidence, issuer exposure, "
@@ -86,7 +131,10 @@ def main() -> None:
     optimization = result["optimization"]
     for portfolio in result["portfolios"]:
         label = portfolio_label(portfolio["name"])
-        allocation_rows.append({"Portfolio": label, **portfolio["weights"]})
+        allocation_rows.extend(
+            {"Portfolio": label, "Asset": ticker, "Weight": portfolio["weights"][ticker]}
+            for ticker in TICKERS
+        )
         gross_risk_rows.append({
             "Portfolio": label,
             "Annualized volatility": portfolio["annual_volatility"],
@@ -124,16 +172,63 @@ def main() -> None:
     chart_left, chart_right = st.columns(2)
     with chart_left:
         st.markdown("**Asset allocation by portfolio**")
-        st.bar_chart(allocation_rows, x="Portfolio", y=list(TICKERS), use_container_width=True)
+        allocation_chart = (
+            alt.Chart(alt.Data(values=allocation_rows))
+            .mark_bar()
+            .encode(
+                x=alt.X("Portfolio:N", sort=["Equal Weight", "60/40 Benchmark", "Optimized"], title=None),
+                y=alt.Y("Weight:Q", stack="zero", axis=alt.Axis(format=".0%", title="Allocation")),
+                color=alt.Color("Asset:N", title="Asset"),
+                tooltip=[
+                    alt.Tooltip("Portfolio:N"),
+                    alt.Tooltip("Asset:N"),
+                    alt.Tooltip("Weight:Q", format=".1%"),
+                ],
+            )
+        )
+        st.altair_chart(allocation_chart, use_container_width=True)
     with chart_right:
         st.markdown("**Gross risk-return comparison**")
-        st.scatter_chart(gross_risk_rows, x="Annualized volatility", y="Annualized expected return", color="Portfolio", use_container_width=True)
+        gross_chart = (
+            alt.Chart(alt.Data(values=gross_risk_rows))
+            .mark_circle(size=130)
+            .encode(
+                x=alt.X("Annualized volatility:Q", axis=alt.Axis(format=".0%", title="Annualized volatility")),
+                y=alt.Y("Annualized expected return:Q", axis=alt.Axis(format=".0%", title="Gross expected return")),
+                color=alt.Color("Portfolio:N", sort=["Equal Weight", "60/40 Benchmark", "Optimized"]),
+                tooltip=["Portfolio:N", alt.Tooltip("Annualized volatility:Q", format=".2%"), alt.Tooltip("Annualized expected return:Q", format=".2%")],
+            )
+        )
+        st.altair_chart(gross_chart, use_container_width=True)
     st.markdown("**Illustrative after-cost risk-return comparison**")
-    st.scatter_chart(net_risk_rows, x="Annualized volatility", y="Annualized expected return", color="Portfolio", use_container_width=True)
+    net_points = (
+        alt.Chart(alt.Data(values=net_risk_rows))
+        .mark_circle(size=130)
+        .encode(
+            x=alt.X("Annualized volatility:Q", axis=alt.Axis(format=".0%", title="Annualized volatility")),
+            y=alt.Y("Annualized expected return:Q", axis=alt.Axis(format=".0%", title="Illustrative after-cost expected return")),
+            color=alt.Color("Portfolio:N", sort=["Equal Weight", "60/40 Benchmark", "Optimized"]),
+            tooltip=["Portfolio:N", alt.Tooltip("Annualized volatility:Q", format=".2%"), alt.Tooltip("Annualized expected return:Q", format=".2%")],
+        )
+    )
+    target_value = result["provisional_after_cost_hurdle"]
+    target_data = [{"target": target_value, "label": f"CPI + 4% return target ({target_value:.2%})"}]
+    target_rule = alt.Chart(alt.Data(values=target_data)).mark_rule(color="#a33", strokeDash=[6, 4]).encode(
+        y=alt.Y("target:Q", axis=alt.Axis(format=".0%"))
+    )
+    target_label = alt.Chart(alt.Data(values=target_data)).mark_text(
+        align="left", baseline="bottom", dx=8, dy=-5, color="#a33"
+    ).encode(y="target:Q", x=alt.value(8), text="label:N")
+    st.altair_chart(net_points + target_rule + target_label, use_container_width=True)
+    st.caption(f"Dashed reference line: CPI + 4% expected-return target = {target_value:.4%}.")
 
     st.subheader("Rule-by-rule mandate assessment")
     st.caption("A feasible model portfolio is not the same as verified full mandate compliance. Unknown or unverified evidence remains NOT_TESTABLE or UNRESOLVED in the rule results below.")
-    selected = st.selectbox("Portfolio", [item["name"] for item in result["portfolios"]], format_func=portfolio_label)
+    portfolio_options = {
+        portfolio_label(item["name"]): item["name"] for item in result["portfolios"]
+    }
+    selected_label = st.selectbox("Portfolio", list(portfolio_options))
+    selected = portfolio_options[selected_label]
     portfolio = next(item for item in result["portfolios"] if item["name"] == selected)
     verdict_rows = [
         {
@@ -195,13 +290,42 @@ def main() -> None:
         st.success(f"Point-in-time CPI gate passed using BLS observations dated {cpi['prior_observation_date']} and {cpi['current_observation_date']}, available {cpi['current_availability_date']} before the {cpi['decision_date']} decision.")
     stress_rows = result["stress_matrix"]["scenarios"]
     selected_stress = st.multiselect("Scenarios", [row["scenario"] for row in stress_rows], default=[row["scenario"] for row in stress_rows])
-    st.dataframe([{ "Scenario": row["scenario"], "Type": row["category"], "Estimation window": row["window"], "Status": row["status"], "Weights": row["weights"], "Gross return": row["annual_expected_return"], "Net return": row["net_expected_return"], "Volatility": row["annual_volatility"], "Turnover": row["turnover"], "Cost": row["cost_rate"], "Optimizer feasible": row["feasible"], "Rule verdicts": row["mandate_verdicts"] } for row in stress_rows if row["scenario"] in selected_stress], use_container_width=True, hide_index=True)
+    stress_table_rows = [
+        {
+            "Scenario": row["scenario"],
+            "Type": row["category"],
+            "Estimation window": row["window"],
+            "Status": row["status"],
+            "Weights": format_weights(row["weights"]),
+            "Gross return": percent_or_dash(row["annual_expected_return"]),
+            "Net return": percent_or_dash(row["net_expected_return"]),
+            "Volatility": percent_or_dash(row["annual_volatility"]),
+            "Turnover": percent_or_dash(row["turnover"]),
+            "Cost": percent_or_dash(row["cost_rate"]),
+            "Modeled feasible": row["feasible"],
+            "Rule verdicts": format_rule_verdicts(row["mandate_verdicts"]),
+        }
+        for row in stress_rows
+        if row["scenario"] in selected_stress
+    ]
+    st.dataframe(stress_table_rows, use_container_width=True, hide_index=True)
     comparison_rows = []
     for scenario in stress_rows:
         if scenario["scenario"] not in selected_stress:
             continue
         for item in scenario["portfolio_comparisons"]:
-            comparison_rows.append({"Scenario": scenario["scenario"], "Portfolio": item["portfolio"], "Weights": item["weights"], "Gross return": item["annual_expected_return"], "Net return": item["net_expected_return"], "Volatility": item["annual_volatility"], "Turnover from hypothetical equal weight": item["turnover_from_hypothetical_equal_weight"], "Cost": item["cost_rate"], "Optimizer feasible": item["optimizer_feasible"], "Mandate verdicts": item["mandate_verdicts"]})
+            comparison_rows.append({
+                "Scenario": scenario["scenario"],
+                "Portfolio": portfolio_label(item["portfolio"]),
+                "Weights": format_weights(item["weights"]),
+                "Gross return": percent_or_dash(item["annual_expected_return"]),
+                "Net return": percent_or_dash(item["net_expected_return"]),
+                "Volatility": percent_or_dash(item["annual_volatility"]),
+                "Turnover from hypothetical equal weight": percent_or_dash(item["turnover_from_hypothetical_equal_weight"]),
+                "Cost": percent_or_dash(item["cost_rate"]),
+                "Modeled feasible": item["optimizer_feasible"],
+                "Mandate verdicts": format_rule_verdicts(item["mandate_verdicts"]),
+            })
     st.dataframe(comparison_rows, use_container_width=True, hide_index=True)
 
     st.subheader("Investment decision framework")
@@ -235,11 +359,11 @@ def main() -> None:
     window_rows = []
     for group in decision["portfolio_comparisons"]:
         for item in group["portfolios"]:
-            window_rows.append({"Estimation window": group["scenario"], "Portfolio": item["portfolio"], "Weights": item["weights"], "Gross expected return": item["annual_expected_return"], "Net expected return": item["net_expected_return"], "Volatility": item["annual_volatility"], "Mandate verdicts": item["mandate_verdicts"]})
+            window_rows.append({"Estimation window": group["scenario"], "Portfolio": portfolio_label(item["portfolio"]), "Weights": format_weights(item["weights"]), "Gross expected return": percent_or_dash(item["annual_expected_return"]), "Illustrative after-cost expected return": percent_or_dash(item["net_expected_return"]), "Volatility": percent_or_dash(item["annual_volatility"]), "Mandate verdicts": format_rule_verdicts(item["mandate_verdicts"])})
     st.dataframe(window_rows, use_container_width=True, hide_index=True)
     st.write("**Model-feasible stress envelope (diagnostic only):**")
     envelope = decision["modeled_feasible_stress_envelope"]
-    st.dataframe([{"Ticker": ticker, "Minimum": bounds["minimum"], "Maximum": bounds["maximum"]} for ticker,bounds in envelope["weights_by_ticker"].items()], use_container_width=True, hide_index=True)
+    st.dataframe([{"Ticker": ticker, "Minimum allocation": percent_or_dash(bounds["minimum"]), "Maximum allocation": percent_or_dash(bounds["maximum"])} for ticker,bounds in envelope["weights_by_ticker"].items()], use_container_width=True, hide_index=True)
     st.caption("Not an authorization range. Full-window versus 36-month estimates change the BIL allocation materially, and critical mandate evidence remains incomplete.")
     with st.expander("Decision rules and evidence requirements"):
         st.dataframe([{"Outcome": row["outcome"], "Decision rule": row["rule"]} for row in decision["decision_framework"]], use_container_width=True, hide_index=True)
