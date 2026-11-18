@@ -17,8 +17,10 @@ python -m pip install -r requirements.txt
 python -m pip install -e .
 python -m unittest discover -s tests -v
 python scripts/generate_phase2_results.py
-python -m streamlit run app.py
+PYTHONPATH=src python -m streamlit run app.py --server.fileWatcherType poll
 ```
+
+Run the command from the `project2/` directory using the same `python` environment in which the requirements were installed. The `PYTHONPATH=src` prefix makes the local `project2_engine` package importable without relying on a prior editable install.
 
 The committed input snapshot reproduces the analysis offline. To refresh external data deliberately, run `python scripts/fetch_market_data.py --refresh`. Refreshing changes the evidence boundary and may change results; preserve and review the new raw responses and provenance.
 
