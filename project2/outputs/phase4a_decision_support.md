@@ -19,7 +19,7 @@ Generated from the Phase 2/3B financial engine. This is candidate decision suppo
 
 | Gate | Status |
 |---|---|
-| point in time cpi valid | NOT SATISFIED |
+| point in time cpi valid | PASS |
 | actual holdings and asof known | NOT SATISFIED |
 | five day liquidity verified | NOT SATISFIED |
 | issuer policy and exposure verified | NOT SATISFIED |
@@ -29,20 +29,20 @@ Generated from the Phase 2/3B financial engine. This is candidate decision suppo
 
 ## Decision-date and CPI check
 
-The stress decision date is **2026-10-05**. The loaded September CPI observation (2026-09-01) was available **2026-10-14**, after that decision date. ALFRED vintage verified: **False**. The modeled hurdle of 7.72% is therefore **not admissible for the historical October 5 stress decision**. This is a stop on claiming point-in-time feasibility; no replacement CPI value is fabricated.
+The stress decision date is **2026-10-05**. The CPI inputs are 2025-08-01 and 2026-08-01, published 2026-09-11 and available by the decision date. BLS point-in-time source verified: **True** (this is not an ALFRED API vintage). Inflation is 3.3965%; the arithmetic CPI + 4% modeled hurdle is 7.3965%. The earlier September 2026 current-snapshot input was unavailable on October 5 and is retained in validation history as a corrected look-ahead error.
 
 ## Window sensitivity and model-only envelope
 
-Full-window BIL allocation: 44.00%; 36-month BIL allocation: 78.00%; difference: 34.0 percentage points.
+Full-window BIL allocation: 48.00%; 36-month BIL allocation: 80.00%; difference: 32.0 percentage points.
 
 | Ticker | Minimum across modeled feasible stress solutions | Maximum |
 |---|---:|---:|
-| BIL | 17.00% | 78.00% |
+| BIL | 21.00% | 80.00% |
 | IEF | 0.00% | 0.00% |
 | LQD | 0.00% | 0.00% |
-| VT | 22.00% | 83.00% |
+| VT | 20.00% | 79.00% |
 
-**Status: diagnostic only; not an authorization range.** The full-to-36-month shift, inadmissible historical CPI hurdle, and unresolved mandate evidence do not support a robust allocation band.
+**Status: diagnostic only; not an authorization range.** The full-to-36-month shift, unresolved mandate evidence, and CPI measurement choice do not support a robust allocation band.
 
 ## Portfolio comparisons
 
@@ -54,14 +54,14 @@ Gross return uses annualized arithmetic historical estimates. Net return subtrac
 |---|---|---:|---:|---:|---:|---:|---|
 | Equal weight | 25.00% / 25.00% / 25.00% / 25.00% | 3.01% | 3.01% | 7.55% | 0.00% | 0.00% | weights_sum: PASS, long_only: PASS, no_borrowing: PASS, no_derivatives: PASS, reserve: PASS, liquidity: NOT_TESTABLE, issuer_limit: NOT_TESTABLE, turnover: NOT_TESTABLE, horizon: PASS, rebalance_frequency: PASS, return_objective_proxy: NOT_TESTABLE, calendar_year_loss: UNRESOLVED |
 | 60/40 benchmark | 0.00% / 0.00% / 40.00% / 60.00% | 6.26% | 6.21% | 12.33% | 50.00% | 0.05% | weights_sum: PASS, long_only: PASS, no_borrowing: PASS, no_derivatives: PASS, reserve: FAIL, liquidity: NOT_TESTABLE, issuer_limit: NOT_TESTABLE, turnover: NOT_TESTABLE, horizon: PASS, rebalance_frequency: PASS, return_objective_proxy: NOT_TESTABLE, calendar_year_loss: UNRESOLVED |
-| Reoptimized minimum volatility | 44.00% / 0.00% / 0.00% / 56.00% | 7.80% | 7.75% | 8.42% | 50.00% | 0.05% | weights_sum: PASS, long_only: PASS, no_borrowing: PASS, no_derivatives: PASS, reserve: PASS, liquidity: NOT_TESTABLE, issuer_limit: NOT_TESTABLE, turnover: NOT_TESTABLE, horizon: PASS, rebalance_frequency: PASS, return_objective_proxy: NOT_TESTABLE, calendar_year_loss: UNRESOLVED |
+| Reoptimized minimum volatility | 48.00% / 0.00% / 0.00% / 52.00% | 7.50% | 7.45% | 7.82% | 50.00% | 0.05% | weights_sum: PASS, long_only: PASS, no_borrowing: PASS, no_derivatives: PASS, reserve: PASS, liquidity: NOT_TESTABLE, issuer_limit: NOT_TESTABLE, turnover: NOT_TESTABLE, horizon: PASS, rebalance_frequency: PASS, return_objective_proxy: NOT_TESTABLE, calendar_year_loss: UNRESOLVED |
 ### last_36_months
 
 | Portfolio | Weights (BIL / IEF / LQD / VT) | Gross return | Net return | Volatility | Turnover from hypothetical equal weight | Cost | Mandate verdicts |
 |---|---|---:|---:|---:|---:|---:|---|
 | Equal weight | 25.00% / 25.00% / 25.00% / 25.00% | 8.13% | 8.13% | 5.88% | 0.00% | 0.00% | weights_sum: PASS, long_only: PASS, no_borrowing: PASS, no_derivatives: PASS, reserve: PASS, liquidity: NOT_TESTABLE, issuer_limit: NOT_TESTABLE, turnover: NOT_TESTABLE, horizon: PASS, rebalance_frequency: PASS, return_objective_proxy: NOT_TESTABLE, calendar_year_loss: UNRESOLVED |
 | 60/40 benchmark | 0.00% / 0.00% / 40.00% / 60.00% | 14.09% | 14.04% | 9.45% | 50.00% | 0.05% | weights_sum: PASS, long_only: PASS, no_borrowing: PASS, no_derivatives: PASS, reserve: FAIL, liquidity: NOT_TESTABLE, issuer_limit: NOT_TESTABLE, turnover: NOT_TESTABLE, horizon: PASS, rebalance_frequency: PASS, return_objective_proxy: NOT_TESTABLE, calendar_year_loss: UNRESOLVED |
-| Reoptimized minimum volatility | 78.00% / 0.00% / 0.00% / 22.00% | 7.86% | 7.81% | 2.61% | 53.00% | 0.05% | weights_sum: PASS, long_only: PASS, no_borrowing: PASS, no_derivatives: PASS, reserve: PASS, liquidity: NOT_TESTABLE, issuer_limit: NOT_TESTABLE, turnover: NOT_TESTABLE, horizon: PASS, rebalance_frequency: PASS, return_objective_proxy: NOT_TESTABLE, calendar_year_loss: UNRESOLVED |
+| Reoptimized minimum volatility | 80.00% / 0.00% / 0.00% / 20.00% | 7.54% | 7.49% | 2.37% | 55.00% | 0.06% | weights_sum: PASS, long_only: PASS, no_borrowing: PASS, no_derivatives: PASS, reserve: PASS, liquidity: NOT_TESTABLE, issuer_limit: NOT_TESTABLE, turnover: NOT_TESTABLE, horizon: PASS, rebalance_frequency: PASS, return_objective_proxy: NOT_TESTABLE, calendar_year_loss: UNRESOLVED |
 
 ## Hypothetical turnover-cap stop
 
@@ -73,7 +73,7 @@ Status: **STOP_INFEASIBLE**; feasible: **False** under the 25.00% turnover cap f
 |---|---|---|
 | S8 five-business-day liquidity | NOT_VERIFIED | SEC Rule 6c-11 materials and fund-provider pages disclose prior-day holdings, market/NAV information, and/or 30-day median bid-ask spread. These are useful diligence inputs, not proof that the proposed portfolio's required 90% can be sold and settled within five business days at the intended trade size. Needed: Dated holdings and executable, position-sized liquidation/settlement analysis for each proposed allocation under normal-market conditions; confirm treatment of ETF secondary-market sale versus fund redemption. Sources: [SEC ETF Rule 6c-11 compliance guide](https://www.sec.gov/investment/exchange-traded-funds-small-entity-compliance-guide), [State Street BIL product data](https://www.ssga.com/us/en/individual/etfs/state-street-spdr-bloomberg-1-3-month-t-bill-etf-bil), [iShares IEF product data](https://www.ishares.com/us/products/239456/ishares-710-year-treasury-bond-etf), [iShares LQD product data](https://www.ishares.com/us/products/239566/ishares-iboxx-investment-grade-corporate-bond-etf), [Vanguard VT product data](https://advisors.vanguard.com/investments/products/vt/vanguard-total-world-stock-etf) |
 | S6 issuer cap and exemptions | POLICY_INTERPRETATION_AND_LOOKTHROUGH_UNVERIFIED | Lab_13.md says: No single issuer can account for more than 8% of the portfolio. The machine-readable project configuration carries case-exemption assumptions, but the quoted client rule does not state them. Public daily ETF holdings disclosures can support look-through aggregation; no dated constituents or CIO ruling is loaded in this project. Needed: CIO confirmation of exemptions and look-through method; dated underlying holdings and issuer aggregation if exemptions do not apply. Sources: [SEC ETF Rule 6c-11 compliance guide (daily holdings disclosure)](https://www.sec.gov/investment/exchange-traded-funds-small-entity-compliance-guide), [Lab_13.md S6 source](../../Lab_13.md) |
-| S2 CPI + 4% point-in-time hurdle | LOOKAHEAD_MISMATCH_FOR_HISTORICAL_SIGNAL_DECISION | The loaded CPI snapshot uses 2026-09-01 with availability 2026-10-14; the stress/signal decision date is 2026-10-05. The availability is after that date, and ALFRED vintage verification is False. BLS scheduled the August CPI release for September 11, before this decision, but the local snapshot lacks the prior-year August input and no matching ALFRED pair is verified. Therefore the modeled 7.7173% hurdle is not admissible as a point-in-time hurdle for this historical stress date. Needed: Retrieve both CPI levels from the ALFRED vintage available on the chosen decision date, retaining observation and availability dates. No replacement value is fabricated here. Sources: [FRED observations API and vintage_dates parameter](https://fred.stlouisfed.org/docs/api/fred/series_observations.html), [FRED real-time periods](https://fred.stlouisfed.org/docs/api/fred/realtime_period.html), [BLS archived September 2026 CPI release](https://www.bls.gov/news.release/archives/cpi_10142026.htm), [BLS 2026 release schedule](https://www.bls.gov/schedule/2026/home.htm) |
+| S2 CPI + 4% point-in-time hurdle | BLS_POINT_IN_TIME_RELEASE_VERIFIED | The CPI pair is 2025-08-01=323.976 and 2026-08-01=334.98 (Index 1982-84=100); release availability is 2026-09-11, before decision date 2026-10-05. Inflation is 3.3965%; the arithmetic CPI + 4% hurdle is 7.3965%. Source: https://www.bls.gov/news.release/archives/cpi_09112026.htm. This is BLS release evidence, not an ALFRED API vintage. Needed: For exact revised-series vintage reproduction, archive the underlying ALFRED response; this run relies on the contemporaneous BLS release and does not claim ALFRED API verification. Sources: [FRED observations API and vintage_dates parameter](https://fred.stlouisfed.org/docs/api/fred/series_observations.html), [FRED real-time periods](https://fred.stlouisfed.org/docs/api/fred/realtime_period.html), [BLS archived August 2026 CPI release](https://www.bls.gov/news.release/archives/cpi_09112026.htm), [BLS 2026 release schedule](https://www.bls.gov/schedule/2026/home.htm) |
 | S9 annual loss statement | UNRESOLVED_CLIENT_POLICY | Lab_13.md describes an annual loss greater than 10% as an unverifiable promise and does not define measurement or breach handling. No external market source can supply this client-specific policy decision. Needed: CIO definition of calendar/fiscal/rolling year, NAV or market-price total return, fee/cost treatment, and breach escalation. Until then, display a human-review alert only; do not promise or encode a loss guarantee. Sources: [Lab_13.md S9 source](../../Lab_13.md) |
 
 ## Monitoring triggers and stop conditions
@@ -100,7 +100,7 @@ Status: **STOP_INFEASIBLE**; feasible: **False** under the 25.00% turnover cap f
 
 ## Decisions requested from the committee
 
-- Choose the governing decision date for a point-in-time stress rerun and authorize the matching ALFRED CPI vintage; do not use September CPI for the October 5 decision because its recorded availability is October 14.
+- Confirm that the archived BLS not-seasonally-adjusted CPI-U release is the preferred operational interpretation of the CPI + 4% mandate, or require a contemporaneous ALFRED CPIAUCSL vintage before adoption.
 - Provide Meridian's actual holdings and holdings as-of date, plus an approved transaction-cost estimate or execution evidence.
 - Confirm whether the S6 exemptions in config/mandate.json govern despite their absence from the S6 sentence in Lab_13.md; approve look-through and issuer aggregation treatment.
 - Provide position-sized five-business-day sale and settlement evidence for the 90% liquidity rule.

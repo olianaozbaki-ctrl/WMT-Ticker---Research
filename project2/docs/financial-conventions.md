@@ -22,9 +22,9 @@ This document resolves calculation conventions where the Meridian mandate is suf
 
 ## CPI and as-of boundary
 
-- Selected series: CPI-U All Items, U.S. City Average, seasonally adjusted (`CPIAUCSL`).
+- Selected series for the corrected historical run: CPI-U All Items, U.S. City Average, not seasonally adjusted, from the BLS archived August 2026 release. The mandate does not prescribe seasonal adjustment.
 - Inflation measure: year-over-year percentage change.
-- As-of rule: use the ALFRED vintage available on the decision date. Retain observation and availability dates for both index levels used in the year-over-year calculation; both availability dates must be on or before the decision date.
+- As-of rule: use a contemporaneous CPI release available by the decision date and retain observation and availability dates for both index levels. The current run uses the BLS release dated 2026-09-11, available by decision date 2026-10-05. It is not labeled an ALFRED API vintage.
 - No CPI value or decision date is hardcoded in Phase 1.
 
 ## Costs and turnover
@@ -65,10 +65,10 @@ No range is defined in Phase 1. A later phase should derive ranges from the set 
 
 - The frozen price panel uses Yahoo Finance adjusted close, which the provider defines as adjusted for applicable splits and dividend distributions.
 - Daily observations are transformed to the last nonmissing adjusted close in each calendar month and aligned by common month.
-- The current window contains 61 price observations and 60 simple monthly returns through 2026-10-30.
+- The raw frozen panel contains 61 price observations through 2026-10-30; all portfolio estimates in the October 5 decision run are filtered to 60 price observations and 59 simple monthly returns through 2026-09-30.
 - Expected returns equal monthly arithmetic mean × 12; covariance equals sample monthly covariance × 12.
 - The optimizer searches a 1% long-only grid. Its discrete result is not represented as a continuous optimum.
-- The provisional CPI hurdle uses September 2026 versus September 2025 because October 2025 all-items CPI is missing. It is not called vintage-verified.
+- The corrected CPI hurdle uses BLS August 2026 CPI-U 334.980 versus August 2025 323.976, both published September 11, 2026. The arithmetic CPI + 4% hurdle is 7.3965%. This uses official point-in-time release evidence, not an ALFRED API vintage.
 - The 60/40 comparison is 60% VT and 40% LQD, matching global equity and investment-grade bond roles.
 - Phase 2 turnover and costs are illustrative from the hypothetical equal-weight allocation only. The rule verdict remains `NOT_TESTABLE` until actual holdings are supplied.
 - Phase 2 issuer compliance is `NOT_TESTABLE` until ETF issuer exposure, the diversified-fund exemption, and look-through treatment are verified.

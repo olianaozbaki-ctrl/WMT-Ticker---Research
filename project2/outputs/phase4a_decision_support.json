@@ -24,7 +24,7 @@
     }
   ],
   "approval_gates": {
-    "point_in_time_cpi_valid": false,
+    "point_in_time_cpi_valid": true,
     "actual_holdings_and_asof_known": false,
     "five_day_liquidity_verified": false,
     "issuer_policy_and_exposure_verified": false,
@@ -35,39 +35,42 @@
   "hard_failure_observed": false,
   "point_in_time_cpi": {
     "decision_date": "2026-10-05",
-    "current_cpi_observation_date": "2026-09-01",
-    "current_cpi_availability_date": "2026-10-14",
-    "prior_cpi_observation_date": "2025-09-01",
-    "prior_cpi_availability_date": "2025-10-24",
-    "alfred_vintage_verified": false,
-    "admissible_for_stress_decision": false,
-    "modeled_hurdle_used": 0.07717250844268994,
-    "status": "STOP_LOOKAHEAD_OR_UNVERIFIED_VINTAGE"
+    "current_cpi_observation_date": "2026-08-01",
+    "current_value": 334.98,
+    "current_cpi_availability_date": "2026-09-11",
+    "prior_cpi_observation_date": "2025-08-01",
+    "prior_value": 323.976,
+    "prior_cpi_availability_date": "2026-09-11",
+    "point_in_time_source_verified": true,
+    "inflation_rate": 0.033965478924364856,
+    "admissible_for_stress_decision": true,
+    "modeled_hurdle_used": 0.07396547892436486,
+    "status": "PASS"
   },
   "window_sensitivity": {
     "full_window_scenario": "baseline_full_window",
     "full_window_weights": {
-      "BIL": 0.44,
+      "BIL": 0.48,
       "IEF": 0.0,
       "LQD": 0.0,
-      "VT": 0.56
+      "VT": 0.52
     },
     "full_window_return_observations": 59,
     "36_month_scenario": "last_36_months",
     "36_month_weights": {
-      "BIL": 0.78,
+      "BIL": 0.8,
       "IEF": 0.0,
       "LQD": 0.0,
-      "VT": 0.22
+      "VT": 0.2
     },
-    "bil_allocation_difference_percentage_points": 34.0,
+    "bil_allocation_difference_percentage_points": 32.00000000000001,
     "interpretation": "The optimized BIL weight changes materially between the tested full and 36-month windows. The mandate supplies no approved tolerance for this dispersion; do not call the resulting envelope robust or authorize it as a band."
   },
   "modeled_feasible_stress_envelope": {
     "weights_by_ticker": {
       "BIL": {
-        "minimum": 0.17,
-        "maximum": 0.78
+        "minimum": 0.21,
+        "maximum": 0.8
       },
       "IEF": {
         "minimum": 0.0,
@@ -78,8 +81,8 @@
         "maximum": 0.0
       },
       "VT": {
-        "minimum": 0.22,
-        "maximum": 0.83
+        "minimum": 0.2,
+        "maximum": 0.79
       }
     },
     "feasible_reoptimized_scenario_count": 11,
@@ -100,7 +103,7 @@
     "reasons_not_robust": [
       "Full versus 36-month estimation changes BIL by the reported percentage-point amount.",
       "The mandate does not set a numerical tolerance for allocation stability, so a robust band cannot be inferred without committee judgment.",
-      "Stress optimization uses a September 2026 CPI snapshot that became available after the 2026-10-05 historical signal decision date; the modeled hurdle is not point-in-time admissible for that stress date.",
+      "CPI is point-in-time verified from the BLS archived August release, not an ALFRED API vintage; this uses unadjusted CPI-U rather than seasonally adjusted CPIAUCSL.",
       "Actual holdings, turnover, transaction costs, liquidity, issuer treatment/exposure, and S9 handling remain unverified."
     ]
   },
@@ -169,14 +172,14 @@
         {
           "portfolio": "Reoptimized minimum volatility",
           "weights": {
-            "BIL": 0.44,
+            "BIL": 0.48,
             "IEF": 0.0,
             "LQD": 0.0,
-            "VT": 0.56
+            "VT": 0.52
           },
-          "annual_expected_return": 0.07797391663945755,
-          "net_expected_return": 0.07747391663945755,
-          "annual_volatility": 0.08415429139128262,
+          "annual_expected_return": 0.07501678637645293,
+          "net_expected_return": 0.07451678637645293,
+          "annual_volatility": 0.07824228378869505,
           "turnover_from_hypothetical_equal_weight": 0.5,
           "cost_rate": 0.0005,
           "optimizer_feasible": true,
@@ -261,16 +264,16 @@
         {
           "portfolio": "Reoptimized minimum volatility",
           "weights": {
-            "BIL": 0.78,
+            "BIL": 0.8,
             "IEF": 0.0,
             "LQD": 0.0,
-            "VT": 0.22
+            "VT": 0.2
           },
-          "annual_expected_return": 0.07859830008334094,
-          "net_expected_return": 0.07806830008334094,
-          "annual_volatility": 0.026057400446251523,
-          "turnover_from_hypothetical_equal_weight": 0.53,
-          "cost_rate": 0.0005300000000000001,
+          "annual_expected_return": 0.0754220637154001,
+          "net_expected_return": 0.0748720637154001,
+          "annual_volatility": 0.023730013378740495,
+          "turnover_from_hypothetical_equal_weight": 0.55,
+          "cost_rate": 0.00055,
           "optimizer_feasible": true,
           "mandate_verdicts": {
             "weights_sum": "PASS",
@@ -346,9 +349,9 @@
     },
     {
       "requirement": "S2 CPI + 4% point-in-time hurdle",
-      "status": "LOOKAHEAD_MISMATCH_FOR_HISTORICAL_SIGNAL_DECISION",
-      "available_evidence": "The loaded CPI snapshot uses 2026-09-01 with availability 2026-10-14; the stress/signal decision date is 2026-10-05. The availability is after that date, and ALFRED vintage verification is False. BLS scheduled the August CPI release for September 11, before this decision, but the local snapshot lacks the prior-year August input and no matching ALFRED pair is verified. Therefore the modeled 7.7173% hurdle is not admissible as a point-in-time hurdle for this historical stress date.",
-      "needed": "Retrieve both CPI levels from the ALFRED vintage available on the chosen decision date, retaining observation and availability dates. No replacement value is fabricated here.",
+      "status": "BLS_POINT_IN_TIME_RELEASE_VERIFIED",
+      "available_evidence": "The CPI pair is 2025-08-01=323.976 and 2026-08-01=334.98 (Index 1982-84=100); release availability is 2026-09-11, before decision date 2026-10-05. Inflation is 3.3965%; the arithmetic CPI + 4% hurdle is 7.3965%. Source: https://www.bls.gov/news.release/archives/cpi_09112026.htm. This is BLS release evidence, not an ALFRED API vintage.",
+      "needed": "For exact revised-series vintage reproduction, archive the underlying ALFRED response; this run relies on the contemporaneous BLS release and does not claim ALFRED API verification.",
       "sources": [
         {
           "title": "FRED observations API and vintage_dates parameter",
@@ -359,8 +362,8 @@
           "url": "https://fred.stlouisfed.org/docs/api/fred/realtime_period.html"
         },
         {
-          "title": "BLS archived September 2026 CPI release",
-          "url": "https://www.bls.gov/news.release/archives/cpi_10142026.htm"
+          "title": "BLS archived August 2026 CPI release",
+          "url": "https://www.bls.gov/news.release/archives/cpi_09112026.htm"
         },
         {
           "title": "BLS 2026 release schedule",
@@ -446,7 +449,7 @@
     }
   ],
   "committee_decisions_requested": [
-    "Choose the governing decision date for a point-in-time stress rerun and authorize the matching ALFRED CPI vintage; do not use September CPI for the October 5 decision because its recorded availability is October 14.",
+    "Confirm that the archived BLS not-seasonally-adjusted CPI-U release is the preferred operational interpretation of the CPI + 4% mandate, or require a contemporaneous ALFRED CPIAUCSL vintage before adoption.",
     "Provide Meridian's actual holdings and holdings as-of date, plus an approved transaction-cost estimate or execution evidence.",
     "Confirm whether the S6 exemptions in config/mandate.json govern despite their absence from the S6 sentence in Lab_13.md; approve look-through and issuer aggregation treatment.",
     "Provide position-sized five-business-day sale and settlement evidence for the 90% liquidity rule.",

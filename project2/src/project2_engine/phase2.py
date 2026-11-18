@@ -15,7 +15,7 @@ from .calculations import (
     transaction_cost_rate,
 )
 from .config import load_mandate
-from .data import estimate_from_monthly_prices, load_cpi_yoy
+from .data import estimate_from_monthly_prices, load_point_in_time_cpi
 from .decision_support import build_decision_support
 from .mandate import validate_mandate
 from .models import AssetDefinition
@@ -25,6 +25,7 @@ from .stress import build_stress_matrix
 
 
 TICKERS = ("BIL", "IEF", "LQD", "VT")
+DECISION_DATE = "2026-10-05"
 
 
 def _assets(mandate: Mapping[str, Any]) -> dict[str, AssetDefinition]:
@@ -57,29 +58,43 @@ def run_phase2(project_root: Path | str) -> dict[str, Any]:
     """Run the frozen Phase 2 analysis and return JSON-serializable results."""
     root = Path(project_root)
     mandate = load_mandate(root / "config" / "mandate.json")
-    estimates = estimate_from_monthly_prices(root / "data" / "prices_monthly.csv")
+    estimates = estimate_from_monthly_prices(root / "data" / "prices_monthly.csv", as_of_date=DECISION_DATE)
     provenance = json.loads(
         (root / "data" / "market_data_provenance.json").read_text(encoding="utf-8")
     )
-    signal = load_dgs10_signal(root / "data" / "dgs10_pit.csv", "2026-10-05")
-    cpi_yoy = load_cpi_yoy(
-        root / "data" / "cpi_snapshot.csv", "2026-09-01", "2025-09-01"
-    )
+    signal = load_dgs10_signal(root / "data" / "dgs10_pit.csv", DECISION_DATE)
+    cpi_yoy, pit_cpi = load_point_in_time_cpi(root / "data" / "cpi_pit_2026-10-05.csv", DECISION_DATE)
+    provenance["cpi_data"] = {
+        **pit_cpi,
+        "current_observation_date": pit_cpi["current_observation_date"],
+        "current_availability_date": pit_cpi["current_availability_date"],
+        "prior_year_observation_date": pit_cpi["prior_year_observation_date"],
+        "prior_year_availability_date": pit_cpi["prior_year_availability_date"],
+        "alfred_vintage_verified": False,
+        "point_in_time_verified": True,
+    }
     stress = build_stress_matrix(mandate, estimates, cpi_yoy, signal)
     cpi_data = provenance["cpi_data"]
     pit_cpi_valid = bool(
-        cpi_data.get("alfred_vintage_verified")
+        cpi_data.get("point_in_time_verified")
         and cpi_data.get("current_availability_date")
         and cpi_data.get("prior_year_availability_date")
         and cpi_data["current_availability_date"] <= stress["decision_date"]
         and cpi_data["prior_year_availability_date"] <= stress["decision_date"]
     )
     stress["return_hurdle_cpi"] = {
+        "decision_date": stress["decision_date"],
         "current_observation_date": cpi_data.get("current_observation_date"),
         "current_availability_date": cpi_data.get("current_availability_date"),
         "prior_observation_date": cpi_data.get("prior_year_observation_date"),
         "prior_availability_date": cpi_data.get("prior_year_availability_date"),
-        "alfred_vintage_verified": bool(cpi_data.get("alfred_vintage_verified")),
+        "point_in_time_source_verified": bool(cpi_data.get("point_in_time_verified")),
+        "source": cpi_data.get("source"),
+        "source_url": cpi_data.get("source_url"),
+        "vintage_date": cpi_data.get("vintage_date"),
+        "inflation_rate": cpi_yoy,
+        "current_value": cpi_data.get("current_value"),
+        "prior_year_value": cpi_data.get("prior_year_value"),
         "point_in_time_valid_for_decision_date": pit_cpi_valid,
         "status": "VALID" if pit_cpi_valid else "STOP_LOOKAHEAD_OR_UNVERIFIED_VINTAGE",
         "modeled_hurdle_still_shown_as_conditional_diagnostic": cpi_yoy + mandate["objective"]["real_return_spread"],
@@ -171,13 +186,14 @@ def run_phase2(project_root: Path | str) -> dict[str, Any]:
         "source_retrieval_date": provenance["retrieval_date"],
         "source_retrieved_at_utc": provenance.get("source_retrieved_at_utc"),
         "data_processed_at_utc": provenance.get("processed_at_utc"),
-        "market_data_as_of": provenance["price_data"]["as_of_date"],
-        "price_observations": provenance["price_data"]["aligned_rows"],
+        "market_data_as_of": estimates.observation_dates[-1].isoformat(),
+        "price_observations": len(estimates.observation_dates),
         "monthly_return_observations": len(estimates.observation_dates) - 1,
         "annual_expected_returns_by_asset": estimates.annual_expected_returns,
         "cpi_yoy": cpi_yoy,
         "provisional_after_cost_hurdle": hurdle,
-        "cpi_vintage_verified": provenance["cpi_data"]["alfred_vintage_verified"],
+        "cpi_point_in_time_source_verified": pit_cpi_valid,
+        "cpi_point_in_time_source": pit_cpi,
         "dgs10_signal": signal,
         "stress_matrix": stress,
         "optimization": {
@@ -196,7 +212,7 @@ def run_phase2(project_root: Path | str) -> dict[str, Any]:
             "constraints_not_claimed_as_verified": [
                 "turnover: actual Meridian holdings and as-of date unavailable",
                 "liquidity: independent five-business-day evidence unavailable",
-                "CPI vintage: current FRED snapshot is not an ALFRED-vintage verification",
+                "CPI is verified against the BLS archived release available by the decision date, not an ALFRED API vintage",
                 "issuer exposure: diversified-fund exemption and look-through treatment are unverified",
             ],
             "hypothetical_turnover_cap_stop_condition": {
@@ -221,7 +237,7 @@ def run_phase2(project_root: Path | str) -> dict[str, Any]:
             "Historical arithmetic means are estimates, not forecasts or promised returns.",
             "Turnover and transaction costs use a hypothetical equal-weight starting allocation and illustrative 10 bps cost; neither is actual Meridian evidence.",
             "ETF five-business-day liquidity remains unverified, so no portfolio is reported as fully mandate-compliant.",
-            "The CPI hurdle uses a current FRED snapshot; ALFRED vintage verification remains outstanding.",
+            "The CPI pair uses the archived BLS August 2026 release available by the decision date; it is not an ALFRED API vintage and uses unadjusted CPI-U.",
             "The 1% grid solution is discrete and may differ from a continuous optimum.",
         ],
     }

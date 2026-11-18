@@ -97,11 +97,24 @@ class DecisionSupportTests(unittest.TestCase):
         phase, mandate, provenance = sample_inputs()
         markdown = render_decision_markdown(build_decision_support(phase, mandate, provenance))
         self.assertIn("HOLD", markdown)
-        self.assertIn("not admissible", markdown.lower())
+        self.assertIn("after or without verification by decision date", markdown.lower())
         self.assertIn("Human-review alert only", markdown)
         self.assertIn("SEC ETF Rule 6c-11", markdown)
         self.assertIn("Hypothetical turnover-cap stop", markdown)
         self.assertIn("Reversal conditions", markdown)
+
+    def test_verified_bls_cpi_is_admissible_but_not_claimed_as_alfred(self):
+        phase, mandate, provenance = sample_inputs()
+        provenance["cpi_data"].update({
+            "point_in_time_verified": True,
+            "current_availability_date": "2026-09-11",
+            "prior_year_availability_date": "2026-09-11",
+            "current_observation_date": "2026-08-01",
+            "prior_year_observation_date": "2025-08-01",
+        })
+        report = build_decision_support(phase, mandate, provenance)
+        self.assertTrue(report["point_in_time_cpi"]["admissible_for_stress_decision"])
+        self.assertEqual(report["point_in_time_cpi"]["status"], "PASS")
 
     def test_generated_decision_artifacts_are_present_and_consistent(self):
         report_path = ROOT / "outputs" / "phase4a_decision_support.json"
@@ -112,7 +125,9 @@ class DecisionSupportTests(unittest.TestCase):
         self.assertEqual(report["candidate_disposition_for_student_review"], "HOLD")
         self.assertIn("not an authorization range", markdown_path.read_text(encoding="utf-8").lower())
         phase2_markdown = (ROOT / "outputs" / "phase2_results.md").read_text(encoding="utf-8")
-        self.assertIn("return-hurdle CPI valid for this decision date: **False**", phase2_markdown)
+        self.assertIn("CPI gate:", phase2_markdown)
+        self.assertIn("2025-08-01=323.976", phase2_markdown)
+        self.assertIn("2026-08-01=334.98", phase2_markdown)
         self.assertNotIn("{result['stress_matrix']", phase2_markdown)
 
 

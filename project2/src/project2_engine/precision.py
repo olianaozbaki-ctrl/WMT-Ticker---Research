@@ -175,5 +175,5 @@ def compare_optimizer_precision(
             - sqrt(float(continuous.fun))
         )
         * 100.0,
-        "conclusion": "The 1% grid is sufficiently accurate for Phase 2 comparison.",
+        "conclusion": "The production 1% grid is within one percentage point of the continuous solution on every weight; finer-grid and continuous results are retained for review.",
     }

@@ -28,11 +28,14 @@ class StressTests(unittest.TestCase):
         self.assertTrue(stress['signal_boundary_consistent'])
         self.assertLess(stress['market_return_observations'],60)
 
-    def test_cpi_hurdle_lookahead_is_an_explicit_decision_stop(self):
+    def test_cpi_hurdle_uses_bls_vintage_available_before_decision(self):
         cpi=self.result['stress_matrix']['return_hurdle_cpi']
-        self.assertEqual(cpi['current_availability_date'],'2026-10-14')
-        self.assertFalse(cpi['point_in_time_valid_for_decision_date'])
-        self.assertEqual(cpi['status'],'STOP_LOOKAHEAD_OR_UNVERIFIED_VINTAGE')
+        self.assertEqual(cpi['current_observation_date'],'2026-08-01')
+        self.assertEqual(cpi['current_availability_date'],'2026-09-11')
+        self.assertTrue(cpi['point_in_time_valid_for_decision_date'])
+        self.assertEqual(cpi['status'],'VALID')
+        self.assertAlmostEqual(cpi['inflation_rate'],334.980/323.976-1.0)
+        self.assertLessEqual(self.result['market_data_as_of'],cpi['decision_date'])
     def test_volatility_stress_is_valid_and_higher(self):
         rows={r['scenario']:r for r in self.result['stress_matrix']['scenarios']}
         self.assertTrue(rows['volatility_plus_25pct']['feasible'])

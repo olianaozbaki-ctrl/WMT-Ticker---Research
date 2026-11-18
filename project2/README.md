@@ -33,16 +33,16 @@ The committed input snapshot reproduces the analysis offline. To refresh externa
 - Equal-weight baseline: 25% each.
 - 60/40 benchmark: 60% VT global equity and 40% LQD investment-grade bonds; BIL and IEF are 0%.
 - Optimizer: deterministic 1%-weight grid, long-only, fully invested, BIL reserve at least 3%, and provisional CPI + 4% after illustrative trading cost. It never relaxes a supplied constraint.
-- CPI signal: September 2026 CPIAUCSL divided by September 2025 CPIAUCSL minus one. October is not used because the October 2025 all-items CPI was not published.
+- CPI decision-date input: BLS archived August 2026 CPI-U, not seasonally adjusted, 334.980 (observation 2026-08-01) versus August 2025 323.976 (2025-08-01), released 2026-09-11. The October 5, 2026 CPI + 4% hurdle is 7.3965%. This is contemporaneous BLS release evidence, not an ALFRED API vintage or seasonally adjusted CPIAUCSL.
 - Point-in-time signal: DGS10 at 5.28% for October 2, 2026, available October 5, 2026, evaluated as known on October 5. These dates/value come from the documented Lab 17 ALFRED validation. The signal is a review trigger only and does not automatically change portfolio weights.
 
 ## Executed Phase 2 result
 
 | Portfolio | Weights (BIL / IEF / LQD / VT) | Expected return | Volatility | Reserve |
 |---|---|---:|---:|---:|
-| Equal weight | 25% / 25% / 25% / 25% | 3.18% | 7.49% | 25% |
-| 60/40 benchmark | 0% / 0% / 40% / 60% | 6.16% | 12.23% | 0% |
-| Provisional constrained minimum volatility | 40% / 0% / 0% / 60% | 7.79% | 8.95% | 40% |
+| Equal weight | 25% / 25% / 25% / 25% | 3.01% | 7.55% | 25% |
+| 60/40 benchmark | 0% / 0% / 40% / 60% | 6.26% | 12.33% | 0% |
+| Provisional constrained minimum volatility | 48% / 0% / 0% / 52% | 7.50% | 7.82% | 48% |
 
 These figures are generated in [outputs/phase2_results.md](outputs/phase2_results.md). Historical expected return is an estimate, not a forecast or promise.
 
@@ -64,7 +64,7 @@ These figures are generated in [outputs/phase2_results.md](outputs/phase2_result
 - If hypothetical equal weight were treated as the starting portfolio, enforcing the 25% turnover cap makes the provisional return hurdle infeasible. This is a sensitivity stop condition, not an actual-holdings verdict.
 - No independent evidence establishes five-business-day liquidation and settlement for the ETFs. Liquidity remains `NOT_TESTABLE`.
 - The 10 bps one-way cost is illustrative, not observed Meridian execution evidence.
-- The CPI values are a current FRED snapshot with documented release dates, but the required ALFRED vintage has not been verified.
+- The point-in-time CPI pair is documented from the contemporaneous BLS August 2026 release; no ALFRED API vintage is archived. The current CPIAUCSL snapshot remains preserved as legacy data and is not used in the October 5 calculation.
 - The 1% grid solution is discrete and sensitive to historical expected-return estimates.
 - ETF issuer exposure, the diversified-fund exemption, and look-through treatment are unverified; issuer compliance remains `NOT_TESTABLE`.
 - S9 remains `UNRESOLVED`; no loss guarantee is claimed.
@@ -74,16 +74,16 @@ These figures are generated in [outputs/phase2_results.md](outputs/phase2_result
 
 The code-generated stress matrix is included in `outputs/phase2_results.json` and `outputs/phase2_results.md`. It covers expected-return shifts of ±2 percentage points, the full decision-date-aligned historical window and 36 monthly returns, 0/10/25 bps one-way costs, a 10% reserve floor and hypothetical 25% turnover cap, 25% higher volatility, PSD-preserving correlation stress, and available/unavailable DGS10 cases. The Streamlit section compares equal weight, the 60/40 benchmark, and the reoptimized portfolio for selected scenarios.
 
-The DGS10 decision date is 2026-10-05 (observation 2026-10-02; available 2026-10-05). Stress-market returns stop at 2026-09-30, the latest month-end observation available by the decision date (59 monthly returns); the 2026-10-30 price observation is excluded from signal-linked stresses. DGS10 is a historical review-only signal, not a current quote. The standard Phase 2 table uses the complete frozen panel through 2026-10-30 and is separate from this historical decision-date stress analysis.
+The DGS10 decision date is 2026-10-05 (observation 2026-10-02; available 2026-10-05). All market-return calculations stop at 2026-09-30, the latest month-end observation available by the decision date (59 monthly returns); the 2026-10-30 price observation is excluded from portfolio baselines, optimization, stress tests, and decision support. DGS10 is a historical review-only signal, not a current quote.
 
-Executed aligned-window reoptimization: 44% BIL / 56% VT, 7.7974% gross and 7.7474% net expected annual return, 8.4154% annual volatility. The 36-return case selects 78% BIL / 22% VT, 7.8598% gross / 7.8068% net, and 2.6057% volatility. All baseline and scenario portfolio metrics and mandate verdicts are in the output files. The hypothetical 25% turnover cap produces `STOP_INFEASIBLE`; no constraint is relaxed. Turnover and transaction costs use an explicitly hypothetical equal-weight start, not actual Meridian holdings. Optimizer feasibility is provisional and is not full mandate compliance.
+Corrected aligned-window reoptimization: 48% BIL / 52% VT, 7.5017% gross and 7.4517% net expected annual return, 7.8242% annual volatility. The 36-month case selects 80% BIL / 20% VT, 7.5422% gross / 7.4872% net, and 2.3730% volatility. All baseline and scenario portfolio metrics and mandate verdicts are in the output files. The hypothetical 25% turnover cap produces `STOP_INFEASIBLE`; no constraint is relaxed. Turnover and transaction costs use an explicitly hypothetical equal-weight start, not actual Meridian holdings. Optimizer feasibility is provisional and is not full mandate compliance.
 
 Correlation stress blends the historical correlation matrix 50% with a valid four-asset equicorrelation matrix (off-diagonal 0.75) and retains original volatilities. This convex blend preserves PSD; covariance validation remains enabled. Stress outcomes are historical-sample sensitivity results, not forecasts or observed market shocks.
 
 ## Phase 4A investment decision support
 
-The application and [generated decision report](outputs/phase4a_decision_support.md) provide an evidence-gated framework for `APPROVE`, `CONDITIONAL_PILOT`, `HOLD`, or `REJECT`. The candidate disposition is **HOLD funded deployment** for student/committee review, not a final investment judgment. The tested model-feasible allocation envelope is BIL 17–78%, IEF 0%, LQD 0%, VT 22–83%; it is explicitly **not an authorization range**. Full-window versus 36-month optimization changes BIL from 44% to 78% (34 percentage points), and the mandate defines no tolerance for this variation.
+The application and [generated decision report](outputs/phase4a_decision_support.md) provide an evidence-gated framework for `APPROVE`, `CONDITIONAL_PILOT`, `HOLD`, or `REJECT`. The candidate disposition is **HOLD funded deployment** for student/committee review, not a final investment judgment. The tested model-feasible allocation envelope is BIL 21–80%, IEF 0%, LQD 0%, VT 20–79%; it is explicitly **not an authorization range**. Full-window versus 36-month optimization changes BIL from 48% to 80% (32 percentage points), and the mandate defines no tolerance for this variation.
 
-Phase 4A also flags a look-ahead issue in the Phase 3B feasibility calculation: the 2026-10-05 signal stress used September 2026 CPI that BLS did not release until 2026-10-14. The old stress outputs remain recorded as conditional numerical diagnostics, but their return hurdle is not valid for that historical decision date. FRED/ALFRED supports retrieving historical vintages, but no replacement point-in-time CPI value is computed here. See the generated report for the correct source links and the requested remediation.
+The initial Phase 3B calculation used September 2026 CPI, released after the 2026-10-05 decision date. That look-ahead error is retained as validation history in `docs/validation-and-ai-use.md`. The corrected run uses the August 2026 BLS archived release, filters every ETF-price calculation through 2026-09-30, and retains the DGS10 observation dated 2026-10-02 and available 2026-10-05. The optimized allocation is 48% BIL / 52% VT; the 36-month result is 80% BIL / 20% VT. The remaining 32 percentage-point BIL window difference and unresolved mandate evidence support a HOLD for review, not an authorized allocation.
 
 The 90%/five-business-day liquidity test, 8% issuer interpretation and exposure, actual holdings/turnover, observed costs, and S9 breach handling remain unresolved or unverified. Public fund pages publish holdings and trading indicators, but those do not establish portfolio-specific five-day sale and settlement capacity at Meridian's trade size. No funded pilot is supported by the current evidence; paper-only rehearsal may be considered separately.

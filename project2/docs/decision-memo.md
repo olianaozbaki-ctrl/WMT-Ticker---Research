@@ -14,9 +14,9 @@ Should the Meridian Foundation reject, pilot, or adopt the proposed constrained 
 
 ## Executed evidence
 
-As of 2026-10-30, five years of monthly adjusted-price data produce a 40% BIL / 60% VT provisional minimum-volatility grid portfolio. Its historical annualized arithmetic expected return is 7.79% and volatility is 8.95%. The equal-weight baseline estimates 3.18% return and 7.49% volatility; the 60% VT / 40% LQD benchmark estimates 6.16% return and 12.23% volatility.
+For the October 5, 2026 decision boundary, ETF prices end September 30, producing 59 monthly returns. The BLS August CPI pair gives 3.3965% year-over-year inflation and an arithmetic CPI + 4% hurdle of 7.3965%. The equal-weight portfolio estimates 3.01% annual return and 7.55% volatility; 60% VT / 40% LQD estimates 6.26% and 12.33%; the provisional minimum-volatility portfolio is 48% BIL / 52% VT at 7.50% gross return and 7.82% volatility.
 
-These are historical estimates, not promised returns. The constrained mix clears the provisional 7.72% CPI + 4% after-cost modeling hurdle, but that check relies on a current FRED snapshot and an illustrative cost assumption.
+These are historical estimates, not promised returns. The constrained mix clears the 7.3965% point-in-time CPI + 4% after-cost modeling hurdle by a small margin using one illustrative rebalance cost. The CPI source is the BLS archived August 2026 release dated September 11, 2026, not an ALFRED API vintage.
 
 ## Why no decision is requested yet
 
@@ -24,8 +24,8 @@ These are historical estimates, not promised returns. The constrained mix clears
 - Under the explicitly hypothetical equal-weight start, the 25% turnover cap makes the provisional return hurdle infeasible; this is a stop condition, not evidence about actual holdings.
 - Independent five-business-day ETF liquidity evidence is unavailable.
 - ETF issuer exposure and exemption treatment are unverified.
-- The CPI inputs have release-date support but not the required ALFRED-vintage verification.
-- S9 remains unresolved, and no stress matrix or allocation range has been completed.
+- CPI measurement remains a modeling decision: the corrected run uses unadjusted CPI-U from the contemporaneous BLS release rather than seasonally adjusted CPIAUCSL or an ALFRED API vintage.
+- S9 remains unresolved, and the completed stress matrix does not support a robust or authorized allocation range.
 
 The next committee action is to resolve the missing evidence and modeling decisions before a committee decision or funded implementation. No Locked Changed-Input Record has been run.
 
@@ -35,11 +35,11 @@ The next committee action is to resolve the missing evidence and modeling decisi
 
 ### What the results say
 
-The Phase 3B full signal-aligned history selects 44% BIL / 56% VT; the 36-month window selects 78% BIL / 22% VT. The BIL weight shifts 34 percentage points, with full-window/36-month model estimates of 7.7974%/7.8598% gross annual expected return and 8.4154%/2.6057% annual volatility, respectively. These historical means and volatilities describe the selected samples; they are not forecasts. The feasible stress solutions span BIL 17–78%, IEF 0%, LQD 0%, VT 22–83%. This is a diagnostic envelope, not a defensible authorization range: the estimation-window shift is large, the policy sets no stability tolerance, and the hurdle/evidence gates below fail.
+The corrected full-window reoptimization is 48% BIL / 52% VT; the 36-month window selects 80% BIL / 20% VT. The BIL weight shifts 32 percentage points. Gross annual expected return/volatility are 7.5017%/7.8242% and 7.5422%/2.3730%, respectively. These historical sample statistics are not forecasts. The stress envelope spans BIL 21–80%, IEF 0%, LQD 0%, VT 20–79%. This is a diagnostic envelope, not an authorization range: the window shift is large and mandate evidence remains incomplete.
 
 ### Point-in-time feasibility stop
 
-The historical signal/stress decision date is October 5, 2026. The optimizer used the September 2026 CPI observation, whose availability in the project provenance is October 14, 2026. The BLS archived release confirms that September CPI was embargoed until October 14 at 8:30 a.m. ET. Therefore the CPI + 4% hurdle used by that historical stress calculation was not known on October 5. Its optimizer `PROVISIONAL_FEASIBLE` status is numerical feasibility on the supplied input, not point-in-time feasibility. FRED documents vintage-date/realtime retrieval, but this project does not contain the required ALFRED CPI vintage. No substitute value is inferred. [BLS release](https://www.bls.gov/news.release/archives/cpi_10142026.htm); [FRED observations API](https://fred.stlouisfed.org/docs/api/fred/series_observations.html).
+The earlier Phase 3B run contained a CPI look-ahead error: September 2026 CPI was released October 14, after the October 5 decision. That failed result remains preserved in the validation record. The corrected run uses BLS-published August 2025 CPI-U 323.976 and August 2026 CPI-U 334.980; both appear in the archived release published September 11. It also excludes ETF price observations after September 30 and uses DGS10 dated October 2, available October 5. The generated output reports point-in-time release verification while explicitly stating this is not an ALFRED API vintage. [BLS August 2026 release](https://www.bls.gov/news.release/archives/cpi_09112026.htm); [BLS 2026 release schedule](https://www.bls.gov/schedule/2026/home.htm).
 
 ### Decision gates and requested action
 
@@ -47,6 +47,6 @@ The historical signal/stress decision date is October 5, 2026. The optimizer use
 - **Issuer limit (S6):** `Lab_13.md` says 8% per issuer and does not state exemptions. Configuration exemptions are unconfirmed; decide whether to apply them and whether to look through ETFs, then aggregate dated holdings as needed.
 - **Turnover and costs (S7):** Actual holdings/as-of date and observed execution costs are missing. The 25% cap is infeasible from hypothetical equal-weight holdings, which is not evidence about Meridian's real portfolio.
 - **S9:** The annual-loss statement has no defined measurement or breach response. Keep it `UNRESOLVED`; any -10% alert is human-review only until the CIO specifies the policy.
-- **CPI/decision date:** Choose the date that governs the next stress run and obtain both CPI inputs from the correct ALFRED vintage. For the October 5 date, do not use September CPI released October 14.
+- **CPI convention:** Confirm whether BLS not-seasonally-adjusted CPI-U from a release archive is the committee's preferred target input or require an archived contemporaneous ALFRED CPIAUCSL vintage before operational use.
 
 Use the [generated Phase 4A decision-support report](../outputs/phase4a_decision_support.md) for the full outcome framework, model envelope, portfolio-by-window comparisons, evidence references, monitoring triggers, and committee questions. The candidate disposition is not a recommendation to buy or sell a fund.

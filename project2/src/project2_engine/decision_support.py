@@ -25,14 +25,19 @@ def build_decision_support(
     cpi = provenance["cpi_data"]
     cpi_current_available = cpi.get("current_availability_date")
     cpi_prior_available = cpi.get("prior_year_availability_date")
-    cpi_vintage_verified = bool(cpi.get("alfred_vintage_verified"))
+    cpi_source_verified = bool(cpi.get("point_in_time_verified"))
     cpi_admissible = bool(
-        cpi_vintage_verified
+        cpi_source_verified
         and cpi_current_available
         and cpi_prior_available
         and cpi_current_available <= decision_date
         and cpi_prior_available <= decision_date
     )
+    cpi_availability_phrase = "before" if cpi_admissible else "after or without verification by"
+    cpi_rate_for_text = phase_result.get("cpi_yoy")
+    cpi_rate_text = "not computed" if cpi_rate_for_text is None else f"{cpi_rate_for_text:.4%}"
+    hurdle_for_text = phase_result.get("provisional_after_cost_hurdle")
+    hurdle_text = "not computed" if hurdle_for_text is None else f"{hurdle_for_text:.4%}"
 
     optimized = []
     for scenario in stress["scenarios"]:
@@ -118,13 +123,13 @@ def build_decision_support(
         },
         {
             "requirement": "S2 CPI + 4% point-in-time hurdle",
-            "status": "LOOKAHEAD_MISMATCH_FOR_HISTORICAL_SIGNAL_DECISION",
-            "available_evidence": f"The loaded CPI snapshot uses {cpi.get('current_observation_date')} with availability {cpi_current_available}; the stress/signal decision date is {decision_date}. The availability is after that date, and ALFRED vintage verification is {cpi_vintage_verified}. BLS scheduled the August CPI release for September 11, before this decision, but the local snapshot lacks the prior-year August input and no matching ALFRED pair is verified. Therefore the modeled {phase_result['provisional_after_cost_hurdle']:.4%} hurdle is not admissible as a point-in-time hurdle for this historical stress date.",
-            "needed": "Retrieve both CPI levels from the ALFRED vintage available on the chosen decision date, retaining observation and availability dates. No replacement value is fabricated here.",
+            "status": "BLS_POINT_IN_TIME_RELEASE_VERIFIED" if cpi_source_verified else "LOOKAHEAD_OR_VINTAGE_UNVERIFIED",
+            "available_evidence": f"The CPI pair is {cpi.get('prior_year_observation_date')}={cpi.get('prior_year_value')} and {cpi.get('current_observation_date')}={cpi.get('current_value')} ({cpi.get('units')}); release availability is {cpi_current_available}, {cpi_availability_phrase} decision date {decision_date}. Inflation is {cpi_rate_text}; the arithmetic CPI + 4% hurdle is {hurdle_text}. Source: {cpi.get('source_url') or 'not supplied'}. This is BLS release evidence, not an ALFRED API vintage.",
+            "needed": "For exact revised-series vintage reproduction, archive the underlying ALFRED response; this run relies on the contemporaneous BLS release and does not claim ALFRED API verification.",
             "sources": [
                 {"title": "FRED observations API and vintage_dates parameter", "url": "https://fred.stlouisfed.org/docs/api/fred/series_observations.html"},
                 {"title": "FRED real-time periods", "url": "https://fred.stlouisfed.org/docs/api/fred/realtime_period.html"},
-                {"title": "BLS archived September 2026 CPI release", "url": "https://www.bls.gov/news.release/archives/cpi_10142026.htm"},
+                {"title": "BLS archived August 2026 CPI release", "url": "https://www.bls.gov/news.release/archives/cpi_09112026.htm"},
                 {"title": "BLS 2026 release schedule", "url": "https://www.bls.gov/schedule/2026/home.htm"},
             ],
         },
@@ -190,10 +195,13 @@ def build_decision_support(
         "point_in_time_cpi": {
             "decision_date": decision_date,
             "current_cpi_observation_date": cpi.get("current_observation_date"),
+            "current_value": cpi.get("current_value"),
             "current_cpi_availability_date": cpi_current_available,
             "prior_cpi_observation_date": cpi.get("prior_year_observation_date"),
+            "prior_value": cpi.get("prior_year_value"),
             "prior_cpi_availability_date": cpi_prior_available,
-            "alfred_vintage_verified": cpi_vintage_verified,
+            "point_in_time_source_verified": cpi_source_verified,
+            "inflation_rate": phase_result.get("cpi_yoy"),
             "admissible_for_stress_decision": cpi_admissible,
             "modeled_hurdle_used": phase_result["provisional_after_cost_hurdle"],
             "status": "PASS" if cpi_admissible else "STOP_LOOKAHEAD_OR_UNVERIFIED_VINTAGE",
@@ -215,7 +223,7 @@ def build_decision_support(
             "reasons_not_robust": [
                 "Full versus 36-month estimation changes BIL by the reported percentage-point amount.",
                 "The mandate does not set a numerical tolerance for allocation stability, so a robust band cannot be inferred without committee judgment.",
-                "Stress optimization uses a September 2026 CPI snapshot that became available after the 2026-10-05 historical signal decision date; the modeled hurdle is not point-in-time admissible for that stress date.",
+                "CPI is point-in-time verified from the BLS archived August release, not an ALFRED API vintage; this uses unadjusted CPI-U rather than seasonally adjusted CPIAUCSL.",
                 "Actual holdings, turnover, transaction costs, liquidity, issuer treatment/exposure, and S9 handling remain unverified.",
             ],
         },
@@ -233,7 +241,7 @@ def build_decision_support(
         "monitoring_triggers_and_stop_conditions": triggers,
         "reversal_conditions": reversals,
         "committee_decisions_requested": [
-            "Choose the governing decision date for a point-in-time stress rerun and authorize the matching ALFRED CPI vintage; do not use September CPI for the October 5 decision because its recorded availability is October 14.",
+            "Confirm that the archived BLS not-seasonally-adjusted CPI-U release is the preferred operational interpretation of the CPI + 4% mandate, or require a contemporaneous ALFRED CPIAUCSL vintage before adoption.",
             "Provide Meridian's actual holdings and holdings as-of date, plus an approved transaction-cost estimate or execution evidence.",
             "Confirm whether the S6 exemptions in config/mandate.json govern despite their absence from the S6 sentence in Lab_13.md; approve look-through and issuer aggregation treatment.",
             "Provide position-sized five-business-day sale and settlement evidence for the 90% liquidity rule.",
@@ -246,6 +254,9 @@ def build_decision_support(
 def render_decision_markdown(report: dict[str, Any]) -> str:
     """Render the generated decision-support report as readable Markdown."""
     percent = lambda value: "—" if value is None else f"{value:.2%}"
+    cpi_inflation = report["point_in_time_cpi"].get("inflation_rate")
+    cpi_inflation_text = "—" if cpi_inflation is None else f"{cpi_inflation:.4%}"
+    cpi_hurdle_text = f"{report['point_in_time_cpi']['modeled_hurdle_used']:.4%}"
     lines = [
         "# Phase 4A Investment Decision Support",
         "",
@@ -269,7 +280,7 @@ def render_decision_markdown(report: dict[str, Any]) -> str:
         "",
         "## Decision-date and CPI check",
         "",
-        f"The stress decision date is **{cpi['decision_date']}**. The loaded September CPI observation ({cpi['current_cpi_observation_date']}) was available **{cpi['current_cpi_availability_date']}**, after that decision date. ALFRED vintage verified: **{cpi['alfred_vintage_verified']}**. The modeled hurdle of {percent(cpi['modeled_hurdle_used'])} is therefore **not admissible for the historical October 5 stress decision**. This is a stop on claiming point-in-time feasibility; no replacement CPI value is fabricated.",
+        f"The stress decision date is **{cpi['decision_date']}**. The CPI inputs are {cpi['prior_cpi_observation_date']} and {cpi['current_cpi_observation_date']}, published {cpi['current_cpi_availability_date']} and available by the decision date. BLS point-in-time source verified: **{cpi['point_in_time_source_verified']}** (this is not an ALFRED API vintage). Inflation is {cpi_inflation_text}; the arithmetic CPI + 4% modeled hurdle is {cpi_hurdle_text}. The earlier September 2026 current-snapshot input was unavailable on October 5 and is retained in validation history as a corrected look-ahead error.",
         "",
         "## Window sensitivity and model-only envelope",
         "",
@@ -280,7 +291,7 @@ def render_decision_markdown(report: dict[str, Any]) -> str:
     ])
     for ticker, bounds in report["modeled_feasible_stress_envelope"]["weights_by_ticker"].items():
         lines.append(f"| {ticker} | {percent(bounds['minimum'])} | {percent(bounds['maximum'])} |")
-    lines.extend(["", "**Status: diagnostic only; not an authorization range.** The full-to-36-month shift, inadmissible historical CPI hurdle, and unresolved mandate evidence do not support a robust allocation band.", "", "## Portfolio comparisons", "", "Gross return uses annualized arithmetic historical estimates. Net return subtracts one modeled rebalance cost; it is not a recurring annual cost forecast or proof of the rolling five-year S2 objective. Turnover and costs use hypothetical equal-weight starting holdings, not actual Meridian holdings.", ""])
+    lines.extend(["", "**Status: diagnostic only; not an authorization range.** The full-to-36-month shift, unresolved mandate evidence, and CPI measurement choice do not support a robust allocation band.", "", "## Portfolio comparisons", "", "Gross return uses annualized arithmetic historical estimates. Net return subtracts one modeled rebalance cost; it is not a recurring annual cost forecast or proof of the rolling five-year S2 objective. Turnover and costs use hypothetical equal-weight starting holdings, not actual Meridian holdings.", ""])
     for group in report["portfolio_comparisons"]:
         lines.extend([f"### {group['scenario']}", "", "| Portfolio | Weights (BIL / IEF / LQD / VT) | Gross return | Net return | Volatility | Turnover from hypothetical equal weight | Cost | Mandate verdicts |", "|---|---|---:|---:|---:|---:|---:|---|"])
         for portfolio in group["portfolios"]:

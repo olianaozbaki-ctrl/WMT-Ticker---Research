@@ -5,18 +5,42 @@
   "source_retrieval_date": "2026-11-17",
   "source_retrieved_at_utc": "2026-11-17",
   "data_processed_at_utc": "2026-11-17T21:17:12+00:00",
-  "market_data_as_of": "2026-10-30",
-  "price_observations": 61,
-  "monthly_return_observations": 60,
+  "market_data_as_of": "2026-09-30",
+  "price_observations": 60,
+  "monthly_return_observations": 59,
   "annual_expected_returns_by_asset": {
-    "BIL": 0.03667148357107799,
-    "IEF": -0.010805863647418512,
-    "LQD": -0.004150362412836906,
-    "VT": 0.10546773410390954
+    "BIL": 0.03657409295739293,
+    "IEF": -0.017289318829314566,
+    "LQD": -0.009276409995894356,
+    "VT": 0.11050234953250831
   },
-  "cpi_yoy": 0.03717250844268993,
-  "provisional_after_cost_hurdle": 0.07717250844268994,
-  "cpi_vintage_verified": false,
+  "cpi_yoy": 0.033965478924364856,
+  "provisional_after_cost_hurdle": 0.07396547892436486,
+  "cpi_point_in_time_source_verified": true,
+  "cpi_point_in_time_source": {
+    "provider": "U.S. Bureau of Labor Statistics",
+    "series": "CPI-U all items, U.S. city average, not seasonally adjusted",
+    "source": "Archived August 2026 CPI news release, Table 1",
+    "source_url": "https://www.bls.gov/news.release/archives/cpi_09112026.htm",
+    "units": "Index 1982-84=100",
+    "current_observation_date": "2026-08-01",
+    "current_value": 334.98,
+    "prior_year_observation_date": "2025-08-01",
+    "prior_year_value": 323.976,
+    "availability_date": "2026-09-11",
+    "current_availability_date": "2026-09-11",
+    "prior_year_availability_date": "2026-09-11",
+    "release_date": "2026-09-11",
+    "vintage_date": "2026-10-05",
+    "decision_date": "2026-10-05",
+    "point_in_time_verified": true,
+    "verification_method": "Both observation levels are published in the BLS archived August 2026 CPI release dated September 11, 2026; the release predates the October 5, 2026 decision date.",
+    "adjustment_method": "Not seasonally adjusted CPI-U; year-over-year comparison of same-month indexes.",
+    "missing_values": 0,
+    "transformations": "Inflation = 334.980 / 323.976 - 1. CPI + 4% target uses arithmetic addition, matching the project mandate convention.",
+    "alfred_vintage_verified": false,
+    "note": "This is point-in-time verified from the BLS release available on the decision date; it is not represented as an ALFRED API vintage."
+  },
   "dgs10_signal": {
     "available": true,
     "series_id": "DGS10",
@@ -47,14 +71,14 @@
         "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
         "combinations_evaluated": 176851,
         "weights": {
-          "BIL": 0.44,
+          "BIL": 0.48,
           "IEF": 0.0,
           "LQD": 0.0,
-          "VT": 0.56
+          "VT": 0.52
         },
-        "annual_expected_return": 0.07797391663945755,
-        "net_expected_return": 0.07747391663945755,
-        "annual_volatility": 0.08415429139128262,
+        "annual_expected_return": 0.07501678637645293,
+        "net_expected_return": 0.07451678637645293,
+        "annual_volatility": 0.07824228378869505,
         "turnover": 0.5,
         "cost_rate": 0.0005,
         "feasible": true,
@@ -134,14 +158,14 @@
           {
             "portfolio": "Reoptimized minimum volatility",
             "weights": {
-              "BIL": 0.44,
+              "BIL": 0.48,
               "IEF": 0.0,
               "LQD": 0.0,
-              "VT": 0.56
+              "VT": 0.52
             },
-            "annual_expected_return": 0.07797391663945755,
-            "net_expected_return": 0.07747391663945755,
-            "annual_volatility": 0.08415429139128262,
+            "annual_expected_return": 0.07501678637645293,
+            "net_expected_return": 0.07451678637645293,
+            "annual_volatility": 0.07824228378869505,
             "turnover_from_hypothetical_equal_weight": 0.5,
             "cost_rate": 0.0005,
             "optimizer_feasible": true,
@@ -171,16 +195,16 @@
         "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
         "combinations_evaluated": 176851,
         "weights": {
-          "BIL": 0.17,
+          "BIL": 0.21,
           "IEF": 0.0,
           "LQD": 0.0,
-          "VT": 0.83
+          "VT": 0.79
         },
-        "annual_expected_return": 0.0779345459147387,
-        "net_expected_return": 0.0773545459147387,
-        "annual_volatility": 0.12408603178806021,
-        "turnover": 0.58,
-        "cost_rate": 0.00058,
+        "annual_expected_return": 0.07497741565173409,
+        "net_expected_return": 0.07443741565173409,
+        "annual_volatility": 0.11816834884518024,
+        "turnover": 0.54,
+        "cost_rate": 0.00054,
         "feasible": true,
         "mandate_verdicts": {
           "weights_sum": "PASS",
@@ -258,16 +282,16 @@
           {
             "portfolio": "Reoptimized minimum volatility",
             "weights": {
-              "BIL": 0.17,
+              "BIL": 0.21,
               "IEF": 0.0,
               "LQD": 0.0,
-              "VT": 0.83
+              "VT": 0.79
             },
-            "annual_expected_return": 0.0779345459147387,
-            "net_expected_return": 0.0773545459147387,
-            "annual_volatility": 0.12408603178806021,
-            "turnover_from_hypothetical_equal_weight": 0.58,
-            "cost_rate": 0.00058,
+            "annual_expected_return": 0.07497741565173409,
+            "net_expected_return": 0.07443741565173409,
+            "annual_volatility": 0.11816834884518024,
+            "turnover_from_hypothetical_equal_weight": 0.54,
+            "cost_rate": 0.00054,
             "optimizer_feasible": true,
             "mandate_verdicts": {
               "weights_sum": "PASS",
@@ -295,14 +319,14 @@
         "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
         "combinations_evaluated": 176851,
         "weights": {
-          "BIL": 0.71,
+          "BIL": 0.75,
           "IEF": 0.0,
           "LQD": 0.0,
-          "VT": 0.29
+          "VT": 0.25
         },
-        "annual_expected_return": 0.07801328736417638,
-        "net_expected_return": 0.07751328736417638,
-        "annual_volatility": 0.044301651550123354,
+        "annual_expected_return": 0.07505615710117178,
+        "net_expected_return": 0.07455615710117178,
+        "annual_volatility": 0.03841928385568119,
         "turnover": 0.5,
         "cost_rate": 0.0005,
         "feasible": true,
@@ -382,14 +406,14 @@
           {
             "portfolio": "Reoptimized minimum volatility",
             "weights": {
-              "BIL": 0.71,
+              "BIL": 0.75,
               "IEF": 0.0,
               "LQD": 0.0,
-              "VT": 0.29
+              "VT": 0.25
             },
-            "annual_expected_return": 0.07801328736417638,
-            "net_expected_return": 0.07751328736417638,
-            "annual_volatility": 0.044301651550123354,
+            "annual_expected_return": 0.07505615710117178,
+            "net_expected_return": 0.07455615710117178,
+            "annual_volatility": 0.03841928385568119,
             "turnover_from_hypothetical_equal_weight": 0.5,
             "cost_rate": 0.0005,
             "optimizer_feasible": true,
@@ -419,16 +443,16 @@
         "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
         "combinations_evaluated": 176851,
         "weights": {
-          "BIL": 0.78,
+          "BIL": 0.8,
           "IEF": 0.0,
           "LQD": 0.0,
-          "VT": 0.22
+          "VT": 0.2
         },
-        "annual_expected_return": 0.07859830008334094,
-        "net_expected_return": 0.07806830008334094,
-        "annual_volatility": 0.026057400446251523,
-        "turnover": 0.53,
-        "cost_rate": 0.0005300000000000001,
+        "annual_expected_return": 0.0754220637154001,
+        "net_expected_return": 0.0748720637154001,
+        "annual_volatility": 0.023730013378740495,
+        "turnover": 0.55,
+        "cost_rate": 0.00055,
         "feasible": true,
         "mandate_verdicts": {
           "weights_sum": "PASS",
@@ -506,16 +530,16 @@
           {
             "portfolio": "Reoptimized minimum volatility",
             "weights": {
-              "BIL": 0.78,
+              "BIL": 0.8,
               "IEF": 0.0,
               "LQD": 0.0,
-              "VT": 0.22
+              "VT": 0.2
             },
-            "annual_expected_return": 0.07859830008334094,
-            "net_expected_return": 0.07806830008334094,
-            "annual_volatility": 0.026057400446251523,
-            "turnover_from_hypothetical_equal_weight": 0.53,
-            "cost_rate": 0.0005300000000000001,
+            "annual_expected_return": 0.0754220637154001,
+            "net_expected_return": 0.0748720637154001,
+            "annual_volatility": 0.023730013378740495,
+            "turnover_from_hypothetical_equal_weight": 0.55,
+            "cost_rate": 0.00055,
             "optimizer_feasible": true,
             "mandate_verdicts": {
               "weights_sum": "PASS",
@@ -543,14 +567,14 @@
         "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
         "combinations_evaluated": 176851,
         "weights": {
-          "BIL": 0.45,
+          "BIL": 0.49,
           "IEF": 0.0,
           "LQD": 0.0,
-          "VT": 0.55
+          "VT": 0.51
         },
-        "annual_expected_return": 0.0772346340737064,
-        "net_expected_return": 0.0772346340737064,
-        "annual_volatility": 0.08267615131175814,
+        "annual_expected_return": 0.07427750381070178,
+        "net_expected_return": 0.07427750381070178,
+        "annual_volatility": 0.07676452992199924,
         "turnover": 0.5,
         "cost_rate": 0.0,
         "feasible": true,
@@ -630,14 +654,14 @@
           {
             "portfolio": "Reoptimized minimum volatility",
             "weights": {
-              "BIL": 0.45,
+              "BIL": 0.49,
               "IEF": 0.0,
               "LQD": 0.0,
-              "VT": 0.55
+              "VT": 0.51
             },
-            "annual_expected_return": 0.0772346340737064,
-            "net_expected_return": 0.0772346340737064,
-            "annual_volatility": 0.08267615131175814,
+            "annual_expected_return": 0.07427750381070178,
+            "net_expected_return": 0.07427750381070178,
+            "annual_volatility": 0.07676452992199924,
             "turnover_from_hypothetical_equal_weight": 0.5,
             "cost_rate": 0.0,
             "optimizer_feasible": true,
@@ -667,14 +691,14 @@
         "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
         "combinations_evaluated": 176851,
         "weights": {
-          "BIL": 0.43,
+          "BIL": 0.47,
           "IEF": 0.0,
           "LQD": 0.0,
-          "VT": 0.57
+          "VT": 0.53
         },
-        "annual_expected_return": 0.0787131992052087,
-        "net_expected_return": 0.0774631992052087,
-        "annual_volatility": 0.0856325156397547,
+        "annual_expected_return": 0.07575606894220409,
+        "net_expected_return": 0.07450606894220409,
+        "annual_volatility": 0.0797201423868248,
         "turnover": 0.5,
         "cost_rate": 0.00125,
         "feasible": true,
@@ -754,14 +778,14 @@
           {
             "portfolio": "Reoptimized minimum volatility",
             "weights": {
-              "BIL": 0.43,
+              "BIL": 0.47,
               "IEF": 0.0,
               "LQD": 0.0,
-              "VT": 0.57
+              "VT": 0.53
             },
-            "annual_expected_return": 0.0787131992052087,
-            "net_expected_return": 0.0774631992052087,
-            "annual_volatility": 0.0856325156397547,
+            "annual_expected_return": 0.07575606894220409,
+            "net_expected_return": 0.07450606894220409,
+            "annual_volatility": 0.0797201423868248,
             "turnover_from_hypothetical_equal_weight": 0.5,
             "cost_rate": 0.00125,
             "optimizer_feasible": true,
@@ -791,14 +815,14 @@
         "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
         "combinations_evaluated": 176851,
         "weights": {
-          "BIL": 0.44,
+          "BIL": 0.48,
           "IEF": 0.0,
           "LQD": 0.0,
-          "VT": 0.56
+          "VT": 0.52
         },
-        "annual_expected_return": 0.07797391663945755,
-        "net_expected_return": 0.07747391663945755,
-        "annual_volatility": 0.08415429139128262,
+        "annual_expected_return": 0.07501678637645293,
+        "net_expected_return": 0.07451678637645293,
+        "annual_volatility": 0.07824228378869505,
         "turnover": 0.5,
         "cost_rate": 0.0005,
         "feasible": true,
@@ -878,14 +902,14 @@
           {
             "portfolio": "Reoptimized minimum volatility",
             "weights": {
-              "BIL": 0.44,
+              "BIL": 0.48,
               "IEF": 0.0,
               "LQD": 0.0,
-              "VT": 0.56
+              "VT": 0.52
             },
-            "annual_expected_return": 0.07797391663945755,
-            "net_expected_return": 0.07747391663945755,
-            "annual_volatility": 0.08415429139128262,
+            "annual_expected_return": 0.07501678637645293,
+            "net_expected_return": 0.07451678637645293,
+            "annual_volatility": 0.07824228378869505,
             "turnover_from_hypothetical_equal_weight": 0.5,
             "cost_rate": 0.0005,
             "optimizer_feasible": true,
@@ -1004,14 +1028,14 @@
         "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
         "combinations_evaluated": 176851,
         "weights": {
-          "BIL": 0.44,
+          "BIL": 0.48,
           "IEF": 0.0,
           "LQD": 0.0,
-          "VT": 0.56
+          "VT": 0.52
         },
-        "annual_expected_return": 0.07797391663945755,
-        "net_expected_return": 0.07747391663945755,
-        "annual_volatility": 0.10519286423910329,
+        "annual_expected_return": 0.07501678637645293,
+        "net_expected_return": 0.07451678637645293,
+        "annual_volatility": 0.09780285473586882,
         "turnover": 0.5,
         "cost_rate": 0.0005,
         "feasible": true,
@@ -1091,14 +1115,14 @@
           {
             "portfolio": "Reoptimized minimum volatility",
             "weights": {
-              "BIL": 0.44,
+              "BIL": 0.48,
               "IEF": 0.0,
               "LQD": 0.0,
-              "VT": 0.56
+              "VT": 0.52
             },
-            "annual_expected_return": 0.07797391663945755,
-            "net_expected_return": 0.07747391663945755,
-            "annual_volatility": 0.10519286423910329,
+            "annual_expected_return": 0.07501678637645293,
+            "net_expected_return": 0.07451678637645293,
+            "annual_volatility": 0.09780285473586882,
             "turnover_from_hypothetical_equal_weight": 0.5,
             "cost_rate": 0.0005,
             "optimizer_feasible": true,
@@ -1128,14 +1152,14 @@
         "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
         "combinations_evaluated": 176851,
         "weights": {
-          "BIL": 0.44,
+          "BIL": 0.48,
           "IEF": 0.0,
           "LQD": 0.0,
-          "VT": 0.56
+          "VT": 0.52
         },
-        "annual_expected_return": 0.07797391663945755,
-        "net_expected_return": 0.07747391663945755,
-        "annual_volatility": 0.08468205218879607,
+        "annual_expected_return": 0.07501678637645293,
+        "net_expected_return": 0.07451678637645293,
+        "annual_volatility": 0.07881698666049546,
         "turnover": 0.5,
         "cost_rate": 0.0005,
         "feasible": true,
@@ -1215,14 +1239,14 @@
           {
             "portfolio": "Reoptimized minimum volatility",
             "weights": {
-              "BIL": 0.44,
+              "BIL": 0.48,
               "IEF": 0.0,
               "LQD": 0.0,
-              "VT": 0.56
+              "VT": 0.52
             },
-            "annual_expected_return": 0.07797391663945755,
-            "net_expected_return": 0.07747391663945755,
-            "annual_volatility": 0.08468205218879607,
+            "annual_expected_return": 0.07501678637645293,
+            "net_expected_return": 0.07451678637645293,
+            "annual_volatility": 0.07881698666049546,
             "turnover_from_hypothetical_equal_weight": 0.5,
             "cost_rate": 0.0005,
             "optimizer_feasible": true,
@@ -1252,14 +1276,14 @@
         "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
         "combinations_evaluated": 176851,
         "weights": {
-          "BIL": 0.44,
+          "BIL": 0.48,
           "IEF": 0.0,
           "LQD": 0.0,
-          "VT": 0.56
+          "VT": 0.52
         },
-        "annual_expected_return": 0.07797391663945755,
-        "net_expected_return": 0.07747391663945755,
-        "annual_volatility": 0.08415429139128262,
+        "annual_expected_return": 0.07501678637645293,
+        "net_expected_return": 0.07451678637645293,
+        "annual_volatility": 0.07824228378869505,
         "turnover": 0.5,
         "cost_rate": 0.0005,
         "feasible": true,
@@ -1339,14 +1363,14 @@
           {
             "portfolio": "Reoptimized minimum volatility",
             "weights": {
-              "BIL": 0.44,
+              "BIL": 0.48,
               "IEF": 0.0,
               "LQD": 0.0,
-              "VT": 0.56
+              "VT": 0.52
             },
-            "annual_expected_return": 0.07797391663945755,
-            "net_expected_return": 0.07747391663945755,
-            "annual_volatility": 0.08415429139128262,
+            "annual_expected_return": 0.07501678637645293,
+            "net_expected_return": 0.07451678637645293,
+            "annual_volatility": 0.07824228378869505,
             "turnover_from_hypothetical_equal_weight": 0.5,
             "cost_rate": 0.0005,
             "optimizer_feasible": true,
@@ -1376,14 +1400,14 @@
         "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
         "combinations_evaluated": 176851,
         "weights": {
-          "BIL": 0.44,
+          "BIL": 0.48,
           "IEF": 0.0,
           "LQD": 0.0,
-          "VT": 0.56
+          "VT": 0.52
         },
-        "annual_expected_return": 0.07797391663945755,
-        "net_expected_return": 0.07747391663945755,
-        "annual_volatility": 0.08415429139128262,
+        "annual_expected_return": 0.07501678637645293,
+        "net_expected_return": 0.07451678637645293,
+        "annual_volatility": 0.07824228378869505,
         "turnover": 0.5,
         "cost_rate": 0.0005,
         "feasible": true,
@@ -1463,14 +1487,14 @@
           {
             "portfolio": "Reoptimized minimum volatility",
             "weights": {
-              "BIL": 0.44,
+              "BIL": 0.48,
               "IEF": 0.0,
               "LQD": 0.0,
-              "VT": 0.56
+              "VT": 0.52
             },
-            "annual_expected_return": 0.07797391663945755,
-            "net_expected_return": 0.07747391663945755,
-            "annual_volatility": 0.08415429139128262,
+            "annual_expected_return": 0.07501678637645293,
+            "net_expected_return": 0.07451678637645293,
+            "annual_volatility": 0.07824228378869505,
             "turnover_from_hypothetical_equal_weight": 0.5,
             "cost_rate": 0.0005,
             "optimizer_feasible": true,
@@ -1494,14 +1518,21 @@
       }
     ],
     "return_hurdle_cpi": {
-      "current_observation_date": "2026-09-01",
-      "current_availability_date": "2026-10-14",
-      "prior_observation_date": "2025-09-01",
-      "prior_availability_date": "2025-10-24",
-      "alfred_vintage_verified": false,
-      "point_in_time_valid_for_decision_date": false,
-      "status": "STOP_LOOKAHEAD_OR_UNVERIFIED_VINTAGE",
-      "modeled_hurdle_still_shown_as_conditional_diagnostic": 0.07717250844268994
+      "decision_date": "2026-10-05",
+      "current_observation_date": "2026-08-01",
+      "current_availability_date": "2026-09-11",
+      "prior_observation_date": "2025-08-01",
+      "prior_availability_date": "2026-09-11",
+      "point_in_time_source_verified": true,
+      "source": "Archived August 2026 CPI news release, Table 1",
+      "source_url": "https://www.bls.gov/news.release/archives/cpi_09112026.htm",
+      "vintage_date": "2026-10-05",
+      "inflation_rate": 0.033965478924364856,
+      "current_value": 334.98,
+      "prior_year_value": 323.976,
+      "point_in_time_valid_for_decision_date": true,
+      "status": "VALID",
+      "modeled_hurdle_still_shown_as_conditional_diagnostic": 0.07396547892436486
     }
   },
   "optimization": {
@@ -1510,7 +1541,7 @@
     "reason": "feasible",
     "grid_step": 0.01,
     "combinations_evaluated": 176851,
-    "feasible_combinations": 3847,
+    "feasible_combinations": 6594,
     "constraints_enforced": [
       "long-only",
       "weights sum to 100%",
@@ -1520,7 +1551,7 @@
     "constraints_not_claimed_as_verified": [
       "turnover: actual Meridian holdings and as-of date unavailable",
       "liquidity: independent five-business-day evidence unavailable",
-      "CPI vintage: current FRED snapshot is not an ALFRED-vintage verification",
+      "CPI is verified against the BLS archived release available by the decision date, not an ALFRED API vintage",
       "issuer exposure: diversified-fund exemption and look-through treatment are unverified"
     ],
     "hypothetical_turnover_cap_stop_condition": {
@@ -1530,15 +1561,15 @@
       "reason": "no grid portfolio satisfies every supplied constraint",
       "combinations_evaluated": 176851,
       "feasible_combinations": 0,
-      "maximum_net_expected_return": 0.06061414734151504,
+      "maximum_net_expected_return": 0.0618255955066288,
       "maximum_return_weights": {
         "BIL": 0.25,
         "IEF": 0.0,
         "LQD": 0.25,
         "VT": 0.5
       },
-      "return_hurdle": 0.07717250844268994,
-      "return_shortfall": 0.016558361101174902
+      "return_hurdle": 0.07396547892436486,
+      "return_shortfall": 0.012139883417736065
     }
   },
   "portfolios": [
@@ -1551,12 +1582,12 @@
         "LQD": 0.25,
         "VT": 0.25
       },
-      "annual_expected_return": 0.03179574790368303,
-      "annual_volatility": 0.07493264601425156,
+      "annual_expected_return": 0.03012767841617308,
+      "annual_volatility": 0.07548216967095926,
       "reserve_allocation": 0.25,
       "illustrative_turnover_from_equal_weight": 0.0,
       "illustrative_transaction_cost_rate": 0.0,
-      "illustrative_net_expected_return": 0.03179574790368303,
+      "illustrative_net_expected_return": 0.03012767841617308,
       "liquidity_status": "NOT_TESTABLE",
       "verified_mandate_feasible": false,
       "rules": [
@@ -1691,12 +1722,12 @@
         "LQD": 0.4,
         "VT": 0.6
       },
-      "annual_expected_return": 0.06162049549721096,
-      "annual_volatility": 0.1223049054476801,
+      "annual_expected_return": 0.06259084572114725,
+      "annual_volatility": 0.12333533891932873,
       "reserve_allocation": 0.0,
       "illustrative_turnover_from_equal_weight": 0.5,
       "illustrative_transaction_cost_rate": 0.0005,
-      "illustrative_net_expected_return": 0.06112049549721096,
+      "illustrative_net_expected_return": 0.062090845721147245,
       "liquidity_status": "NOT_TESTABLE",
       "verified_mandate_feasible": false,
       "rules": [
@@ -1826,17 +1857,17 @@
       "name": "Constrained minimum volatility",
       "kind": "provisional_model_portfolio",
       "weights": {
-        "BIL": 0.4,
+        "BIL": 0.48,
         "IEF": 0.0,
         "LQD": 0.0,
-        "VT": 0.6
+        "VT": 0.52
       },
-      "annual_expected_return": 0.07794923389077692,
-      "annual_volatility": 0.08954966981493934,
-      "reserve_allocation": 0.4,
+      "annual_expected_return": 0.07501678637645293,
+      "annual_volatility": 0.07824228378869505,
+      "reserve_allocation": 0.48,
       "illustrative_turnover_from_equal_weight": 0.5,
       "illustrative_transaction_cost_rate": 0.0005,
-      "illustrative_net_expected_return": 0.07744923389077692,
+      "illustrative_net_expected_return": 0.07451678637645293,
       "liquidity_status": "NOT_TESTABLE",
       "verified_mandate_feasible": false,
       "rules": [
@@ -1884,7 +1915,7 @@
           "rule_id": "reserve",
           "label": "Twelve-month distribution reserve",
           "status": "PASS",
-          "measured_value": 0.4,
+          "measured_value": 0.48,
           "limit_value": 0.03,
           "units": "decimal weight",
           "explanation": "Approved reserve-eligible assets must cover four quarterly distributions.",
@@ -1967,7 +1998,7 @@
     "Historical arithmetic means are estimates, not forecasts or promised returns.",
     "Turnover and transaction costs use a hypothetical equal-weight starting allocation and illustrative 10 bps cost; neither is actual Meridian evidence.",
     "ETF five-business-day liquidity remains unverified, so no portfolio is reported as fully mandate-compliant.",
-    "The CPI hurdle uses a current FRED snapshot; ALFRED vintage verification remains outstanding.",
+    "The CPI pair uses the archived BLS August 2026 release available by the decision date; it is not an ALFRED API vintage and uses unadjusted CPI-U.",
     "The 1% grid solution is discrete and may differ from a continuous optimum."
   ],
   "decision_support": {
@@ -1996,7 +2027,7 @@
       }
     ],
     "approval_gates": {
-      "point_in_time_cpi_valid": false,
+      "point_in_time_cpi_valid": true,
       "actual_holdings_and_asof_known": false,
       "five_day_liquidity_verified": false,
       "issuer_policy_and_exposure_verified": false,
@@ -2007,39 +2038,42 @@
     "hard_failure_observed": false,
     "point_in_time_cpi": {
       "decision_date": "2026-10-05",
-      "current_cpi_observation_date": "2026-09-01",
-      "current_cpi_availability_date": "2026-10-14",
-      "prior_cpi_observation_date": "2025-09-01",
-      "prior_cpi_availability_date": "2025-10-24",
-      "alfred_vintage_verified": false,
-      "admissible_for_stress_decision": false,
-      "modeled_hurdle_used": 0.07717250844268994,
-      "status": "STOP_LOOKAHEAD_OR_UNVERIFIED_VINTAGE"
+      "current_cpi_observation_date": "2026-08-01",
+      "current_value": 334.98,
+      "current_cpi_availability_date": "2026-09-11",
+      "prior_cpi_observation_date": "2025-08-01",
+      "prior_value": 323.976,
+      "prior_cpi_availability_date": "2026-09-11",
+      "point_in_time_source_verified": true,
+      "inflation_rate": 0.033965478924364856,
+      "admissible_for_stress_decision": true,
+      "modeled_hurdle_used": 0.07396547892436486,
+      "status": "PASS"
     },
     "window_sensitivity": {
       "full_window_scenario": "baseline_full_window",
       "full_window_weights": {
-        "BIL": 0.44,
+        "BIL": 0.48,
         "IEF": 0.0,
         "LQD": 0.0,
-        "VT": 0.56
+        "VT": 0.52
       },
       "full_window_return_observations": 59,
       "36_month_scenario": "last_36_months",
       "36_month_weights": {
-        "BIL": 0.78,
+        "BIL": 0.8,
         "IEF": 0.0,
         "LQD": 0.0,
-        "VT": 0.22
+        "VT": 0.2
       },
-      "bil_allocation_difference_percentage_points": 34.0,
+      "bil_allocation_difference_percentage_points": 32.00000000000001,
       "interpretation": "The optimized BIL weight changes materially between the tested full and 36-month windows. The mandate supplies no approved tolerance for this dispersion; do not call the resulting envelope robust or authorize it as a band."
     },
     "modeled_feasible_stress_envelope": {
       "weights_by_ticker": {
         "BIL": {
-          "minimum": 0.17,
-          "maximum": 0.78
+          "minimum": 0.21,
+          "maximum": 0.8
         },
         "IEF": {
           "minimum": 0.0,
@@ -2050,8 +2084,8 @@
           "maximum": 0.0
         },
         "VT": {
-          "minimum": 0.22,
-          "maximum": 0.83
+          "minimum": 0.2,
+          "maximum": 0.79
         }
       },
       "feasible_reoptimized_scenario_count": 11,
@@ -2072,7 +2106,7 @@
       "reasons_not_robust": [
         "Full versus 36-month estimation changes BIL by the reported percentage-point amount.",
         "The mandate does not set a numerical tolerance for allocation stability, so a robust band cannot be inferred without committee judgment.",
-        "Stress optimization uses a September 2026 CPI snapshot that became available after the 2026-10-05 historical signal decision date; the modeled hurdle is not point-in-time admissible for that stress date.",
+        "CPI is point-in-time verified from the BLS archived August release, not an ALFRED API vintage; this uses unadjusted CPI-U rather than seasonally adjusted CPIAUCSL.",
         "Actual holdings, turnover, transaction costs, liquidity, issuer treatment/exposure, and S9 handling remain unverified."
       ]
     },
@@ -2141,14 +2175,14 @@
           {
             "portfolio": "Reoptimized minimum volatility",
             "weights": {
-              "BIL": 0.44,
+              "BIL": 0.48,
               "IEF": 0.0,
               "LQD": 0.0,
-              "VT": 0.56
+              "VT": 0.52
             },
-            "annual_expected_return": 0.07797391663945755,
-            "net_expected_return": 0.07747391663945755,
-            "annual_volatility": 0.08415429139128262,
+            "annual_expected_return": 0.07501678637645293,
+            "net_expected_return": 0.07451678637645293,
+            "annual_volatility": 0.07824228378869505,
             "turnover_from_hypothetical_equal_weight": 0.5,
             "cost_rate": 0.0005,
             "optimizer_feasible": true,
@@ -2233,16 +2267,16 @@
           {
             "portfolio": "Reoptimized minimum volatility",
             "weights": {
-              "BIL": 0.78,
+              "BIL": 0.8,
               "IEF": 0.0,
               "LQD": 0.0,
-              "VT": 0.22
+              "VT": 0.2
             },
-            "annual_expected_return": 0.07859830008334094,
-            "net_expected_return": 0.07806830008334094,
-            "annual_volatility": 0.026057400446251523,
-            "turnover_from_hypothetical_equal_weight": 0.53,
-            "cost_rate": 0.0005300000000000001,
+            "annual_expected_return": 0.0754220637154001,
+            "net_expected_return": 0.0748720637154001,
+            "annual_volatility": 0.023730013378740495,
+            "turnover_from_hypothetical_equal_weight": 0.55,
+            "cost_rate": 0.00055,
             "optimizer_feasible": true,
             "mandate_verdicts": {
               "weights_sum": "PASS",
@@ -2318,9 +2352,9 @@
       },
       {
         "requirement": "S2 CPI + 4% point-in-time hurdle",
-        "status": "LOOKAHEAD_MISMATCH_FOR_HISTORICAL_SIGNAL_DECISION",
-        "available_evidence": "The loaded CPI snapshot uses 2026-09-01 with availability 2026-10-14; the stress/signal decision date is 2026-10-05. The availability is after that date, and ALFRED vintage verification is False. BLS scheduled the August CPI release for September 11, before this decision, but the local snapshot lacks the prior-year August input and no matching ALFRED pair is verified. Therefore the modeled 7.7173% hurdle is not admissible as a point-in-time hurdle for this historical stress date.",
-        "needed": "Retrieve both CPI levels from the ALFRED vintage available on the chosen decision date, retaining observation and availability dates. No replacement value is fabricated here.",
+        "status": "BLS_POINT_IN_TIME_RELEASE_VERIFIED",
+        "available_evidence": "The CPI pair is 2025-08-01=323.976 and 2026-08-01=334.98 (Index 1982-84=100); release availability is 2026-09-11, before decision date 2026-10-05. Inflation is 3.3965%; the arithmetic CPI + 4% hurdle is 7.3965%. Source: https://www.bls.gov/news.release/archives/cpi_09112026.htm. This is BLS release evidence, not an ALFRED API vintage.",
+        "needed": "For exact revised-series vintage reproduction, archive the underlying ALFRED response; this run relies on the contemporaneous BLS release and does not claim ALFRED API verification.",
         "sources": [
           {
             "title": "FRED observations API and vintage_dates parameter",
@@ -2331,8 +2365,8 @@
             "url": "https://fred.stlouisfed.org/docs/api/fred/realtime_period.html"
           },
           {
-            "title": "BLS archived September 2026 CPI release",
-            "url": "https://www.bls.gov/news.release/archives/cpi_10142026.htm"
+            "title": "BLS archived August 2026 CPI release",
+            "url": "https://www.bls.gov/news.release/archives/cpi_09112026.htm"
           },
           {
             "title": "BLS 2026 release schedule",
@@ -2418,7 +2452,7 @@
       }
     ],
     "committee_decisions_requested": [
-      "Choose the governing decision date for a point-in-time stress rerun and authorize the matching ALFRED CPI vintage; do not use September CPI for the October 5 decision because its recorded availability is October 14.",
+      "Confirm that the archived BLS not-seasonally-adjusted CPI-U release is the preferred operational interpretation of the CPI + 4% mandate, or require a contemporaneous ALFRED CPIAUCSL vintage before adoption.",
       "Provide Meridian's actual holdings and holdings as-of date, plus an approved transaction-cost estimate or execution evidence.",
       "Confirm whether the S6 exemptions in config/mandate.json govern despite their absence from the S6 sentence in Lab_13.md; approve look-through and issuer aggregation treatment.",
       "Provide position-sized five-business-day sale and settlement evidence for the 90% liquidity rule.",
@@ -2431,56 +2465,56 @@
     "scipy_version": "1.13.1",
     "production_grid": {
       "weights": {
-        "BIL": 0.4,
+        "BIL": 0.48,
         "IEF": 0.0,
         "LQD": 0.0,
-        "VT": 0.6
+        "VT": 0.52
       },
-      "gross_expected_return": 0.07794923389077692,
-      "net_expected_return": 0.07744923389077692,
-      "annual_volatility": 0.08954966981493934,
+      "gross_expected_return": 0.07501678637645293,
+      "net_expected_return": 0.07451678637645293,
+      "annual_volatility": 0.07824228378869505,
       "illustrative_turnover": 0.5,
-      "reserve_weight": 0.4,
+      "reserve_weight": 0.48,
       "step": 0.01,
       "combinations_evaluated": 176851,
-      "feasible_combinations": 3847
+      "feasible_combinations": 6594
     },
     "finer_grid": {
       "weights": {
-        "BIL": 0.4,
+        "BIL": 0.485,
         "IEF": 0.0,
         "LQD": 0.0,
-        "VT": 0.6
+        "VT": 0.515
       },
-      "gross_expected_return": 0.07794923389077692,
-      "net_expected_return": 0.07744923389077692,
-      "annual_volatility": 0.08954966981493934,
+      "gross_expected_return": 0.07464714509357735,
+      "net_expected_return": 0.07414714509357735,
+      "annual_volatility": 0.07750339338948738,
       "illustrative_turnover": 0.5,
-      "reserve_weight": 0.4,
+      "reserve_weight": 0.485,
       "step": 0.005,
       "combinations_evaluated": 1373701,
-      "feasible_combinations": 28348
+      "feasible_combinations": 49290
     },
     "continuous_slsqp": {
       "weights": {
-        "BIL": 0.4040223914231333,
-        "IEF": 3.754905423919667e-18,
-        "LQD": 1.7661621232173202e-17,
-        "VT": 0.5959776085768668
+        "BIL": 0.48745733062875535,
+        "IEF": 0.0,
+        "LQD": 1.65260973348999e-17,
+        "VT": 0.5125426693712449
       },
-      "gross_expected_return": 0.07767250844268994,
-      "net_expected_return": 0.07717250844268994,
-      "annual_volatility": 0.08895823127487526,
-      "illustrative_turnover": 0.5,
-      "reserve_weight": 0.4040223914231333,
+      "gross_expected_return": 0.07446547892436486,
+      "net_expected_return": 0.07396547892436486,
+      "annual_volatility": 0.07714026361009935,
+      "illustrative_turnover": 0.5000000000000001,
+      "reserve_weight": 0.48745733062875535,
       "success": true,
       "message": "Optimization terminated successfully",
-      "iterations": 4,
+      "iterations": 8,
       "return_constraint_slack": 0.0,
-      "reserve_constraint_slack": 0.3740223914231333
+      "reserve_constraint_slack": 0.4574573306287554
     },
-    "maximum_weight_difference_percentage_points": 0.40223914231332647,
-    "production_volatility_gap_percentage_points": 0.05914385400640626,
-    "conclusion": "The 1% grid is sufficiently accurate for Phase 2 comparison."
+    "maximum_weight_difference_percentage_points": 0.7457330628755365,
+    "production_volatility_gap_percentage_points": 0.11020201785957029,
+    "conclusion": "The production 1% grid is within one percentage point of the continuous solution on every weight; finer-grid and continuous results are retained for review."
   }
 }
