@@ -30,6 +30,1470 @@
     "interpretation": "10-year Treasury constant-maturity yield; descriptive macro regime indicator, not a return forecast.",
     "action": "Modeling assumption: use as a review trigger only; do not alter weights automatically. Rerun rates-sensitive valuation and approved stresses when elevated or materially changed."
   },
+  "stress_matrix": {
+    "decision_date": "2026-10-05",
+    "market_data_as_of": "2026-09-30",
+    "market_return_observations": 59,
+    "signal_observation_date": "2026-10-02",
+    "signal_availability_date": "2026-10-05",
+    "signal_boundary_consistent": true,
+    "assumptions": "Each numerical scenario is a modeling stress. Historical asset returns/covariance are altered mechanically; none is a forecast or verified market shock. Market returns are restricted to observation endpoints available on the signal decision date. No signal scenario changes weights because the approved signal role is review-only.",
+    "scenarios": [
+      {
+        "scenario": "baseline_full_window",
+        "category": "baseline",
+        "window": "full aligned window (59 monthly returns)",
+        "status": "PROVISIONAL_FEASIBLE",
+        "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
+        "combinations_evaluated": 176851,
+        "weights": {
+          "BIL": 0.44,
+          "IEF": 0.0,
+          "LQD": 0.0,
+          "VT": 0.56
+        },
+        "annual_expected_return": 0.07797391663945755,
+        "net_expected_return": 0.07747391663945755,
+        "annual_volatility": 0.08415429139128262,
+        "turnover": 0.5,
+        "cost_rate": 0.0005,
+        "feasible": true,
+        "mandate_verdicts": {
+          "weights_sum": "PASS",
+          "long_only": "PASS",
+          "no_borrowing": "PASS",
+          "no_derivatives": "PASS",
+          "reserve": "PASS",
+          "liquidity": "NOT_TESTABLE",
+          "issuer_limit": "NOT_TESTABLE",
+          "turnover": "NOT_TESTABLE",
+          "horizon": "PASS",
+          "rebalance_frequency": "PASS",
+          "return_objective_proxy": "NOT_TESTABLE",
+          "calendar_year_loss": "UNRESOLVED"
+        },
+        "portfolio_comparisons": [
+          {
+            "portfolio": "Equal weight",
+            "weights": {
+              "BIL": 0.25,
+              "IEF": 0.25,
+              "LQD": 0.25,
+              "VT": 0.25
+            },
+            "annual_expected_return": 0.03012767841617308,
+            "net_expected_return": 0.03012767841617308,
+            "annual_volatility": 0.07548216967095926,
+            "turnover_from_hypothetical_equal_weight": 0.0,
+            "cost_rate": 0.0,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "60/40 benchmark",
+            "weights": {
+              "BIL": 0.0,
+              "IEF": 0.0,
+              "LQD": 0.4,
+              "VT": 0.6
+            },
+            "annual_expected_return": 0.06259084572114725,
+            "net_expected_return": 0.062090845721147245,
+            "annual_volatility": 0.12333533891932873,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "FAIL",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "Reoptimized minimum volatility",
+            "weights": {
+              "BIL": 0.44,
+              "IEF": 0.0,
+              "LQD": 0.0,
+              "VT": 0.56
+            },
+            "annual_expected_return": 0.07797391663945755,
+            "net_expected_return": 0.07747391663945755,
+            "annual_volatility": 0.08415429139128262,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          }
+        ],
+        "signal_available": true
+      },
+      {
+        "scenario": "return_estimates_minus_2pp",
+        "category": "expected_return",
+        "window": "full aligned window (59 monthly returns)",
+        "status": "PROVISIONAL_FEASIBLE",
+        "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
+        "combinations_evaluated": 176851,
+        "weights": {
+          "BIL": 0.17,
+          "IEF": 0.0,
+          "LQD": 0.0,
+          "VT": 0.83
+        },
+        "annual_expected_return": 0.0779345459147387,
+        "net_expected_return": 0.0773545459147387,
+        "annual_volatility": 0.12408603178806021,
+        "turnover": 0.58,
+        "cost_rate": 0.00058,
+        "feasible": true,
+        "mandate_verdicts": {
+          "weights_sum": "PASS",
+          "long_only": "PASS",
+          "no_borrowing": "PASS",
+          "no_derivatives": "PASS",
+          "reserve": "PASS",
+          "liquidity": "NOT_TESTABLE",
+          "issuer_limit": "NOT_TESTABLE",
+          "turnover": "NOT_TESTABLE",
+          "horizon": "PASS",
+          "rebalance_frequency": "PASS",
+          "return_objective_proxy": "NOT_TESTABLE",
+          "calendar_year_loss": "UNRESOLVED"
+        },
+        "portfolio_comparisons": [
+          {
+            "portfolio": "Equal weight",
+            "weights": {
+              "BIL": 0.25,
+              "IEF": 0.25,
+              "LQD": 0.25,
+              "VT": 0.25
+            },
+            "annual_expected_return": 0.01012767841617308,
+            "net_expected_return": 0.01012767841617308,
+            "annual_volatility": 0.07548216967095926,
+            "turnover_from_hypothetical_equal_weight": 0.0,
+            "cost_rate": 0.0,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "60/40 benchmark",
+            "weights": {
+              "BIL": 0.0,
+              "IEF": 0.0,
+              "LQD": 0.4,
+              "VT": 0.6
+            },
+            "annual_expected_return": 0.04259084572114724,
+            "net_expected_return": 0.04209084572114724,
+            "annual_volatility": 0.12333533891932873,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "FAIL",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "Reoptimized minimum volatility",
+            "weights": {
+              "BIL": 0.17,
+              "IEF": 0.0,
+              "LQD": 0.0,
+              "VT": 0.83
+            },
+            "annual_expected_return": 0.0779345459147387,
+            "net_expected_return": 0.0773545459147387,
+            "annual_volatility": 0.12408603178806021,
+            "turnover_from_hypothetical_equal_weight": 0.58,
+            "cost_rate": 0.00058,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          }
+        ],
+        "signal_available": true
+      },
+      {
+        "scenario": "return_estimates_plus_2pp",
+        "category": "expected_return",
+        "window": "full aligned window (59 monthly returns)",
+        "status": "PROVISIONAL_FEASIBLE",
+        "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
+        "combinations_evaluated": 176851,
+        "weights": {
+          "BIL": 0.71,
+          "IEF": 0.0,
+          "LQD": 0.0,
+          "VT": 0.29
+        },
+        "annual_expected_return": 0.07801328736417638,
+        "net_expected_return": 0.07751328736417638,
+        "annual_volatility": 0.044301651550123354,
+        "turnover": 0.5,
+        "cost_rate": 0.0005,
+        "feasible": true,
+        "mandate_verdicts": {
+          "weights_sum": "PASS",
+          "long_only": "PASS",
+          "no_borrowing": "PASS",
+          "no_derivatives": "PASS",
+          "reserve": "PASS",
+          "liquidity": "NOT_TESTABLE",
+          "issuer_limit": "NOT_TESTABLE",
+          "turnover": "NOT_TESTABLE",
+          "horizon": "PASS",
+          "rebalance_frequency": "PASS",
+          "return_objective_proxy": "NOT_TESTABLE",
+          "calendar_year_loss": "UNRESOLVED"
+        },
+        "portfolio_comparisons": [
+          {
+            "portfolio": "Equal weight",
+            "weights": {
+              "BIL": 0.25,
+              "IEF": 0.25,
+              "LQD": 0.25,
+              "VT": 0.25
+            },
+            "annual_expected_return": 0.05012767841617308,
+            "net_expected_return": 0.05012767841617308,
+            "annual_volatility": 0.07548216967095926,
+            "turnover_from_hypothetical_equal_weight": 0.0,
+            "cost_rate": 0.0,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "60/40 benchmark",
+            "weights": {
+              "BIL": 0.0,
+              "IEF": 0.0,
+              "LQD": 0.4,
+              "VT": 0.6
+            },
+            "annual_expected_return": 0.08259084572114725,
+            "net_expected_return": 0.08209084572114725,
+            "annual_volatility": 0.12333533891932873,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "FAIL",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "Reoptimized minimum volatility",
+            "weights": {
+              "BIL": 0.71,
+              "IEF": 0.0,
+              "LQD": 0.0,
+              "VT": 0.29
+            },
+            "annual_expected_return": 0.07801328736417638,
+            "net_expected_return": 0.07751328736417638,
+            "annual_volatility": 0.044301651550123354,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          }
+        ],
+        "signal_available": true
+      },
+      {
+        "scenario": "last_36_months",
+        "category": "window",
+        "window": "36 monthly returns",
+        "status": "PROVISIONAL_FEASIBLE",
+        "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
+        "combinations_evaluated": 176851,
+        "weights": {
+          "BIL": 0.78,
+          "IEF": 0.0,
+          "LQD": 0.0,
+          "VT": 0.22
+        },
+        "annual_expected_return": 0.07859830008334094,
+        "net_expected_return": 0.07806830008334094,
+        "annual_volatility": 0.026057400446251523,
+        "turnover": 0.53,
+        "cost_rate": 0.0005300000000000001,
+        "feasible": true,
+        "mandate_verdicts": {
+          "weights_sum": "PASS",
+          "long_only": "PASS",
+          "no_borrowing": "PASS",
+          "no_derivatives": "PASS",
+          "reserve": "PASS",
+          "liquidity": "NOT_TESTABLE",
+          "issuer_limit": "NOT_TESTABLE",
+          "turnover": "NOT_TESTABLE",
+          "horizon": "PASS",
+          "rebalance_frequency": "PASS",
+          "return_objective_proxy": "NOT_TESTABLE",
+          "calendar_year_loss": "UNRESOLVED"
+        },
+        "portfolio_comparisons": [
+          {
+            "portfolio": "Equal weight",
+            "weights": {
+              "BIL": 0.25,
+              "IEF": 0.25,
+              "LQD": 0.25,
+              "VT": 0.25
+            },
+            "annual_expected_return": 0.08131376379077304,
+            "net_expected_return": 0.08131376379077304,
+            "annual_volatility": 0.05884327628326941,
+            "turnover_from_hypothetical_equal_weight": 0.0,
+            "cost_rate": 0.0,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "60/40 benchmark",
+            "weights": {
+              "BIL": 0.0,
+              "IEF": 0.0,
+              "LQD": 0.4,
+              "VT": 0.6
+            },
+            "annual_expected_return": 0.14085425160034507,
+            "net_expected_return": 0.14035425160034506,
+            "annual_volatility": 0.0945392892456814,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "FAIL",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "Reoptimized minimum volatility",
+            "weights": {
+              "BIL": 0.78,
+              "IEF": 0.0,
+              "LQD": 0.0,
+              "VT": 0.22
+            },
+            "annual_expected_return": 0.07859830008334094,
+            "net_expected_return": 0.07806830008334094,
+            "annual_volatility": 0.026057400446251523,
+            "turnover_from_hypothetical_equal_weight": 0.53,
+            "cost_rate": 0.0005300000000000001,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          }
+        ],
+        "signal_available": true
+      },
+      {
+        "scenario": "transaction_cost_0bps",
+        "category": "cost",
+        "window": "full aligned window (59 monthly returns)",
+        "status": "PROVISIONAL_FEASIBLE",
+        "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
+        "combinations_evaluated": 176851,
+        "weights": {
+          "BIL": 0.45,
+          "IEF": 0.0,
+          "LQD": 0.0,
+          "VT": 0.55
+        },
+        "annual_expected_return": 0.0772346340737064,
+        "net_expected_return": 0.0772346340737064,
+        "annual_volatility": 0.08267615131175814,
+        "turnover": 0.5,
+        "cost_rate": 0.0,
+        "feasible": true,
+        "mandate_verdicts": {
+          "weights_sum": "PASS",
+          "long_only": "PASS",
+          "no_borrowing": "PASS",
+          "no_derivatives": "PASS",
+          "reserve": "PASS",
+          "liquidity": "NOT_TESTABLE",
+          "issuer_limit": "NOT_TESTABLE",
+          "turnover": "NOT_TESTABLE",
+          "horizon": "PASS",
+          "rebalance_frequency": "PASS",
+          "return_objective_proxy": "NOT_TESTABLE",
+          "calendar_year_loss": "UNRESOLVED"
+        },
+        "portfolio_comparisons": [
+          {
+            "portfolio": "Equal weight",
+            "weights": {
+              "BIL": 0.25,
+              "IEF": 0.25,
+              "LQD": 0.25,
+              "VT": 0.25
+            },
+            "annual_expected_return": 0.03012767841617308,
+            "net_expected_return": 0.03012767841617308,
+            "annual_volatility": 0.07548216967095926,
+            "turnover_from_hypothetical_equal_weight": 0.0,
+            "cost_rate": 0.0,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "60/40 benchmark",
+            "weights": {
+              "BIL": 0.0,
+              "IEF": 0.0,
+              "LQD": 0.4,
+              "VT": 0.6
+            },
+            "annual_expected_return": 0.06259084572114725,
+            "net_expected_return": 0.06259084572114725,
+            "annual_volatility": 0.12333533891932873,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "FAIL",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "Reoptimized minimum volatility",
+            "weights": {
+              "BIL": 0.45,
+              "IEF": 0.0,
+              "LQD": 0.0,
+              "VT": 0.55
+            },
+            "annual_expected_return": 0.0772346340737064,
+            "net_expected_return": 0.0772346340737064,
+            "annual_volatility": 0.08267615131175814,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          }
+        ],
+        "signal_available": true
+      },
+      {
+        "scenario": "transaction_cost_25bps",
+        "category": "cost",
+        "window": "full aligned window (59 monthly returns)",
+        "status": "PROVISIONAL_FEASIBLE",
+        "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
+        "combinations_evaluated": 176851,
+        "weights": {
+          "BIL": 0.43,
+          "IEF": 0.0,
+          "LQD": 0.0,
+          "VT": 0.57
+        },
+        "annual_expected_return": 0.0787131992052087,
+        "net_expected_return": 0.0774631992052087,
+        "annual_volatility": 0.0856325156397547,
+        "turnover": 0.5,
+        "cost_rate": 0.00125,
+        "feasible": true,
+        "mandate_verdicts": {
+          "weights_sum": "PASS",
+          "long_only": "PASS",
+          "no_borrowing": "PASS",
+          "no_derivatives": "PASS",
+          "reserve": "PASS",
+          "liquidity": "NOT_TESTABLE",
+          "issuer_limit": "NOT_TESTABLE",
+          "turnover": "NOT_TESTABLE",
+          "horizon": "PASS",
+          "rebalance_frequency": "PASS",
+          "return_objective_proxy": "NOT_TESTABLE",
+          "calendar_year_loss": "UNRESOLVED"
+        },
+        "portfolio_comparisons": [
+          {
+            "portfolio": "Equal weight",
+            "weights": {
+              "BIL": 0.25,
+              "IEF": 0.25,
+              "LQD": 0.25,
+              "VT": 0.25
+            },
+            "annual_expected_return": 0.03012767841617308,
+            "net_expected_return": 0.03012767841617308,
+            "annual_volatility": 0.07548216967095926,
+            "turnover_from_hypothetical_equal_weight": 0.0,
+            "cost_rate": 0.0,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "60/40 benchmark",
+            "weights": {
+              "BIL": 0.0,
+              "IEF": 0.0,
+              "LQD": 0.4,
+              "VT": 0.6
+            },
+            "annual_expected_return": 0.06259084572114725,
+            "net_expected_return": 0.061340845721147244,
+            "annual_volatility": 0.12333533891932873,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.00125,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "FAIL",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "Reoptimized minimum volatility",
+            "weights": {
+              "BIL": 0.43,
+              "IEF": 0.0,
+              "LQD": 0.0,
+              "VT": 0.57
+            },
+            "annual_expected_return": 0.0787131992052087,
+            "net_expected_return": 0.0774631992052087,
+            "annual_volatility": 0.0856325156397547,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.00125,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          }
+        ],
+        "signal_available": true
+      },
+      {
+        "scenario": "reserve_minimum_10pct",
+        "category": "constraint",
+        "window": "full aligned window (59 monthly returns)",
+        "status": "PROVISIONAL_FEASIBLE",
+        "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
+        "combinations_evaluated": 176851,
+        "weights": {
+          "BIL": 0.44,
+          "IEF": 0.0,
+          "LQD": 0.0,
+          "VT": 0.56
+        },
+        "annual_expected_return": 0.07797391663945755,
+        "net_expected_return": 0.07747391663945755,
+        "annual_volatility": 0.08415429139128262,
+        "turnover": 0.5,
+        "cost_rate": 0.0005,
+        "feasible": true,
+        "mandate_verdicts": {
+          "weights_sum": "PASS",
+          "long_only": "PASS",
+          "no_borrowing": "PASS",
+          "no_derivatives": "PASS",
+          "reserve": "PASS",
+          "liquidity": "NOT_TESTABLE",
+          "issuer_limit": "NOT_TESTABLE",
+          "turnover": "NOT_TESTABLE",
+          "horizon": "PASS",
+          "rebalance_frequency": "PASS",
+          "return_objective_proxy": "NOT_TESTABLE",
+          "calendar_year_loss": "UNRESOLVED"
+        },
+        "portfolio_comparisons": [
+          {
+            "portfolio": "Equal weight",
+            "weights": {
+              "BIL": 0.25,
+              "IEF": 0.25,
+              "LQD": 0.25,
+              "VT": 0.25
+            },
+            "annual_expected_return": 0.03012767841617308,
+            "net_expected_return": 0.03012767841617308,
+            "annual_volatility": 0.07548216967095926,
+            "turnover_from_hypothetical_equal_weight": 0.0,
+            "cost_rate": 0.0,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "60/40 benchmark",
+            "weights": {
+              "BIL": 0.0,
+              "IEF": 0.0,
+              "LQD": 0.4,
+              "VT": 0.6
+            },
+            "annual_expected_return": 0.06259084572114725,
+            "net_expected_return": 0.062090845721147245,
+            "annual_volatility": 0.12333533891932873,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "FAIL",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "Reoptimized minimum volatility",
+            "weights": {
+              "BIL": 0.44,
+              "IEF": 0.0,
+              "LQD": 0.0,
+              "VT": 0.56
+            },
+            "annual_expected_return": 0.07797391663945755,
+            "net_expected_return": 0.07747391663945755,
+            "annual_volatility": 0.08415429139128262,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          }
+        ],
+        "signal_available": true
+      },
+      {
+        "scenario": "turnover_cap_25pct_hypothetical",
+        "category": "constraint",
+        "window": "full aligned window (59 monthly returns)",
+        "status": "STOP_INFEASIBLE",
+        "reason": "no grid portfolio satisfies every supplied constraint",
+        "combinations_evaluated": 176851,
+        "weights": null,
+        "annual_expected_return": null,
+        "net_expected_return": null,
+        "annual_volatility": null,
+        "turnover": null,
+        "cost_rate": null,
+        "feasible": false,
+        "mandate_verdicts": {},
+        "portfolio_comparisons": [
+          {
+            "portfolio": "Equal weight",
+            "weights": {
+              "BIL": 0.25,
+              "IEF": 0.25,
+              "LQD": 0.25,
+              "VT": 0.25
+            },
+            "annual_expected_return": 0.03012767841617308,
+            "net_expected_return": 0.03012767841617308,
+            "annual_volatility": 0.07548216967095926,
+            "turnover_from_hypothetical_equal_weight": 0.0,
+            "cost_rate": 0.0,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "60/40 benchmark",
+            "weights": {
+              "BIL": 0.0,
+              "IEF": 0.0,
+              "LQD": 0.4,
+              "VT": 0.6
+            },
+            "annual_expected_return": 0.06259084572114725,
+            "net_expected_return": 0.062090845721147245,
+            "annual_volatility": 0.12333533891932873,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "FAIL",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "Reoptimized minimum volatility",
+            "weights": null,
+            "annual_expected_return": null,
+            "net_expected_return": null,
+            "annual_volatility": null,
+            "turnover_from_hypothetical_equal_weight": null,
+            "cost_rate": null,
+            "optimizer_feasible": false,
+            "mandate_verdicts": {},
+            "stop_reason": "no grid portfolio satisfies every supplied constraint"
+          }
+        ],
+        "signal_available": true
+      },
+      {
+        "scenario": "volatility_plus_25pct",
+        "category": "risk",
+        "window": "full aligned window (59 monthly returns)",
+        "status": "PROVISIONAL_FEASIBLE",
+        "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
+        "combinations_evaluated": 176851,
+        "weights": {
+          "BIL": 0.44,
+          "IEF": 0.0,
+          "LQD": 0.0,
+          "VT": 0.56
+        },
+        "annual_expected_return": 0.07797391663945755,
+        "net_expected_return": 0.07747391663945755,
+        "annual_volatility": 0.10519286423910329,
+        "turnover": 0.5,
+        "cost_rate": 0.0005,
+        "feasible": true,
+        "mandate_verdicts": {
+          "weights_sum": "PASS",
+          "long_only": "PASS",
+          "no_borrowing": "PASS",
+          "no_derivatives": "PASS",
+          "reserve": "PASS",
+          "liquidity": "NOT_TESTABLE",
+          "issuer_limit": "NOT_TESTABLE",
+          "turnover": "NOT_TESTABLE",
+          "horizon": "PASS",
+          "rebalance_frequency": "PASS",
+          "return_objective_proxy": "NOT_TESTABLE",
+          "calendar_year_loss": "UNRESOLVED"
+        },
+        "portfolio_comparisons": [
+          {
+            "portfolio": "Equal weight",
+            "weights": {
+              "BIL": 0.25,
+              "IEF": 0.25,
+              "LQD": 0.25,
+              "VT": 0.25
+            },
+            "annual_expected_return": 0.03012767841617308,
+            "net_expected_return": 0.03012767841617308,
+            "annual_volatility": 0.09435271208869908,
+            "turnover_from_hypothetical_equal_weight": 0.0,
+            "cost_rate": 0.0,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "60/40 benchmark",
+            "weights": {
+              "BIL": 0.0,
+              "IEF": 0.0,
+              "LQD": 0.4,
+              "VT": 0.6
+            },
+            "annual_expected_return": 0.06259084572114725,
+            "net_expected_return": 0.062090845721147245,
+            "annual_volatility": 0.1541691736491609,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "FAIL",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "Reoptimized minimum volatility",
+            "weights": {
+              "BIL": 0.44,
+              "IEF": 0.0,
+              "LQD": 0.0,
+              "VT": 0.56
+            },
+            "annual_expected_return": 0.07797391663945755,
+            "net_expected_return": 0.07747391663945755,
+            "annual_volatility": 0.10519286423910329,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          }
+        ],
+        "signal_available": true
+      },
+      {
+        "scenario": "correlations_psd_convex_blend_50pct",
+        "category": "risk",
+        "window": "full aligned window (59 monthly returns)",
+        "status": "PROVISIONAL_FEASIBLE",
+        "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
+        "combinations_evaluated": 176851,
+        "weights": {
+          "BIL": 0.44,
+          "IEF": 0.0,
+          "LQD": 0.0,
+          "VT": 0.56
+        },
+        "annual_expected_return": 0.07797391663945755,
+        "net_expected_return": 0.07747391663945755,
+        "annual_volatility": 0.08468205218879607,
+        "turnover": 0.5,
+        "cost_rate": 0.0005,
+        "feasible": true,
+        "mandate_verdicts": {
+          "weights_sum": "PASS",
+          "long_only": "PASS",
+          "no_borrowing": "PASS",
+          "no_derivatives": "PASS",
+          "reserve": "PASS",
+          "liquidity": "NOT_TESTABLE",
+          "issuer_limit": "NOT_TESTABLE",
+          "turnover": "NOT_TESTABLE",
+          "horizon": "PASS",
+          "rebalance_frequency": "PASS",
+          "return_objective_proxy": "NOT_TESTABLE",
+          "calendar_year_loss": "UNRESOLVED"
+        },
+        "portfolio_comparisons": [
+          {
+            "portfolio": "Equal weight",
+            "weights": {
+              "BIL": 0.25,
+              "IEF": 0.25,
+              "LQD": 0.25,
+              "VT": 0.25
+            },
+            "annual_expected_return": 0.03012767841617308,
+            "net_expected_return": 0.03012767841617308,
+            "annual_volatility": 0.07548662003831477,
+            "turnover_from_hypothetical_equal_weight": 0.0,
+            "cost_rate": 0.0,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "60/40 benchmark",
+            "weights": {
+              "BIL": 0.0,
+              "IEF": 0.0,
+              "LQD": 0.4,
+              "VT": 0.6
+            },
+            "annual_expected_return": 0.06259084572114725,
+            "net_expected_return": 0.062090845721147245,
+            "annual_volatility": 0.12265807949163429,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "FAIL",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "Reoptimized minimum volatility",
+            "weights": {
+              "BIL": 0.44,
+              "IEF": 0.0,
+              "LQD": 0.0,
+              "VT": 0.56
+            },
+            "annual_expected_return": 0.07797391663945755,
+            "net_expected_return": 0.07747391663945755,
+            "annual_volatility": 0.08468205218879607,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          }
+        ],
+        "signal_available": true
+      },
+      {
+        "scenario": "signal_available_review_only",
+        "category": "signal",
+        "window": "full aligned window (59 monthly returns)",
+        "status": "PROVISIONAL_FEASIBLE",
+        "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
+        "combinations_evaluated": 176851,
+        "weights": {
+          "BIL": 0.44,
+          "IEF": 0.0,
+          "LQD": 0.0,
+          "VT": 0.56
+        },
+        "annual_expected_return": 0.07797391663945755,
+        "net_expected_return": 0.07747391663945755,
+        "annual_volatility": 0.08415429139128262,
+        "turnover": 0.5,
+        "cost_rate": 0.0005,
+        "feasible": true,
+        "mandate_verdicts": {
+          "weights_sum": "PASS",
+          "long_only": "PASS",
+          "no_borrowing": "PASS",
+          "no_derivatives": "PASS",
+          "reserve": "PASS",
+          "liquidity": "NOT_TESTABLE",
+          "issuer_limit": "NOT_TESTABLE",
+          "turnover": "NOT_TESTABLE",
+          "horizon": "PASS",
+          "rebalance_frequency": "PASS",
+          "return_objective_proxy": "NOT_TESTABLE",
+          "calendar_year_loss": "UNRESOLVED"
+        },
+        "portfolio_comparisons": [
+          {
+            "portfolio": "Equal weight",
+            "weights": {
+              "BIL": 0.25,
+              "IEF": 0.25,
+              "LQD": 0.25,
+              "VT": 0.25
+            },
+            "annual_expected_return": 0.03012767841617308,
+            "net_expected_return": 0.03012767841617308,
+            "annual_volatility": 0.07548216967095926,
+            "turnover_from_hypothetical_equal_weight": 0.0,
+            "cost_rate": 0.0,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "60/40 benchmark",
+            "weights": {
+              "BIL": 0.0,
+              "IEF": 0.0,
+              "LQD": 0.4,
+              "VT": 0.6
+            },
+            "annual_expected_return": 0.06259084572114725,
+            "net_expected_return": 0.062090845721147245,
+            "annual_volatility": 0.12333533891932873,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "FAIL",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "Reoptimized minimum volatility",
+            "weights": {
+              "BIL": 0.44,
+              "IEF": 0.0,
+              "LQD": 0.0,
+              "VT": 0.56
+            },
+            "annual_expected_return": 0.07797391663945755,
+            "net_expected_return": 0.07747391663945755,
+            "annual_volatility": 0.08415429139128262,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          }
+        ],
+        "signal_available": true
+      },
+      {
+        "scenario": "signal_unavailable_no_tilt",
+        "category": "signal",
+        "window": "full aligned window (59 monthly returns)",
+        "status": "PROVISIONAL_FEASIBLE",
+        "reason": "All scenario optimizer constraints passed; full mandate evidence remains incomplete.",
+        "combinations_evaluated": 176851,
+        "weights": {
+          "BIL": 0.44,
+          "IEF": 0.0,
+          "LQD": 0.0,
+          "VT": 0.56
+        },
+        "annual_expected_return": 0.07797391663945755,
+        "net_expected_return": 0.07747391663945755,
+        "annual_volatility": 0.08415429139128262,
+        "turnover": 0.5,
+        "cost_rate": 0.0005,
+        "feasible": true,
+        "mandate_verdicts": {
+          "weights_sum": "PASS",
+          "long_only": "PASS",
+          "no_borrowing": "PASS",
+          "no_derivatives": "PASS",
+          "reserve": "PASS",
+          "liquidity": "NOT_TESTABLE",
+          "issuer_limit": "NOT_TESTABLE",
+          "turnover": "NOT_TESTABLE",
+          "horizon": "PASS",
+          "rebalance_frequency": "PASS",
+          "return_objective_proxy": "NOT_TESTABLE",
+          "calendar_year_loss": "UNRESOLVED"
+        },
+        "portfolio_comparisons": [
+          {
+            "portfolio": "Equal weight",
+            "weights": {
+              "BIL": 0.25,
+              "IEF": 0.25,
+              "LQD": 0.25,
+              "VT": 0.25
+            },
+            "annual_expected_return": 0.03012767841617308,
+            "net_expected_return": 0.03012767841617308,
+            "annual_volatility": 0.07548216967095926,
+            "turnover_from_hypothetical_equal_weight": 0.0,
+            "cost_rate": 0.0,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "60/40 benchmark",
+            "weights": {
+              "BIL": 0.0,
+              "IEF": 0.0,
+              "LQD": 0.4,
+              "VT": 0.6
+            },
+            "annual_expected_return": 0.06259084572114725,
+            "net_expected_return": 0.062090845721147245,
+            "annual_volatility": 0.12333533891932873,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "FAIL",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          },
+          {
+            "portfolio": "Reoptimized minimum volatility",
+            "weights": {
+              "BIL": 0.44,
+              "IEF": 0.0,
+              "LQD": 0.0,
+              "VT": 0.56
+            },
+            "annual_expected_return": 0.07797391663945755,
+            "net_expected_return": 0.07747391663945755,
+            "annual_volatility": 0.08415429139128262,
+            "turnover_from_hypothetical_equal_weight": 0.5,
+            "cost_rate": 0.0005,
+            "optimizer_feasible": true,
+            "mandate_verdicts": {
+              "weights_sum": "PASS",
+              "long_only": "PASS",
+              "no_borrowing": "PASS",
+              "no_derivatives": "PASS",
+              "reserve": "PASS",
+              "liquidity": "NOT_TESTABLE",
+              "issuer_limit": "NOT_TESTABLE",
+              "turnover": "NOT_TESTABLE",
+              "horizon": "PASS",
+              "rebalance_frequency": "PASS",
+              "return_objective_proxy": "NOT_TESTABLE",
+              "calendar_year_loss": "UNRESOLVED"
+            }
+          }
+        ],
+        "signal_available": false
+      }
+    ]
+  },
   "optimization": {
     "provisional_feasible_on_supported_model_inputs": true,
     "full_mandate_feasible": false,

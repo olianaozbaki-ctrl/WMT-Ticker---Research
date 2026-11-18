@@ -148,6 +148,18 @@ def main() -> None:
 
     lines.extend(["## Limitations", ""] + [f"- {item}" for item in result["limitations"]])
     lines.extend(["", "## DGS10 point-in-time signal", "", json.dumps(result["dgs10_signal"], indent=2)])
+    lines.extend(["", "## Phase 3B stress matrix", "", result["stress_matrix"]["assumptions"], "", f"Decision date: **{result['stress_matrix']['decision_date']}**; aligned market return data through **{result['stress_matrix']['market_data_as_of']}** ({result['stress_matrix']['market_return_observations']} monthly returns). Signal and market boundaries consistent: **{result['stress_matrix']['signal_boundary_consistent']}**.", "", "All scenarios use the hypothetical equal-weight starting allocation for turnover and cost; these are not actual Meridian holdings. Optimizer feasibility is provisional and does not imply full mandate compliance.", "", "| Scenario | Category | Window | Status | Weights | Gross return | Net return | Volatility | Turnover | Cost | Optimizer feasible | Mandate verdicts |", "|---|---|---|---|---|---:|---:|---:|---:|---:|---|---|"])
+    for row in result["stress_matrix"]["scenarios"]:
+        w = "STOP" if row["weights"] is None else ", ".join(f"{k} {v:.0%}" for k,v in row["weights"].items() if v)
+        fmt=lambda x: "—" if x is None else percent(x)
+        verdicts = ", ".join(f"{rule}: {status}" for rule,status in row["mandate_verdicts"].items()) or "Not available (infeasible stop)"
+        lines.append(f"| {row['scenario']} | {row['category']} | {row['window']} | {row['status']} | {w} | {fmt(row['annual_expected_return'])} | {fmt(row['net_expected_return'])} | {fmt(row['annual_volatility'])} | {fmt(row['turnover'])} | {fmt(row['cost_rate'])} | {row['feasible']} | {verdicts} |")
+    lines.extend(["", "### Baseline and reoptimized portfolio results by scenario", "", "Turnover and costs below are measured from the hypothetical equal-weight starting mix. Rule verdicts are independent evidence checks; optimizer feasibility does not imply full mandate compliance.", "", "| Scenario | Portfolio | Weights (BIL / IEF / LQD / VT) | Gross return | Net return | Volatility | Turnover | Cost | Optimizer feasible | Rule verdicts |", "|---|---|---|---:|---:|---:|---:|---:|---|---|"])
+    for scenario in result["stress_matrix"]["scenarios"]:
+        for item in scenario["portfolio_comparisons"]:
+            weights = "STOP" if item["weights"] is None else " / ".join(percent(item["weights"][ticker]) for ticker in TICKERS)
+            verdicts = ", ".join(f"{rule}: {status}" for rule,status in item["mandate_verdicts"].items()) or item.get("stop_reason", "—")
+            lines.append("| " + " | ".join([scenario["scenario"], item["portfolio"], weights, fmt(item["annual_expected_return"]), fmt(item["net_expected_return"]), fmt(item["annual_volatility"]), fmt(item["turnover_from_hypothetical_equal_weight"]), fmt(item["cost_rate"]), str(item["optimizer_feasible"]), verdicts]) + " |")
     (output_dir / "phase2_results.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(
         f"Generated {len(result['portfolios'])} portfolio results through "

@@ -141,6 +141,24 @@ def main() -> None:
     for limitation in result["limitations"]:
         st.write(f"- {limitation}")
 
+    st.subheader("Interactive stress testing")
+    st.caption(
+        f"Stress calculations use market observations through "
+        f"{result['stress_matrix']['market_data_as_of']} ({result['stress_matrix']['market_return_observations']} monthly returns), "
+        f"available by the historical signal decision date {result['stress_matrix']['decision_date']}. "
+        "The DGS10 row is historical validation evidence, not a current quote."
+    )
+    stress_rows = result["stress_matrix"]["scenarios"]
+    selected_stress = st.multiselect("Scenarios", [row["scenario"] for row in stress_rows], default=[row["scenario"] for row in stress_rows])
+    st.dataframe([{ "Scenario": row["scenario"], "Type": row["category"], "Estimation window": row["window"], "Status": row["status"], "Weights": row["weights"], "Gross return": row["annual_expected_return"], "Net return": row["net_expected_return"], "Volatility": row["annual_volatility"], "Turnover": row["turnover"], "Cost": row["cost_rate"], "Optimizer feasible": row["feasible"], "Rule verdicts": row["mandate_verdicts"] } for row in stress_rows if row["scenario"] in selected_stress], use_container_width=True, hide_index=True)
+    comparison_rows = []
+    for scenario in stress_rows:
+        if scenario["scenario"] not in selected_stress:
+            continue
+        for item in scenario["portfolio_comparisons"]:
+            comparison_rows.append({"Scenario": scenario["scenario"], "Portfolio": item["portfolio"], "Weights": item["weights"], "Gross return": item["annual_expected_return"], "Net return": item["net_expected_return"], "Volatility": item["annual_volatility"], "Turnover from hypothetical equal weight": item["turnover_from_hypothetical_equal_weight"], "Cost": item["cost_rate"], "Optimizer feasible": item["optimizer_feasible"], "Mandate verdicts": item["mandate_verdicts"]})
+    st.dataframe(comparison_rows, use_container_width=True, hide_index=True)
+
 
 if __name__ == "__main__":
     main()

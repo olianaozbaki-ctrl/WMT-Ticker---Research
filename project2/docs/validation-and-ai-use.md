@@ -84,3 +84,25 @@ No stress run, allocation range, committee recommendation, or Locked Changed-Inp
 The point-in-time signal uses the Lab 17 documented ALFRED check: DGS10 observation 2026-10-02, availability 2026-10-05, value 5.28%, evaluated for decision date 2026-10-05. The prior verified row is September 29 at 5.26%, available September 30. Source: Board of Governors H.15 via FRED/ALFRED; units are percent, not seasonally adjusted. `data/dgs10_pit.csv` preserves only those documented rows. The loader filters by both observation and availability date and returns unavailable when no eligible observation exists.
 
 Signal interpretation and process effect are modeling assumptions: treat the yield as a descriptive macro regime review trigger, not a return forecast; it prompts a review of rates-sensitive valuation and approved stress scenarios but does not automatically tilt allocations. No CPI/portfolio outputs are changed by the signal. This date-specific educational fixture is not a live current quote.
+
+## Phase 3B — stress matrix and current verification
+
+The current Phase 3B implementation supersedes the earlier Phase 2 statement that no stress matrix had been run. Results are generated directly by `python scripts/generate_phase2_results.py` and stored in both `outputs/phase2_results.json` and `outputs/phase2_results.md`. The Streamlit stress section compares equal weight, 60/40, and reoptimized allocations with weights, gross/net expected annual return, annual volatility, hypothetical turnover, cost, optimizer status, and individual rule verdicts.
+
+The signal fixture is historical, not live. Its decision date is 2026-10-05; stresses use monthly return endpoints no later than the decision date (through 2026-09-30, 59 returns). The signal observation is 2026-10-02, available 2026-10-05. Full-panel Phase 2 results remain through 2026-10-30 and are not used as the market boundary for these signal-linked stress runs.
+
+### Executed stress outcomes
+
+- Aligned-window baseline: 44% BIL / 56% VT; gross annual expected return 7.7974%, net 7.7474%, volatility 8.4154%; 50% one-way turnover from the hypothetical equal-weight start and 0.05% cost at illustrative 10 bps.
+- The 36-return window selects 78% BIL / 22% VT; gross return 7.8598%, net 7.8068%, volatility 2.6057%; turnover 53%, cost 0.053%.
+- Parallel expected-return shifts of -2 pp and +2 pp produce 17%/83% and 71%/29% BIL/VT, respectively; output files show the metrics and rules for each portfolio.
+- At 0, 10 and 25 bps, reoptimized allocations are 45%/55%, 44%/56% and 43%/57% BIL/VT; costs are 0%, 0.05% and 0.125% of NAV.
+- Raising the reserve floor to 10% leaves the selected 44%/56% allocation unchanged. A hypothetical 25% turnover cap returns `STOP_INFEASIBLE`; no constraint is weakened.
+- Scaling volatilities by 1.25 raises aligned-baseline volatility to 10.5193%. Correlations are stressed by a 50% convex blend with a valid equicorrelation matrix (off-diagonal 0.75), retaining the original volatilities; resulting portfolio volatility is 8.4682%. Covariance validation remains active, and regression tests reject a non-PSD matrix.
+- Signal-available and signal-unavailable cases return the same allocations because DGS10 is a review-only modeling trigger and does not automatically tilt weights.
+
+Every scenario also evaluates the equal-weight and 60/40 reference portfolios. Optimizer feasibility is reported separately from rule verdicts and is never called full mandate compliance. Turnover and costs are sensitivity estimates from hypothetical equal-weight holdings. Actual holdings, ETF liquidity, CPI vintage, issuer exemptions/look-through exposure and S9 evidence remain unavailable or unresolved. These historical-sample sensitivities are not forecasts or independently verified shocks.
+
+### Regression suite
+
+Command: `PYTHONPATH=src python -m unittest discover -s tests -p 'test*.py' -v`. Phase 3B verification: **44 tests passed, 0 failed, 0 skipped**. It includes all earlier Phase 1/2/3A tests, the headless Streamlit test, stress scenario and three-portfolio comparisons, the hypothetical turnover stop, point-in-time boundary alignment, PSD-preserving correlation stress, and rejection of invalid covariance. The prior 32-test run did not cover all discovered test modules; the current explicit `test*.py` discovery runs all 44.

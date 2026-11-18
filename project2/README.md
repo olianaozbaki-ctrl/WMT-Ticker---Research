@@ -68,4 +68,14 @@ These figures are generated in [outputs/phase2_results.md](outputs/phase2_result
 - The 1% grid solution is discrete and sensitive to historical expected-return estimates.
 - ETF issuer exposure, the diversified-fund exemption, and look-through treatment are unverified; issuer compliance remains `NOT_TESTABLE`.
 - S9 remains `UNRESOLVED`; no loss guarantee is claimed.
-- Allocation ranges, stress runs, final recommendation, monitoring triggers, cold run, and Locked Changed-Input Record are intentionally deferred beyond Phase 2.
+- Phase 3B adds reproducible allocation stresses and an interactive comparison. Final recommendation, allocation ranges, monitoring triggers, clean-user cold run, and Locked Changed-Input Record remain deferred. The reserved changed-input scenario has not been run.
+
+## Phase 3B stress testing
+
+The code-generated stress matrix is included in `outputs/phase2_results.json` and `outputs/phase2_results.md`. It covers expected-return shifts of ±2 percentage points, the full decision-date-aligned historical window and 36 monthly returns, 0/10/25 bps one-way costs, a 10% reserve floor and hypothetical 25% turnover cap, 25% higher volatility, PSD-preserving correlation stress, and available/unavailable DGS10 cases. The Streamlit section compares equal weight, the 60/40 benchmark, and the reoptimized portfolio for selected scenarios.
+
+The DGS10 decision date is 2026-10-05 (observation 2026-10-02; available 2026-10-05). Stress-market returns stop at 2026-09-30, the latest month-end observation available by the decision date (59 monthly returns); the 2026-10-30 price observation is excluded from signal-linked stresses. DGS10 is a historical review-only signal, not a current quote. The standard Phase 2 table uses the complete frozen panel through 2026-10-30 and is separate from this historical decision-date stress analysis.
+
+Executed aligned-window reoptimization: 44% BIL / 56% VT, 7.7974% gross and 7.7474% net expected annual return, 8.4154% annual volatility. The 36-return case selects 78% BIL / 22% VT, 7.8598% gross / 7.8068% net, and 2.6057% volatility. All baseline and scenario portfolio metrics and mandate verdicts are in the output files. The hypothetical 25% turnover cap produces `STOP_INFEASIBLE`; no constraint is relaxed. Turnover and transaction costs use an explicitly hypothetical equal-weight start, not actual Meridian holdings. Optimizer feasibility is provisional and is not full mandate compliance.
+
+Correlation stress blends the historical correlation matrix 50% with a valid four-asset equicorrelation matrix (off-diagonal 0.75) and retains original volatilities. This convex blend preserves PSD; covariance validation remains enabled. Stress outcomes are historical-sample sensitivity results, not forecasts or observed market shocks.
