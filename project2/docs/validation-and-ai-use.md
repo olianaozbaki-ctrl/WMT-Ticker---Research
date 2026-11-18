@@ -4,6 +4,24 @@
 
 **Educational project only; not investment advice.**
 
+## Gemini independent validation reconciliation — 2026-11-18
+
+Gemini's complete independent response is preserved unchanged in `docs/gemini-independent-validation.md`. At reconciliation it contained 245 lines and 18,195 bytes with SHA-256 `e70329a15907e5a17bd7a1c2d54129ff36b2b67f239aba078f07bd95d84ac38a`. The response independently reproduced the principal portfolio, stress, and Locked Changed-Input calculations; agreed with HOLD; and found no remaining look-ahead bias in the corrected inputs.
+
+The detailed finding-by-finding disposition is in `docs/gemini-validation-reconciliation.md`. Accepted limitations include the 5.51 bp modeled hurdle margin, lack of rolling-five-year compounded evidence, one-time rather than recurring cost treatment, window instability, data-source limitations, and the absence of a tail-loss diagnostic. A declared −25% VT / unchanged-BIL diagnostic produces an approximately −11.24% gross return for the 48% BIL / 52% VT mix and reinforces HOLD, but S9 remains `UNRESOLVED` rather than becoming a hard rule.
+
+Two conclusions were qualified rather than adopted. ETF portfolio weights do not by themselves prove single-issuer exposures, so S6 remains `NOT_TESTABLE` pending CIO interpretation and dated holdings aggregation. The variance-drag calculation is an approximation, not proof of a realized rolling-five-year S2 failure. Gemini's statement that a 1% BIL/VT grid step is about 73.9 bp is a factor-of-ten error; the expected-return change is about 7.39 bp. No optimizer or locked-artifact change was made.
+
+Post-reconciliation verification: `PYTHONPATH=src python -m unittest discover -s tests -p 'test*.py' -v` completed with **58 tests passed, 0 failed, 0 skipped**. The preserved response checksum remained unchanged.
+
+## Partner cold run — 2026-11-18
+
+The completed independent cold-run record is preserved in `docs/partner-cold-run.md`. A course peer opened the repository, installed dependencies, and launched the application with `PYTHONPATH=src python -m streamlit run app.py`. No application error was reported. The session took approximately five minutes and reached the current displayed result: 48% BIL / 52% VT, 7.4517% illustrative after-cost expected return, 7.8242% annualized volatility, and candidate disposition HOLD because full mandate evidence remains incomplete.
+
+The evidence is sufficient for the Week 12 cold-run fields of command, first failure, elapsed time, and result location. Its scope is application startup and displayed-result verification: the recorded Streamlit command does not regenerate output artifacts, and the exact dependency-install commands were not captured. Follow-up execution of `PYTHONPATH=src python scripts/generate_phase2_results.py` reproduced all four active JSON/Markdown outputs byte-for-byte. This limitation is retained rather than reconstructing unrecorded partner actions.
+
+Post-integration verification used `PYTHONPATH=src python -m unittest discover -s tests -p 'test*.py' -v`: **58 tests passed in 50.534 seconds; 0 failed; 0 skipped; OK.** Local-link and result-consistency checks confirmed the documented output locations, 48% BIL / 52% VT allocation, 7.4517% illustrative after-cost expected return, 7.8242% volatility, and HOLD field in the active decision-support JSON. Both Locked Changed-Input checksum manifests verified. The original Gemini response remained at SHA-256 `e70329a15907e5a17bd7a1c2d54129ff36b2b67f239aba078f07bd95d84ac38a`, and `docs/locked-changed-input-record.md` remained at SHA-256 `8fed4311a27f525e7c637e7d802a370e5cac1562a7bd99354801c314dbd6cea8`.
+
 ## Phase 1 validation scope
 
 The deterministic tests use synthetic, explicitly constructed inputs with known answers. They validate formulas and rule behavior; they are not Meridian investment results and do not validate the market data, forecasts, signal, or final recommendation.
@@ -18,9 +36,9 @@ Tests cover:
 - rule-level mandate pass, fail, not-testable, and unresolved outcomes;
 - conservative feasibility when required evidence is missing.
 
-## Evidence status after Phase 2
+## Evidence status after Phase 2 — historical
 
-- No clean-user cold run has been performed.
+- At that stage, no clean-user cold run had been performed; the completed November 18 partner run above supersedes this historical status.
 - Visible executed Phase 2 output exists in `outputs/phase2_results.md` and `outputs/phase2_results.json`; it is provisional and not a final recommendation.
 - No external data values have been independently reverified for Project 2.
 - No final recommendation or allocation range exists.
@@ -109,7 +127,7 @@ Signal interpretation and process effect are modeling assumptions: treat the yie
 
 ## Phase 4A — investment decision support and AI-output checks (corrected numbers below)
 
-The generated decision-support artifacts are `outputs/phase4a_decision_support.json` and `outputs/phase4a_decision_support.md`; reproduce them and the Phase 2/3B outputs with `python scripts/generate_phase2_results.py`. `app.py` displays the decision framework, portfolio/window comparison, diagnostic allocation envelope, evidence gates, monitoring triggers, and approval questions. Its current candidate disposition is **HOLD funded deployment**, for the student's review; it is not a final investment judgment.
+The generated decision-support artifacts are `outputs/phase4a_decision_support.json` and `outputs/phase4a_decision_support.md`; reproduce them and the Phase 2/3B outputs with `PYTHONPATH=src python scripts/generate_phase2_results.py`. `app.py` displays the decision framework, portfolio/window comparison, diagnostic allocation envelope, evidence gates, monitoring triggers, and approval questions. Its current candidate disposition is **HOLD funded deployment**, for the student's review; it is not a final investment judgment.
 
 ### Result interpretation and range
 
@@ -150,7 +168,7 @@ Command: `PYTHONPATH=src python -m unittest discover -s tests -p 'test*.py' -v`.
 
 ## Phase 3B — stress matrix and current verification
 
-The current Phase 3B implementation supersedes the earlier Phase 2 statement that no stress matrix had been run. Results are generated directly by `python scripts/generate_phase2_results.py` and stored in both `outputs/phase2_results.json` and `outputs/phase2_results.md`. The Streamlit stress section compares equal weight, 60/40, and reoptimized allocations with weights, gross/net expected annual return, annual volatility, hypothetical turnover, cost, optimizer status, and individual rule verdicts.
+The current Phase 3B implementation supersedes the earlier Phase 2 statement that no stress matrix had been run. Results are generated directly by `PYTHONPATH=src python scripts/generate_phase2_results.py` and stored in both `outputs/phase2_results.json` and `outputs/phase2_results.md`. The Streamlit stress section compares equal weight, 60/40, and reoptimized allocations with weights, gross/net expected annual return, annual volatility, hypothetical turnover, cost, optimizer status, and individual rule verdicts.
 
 The signal fixture is historical, not live. Its decision date is 2026-10-05; current results use monthly return endpoints through 2026-09-30 (59 returns). The signal observation is 2026-10-02, available 2026-10-05. October 30 prices are excluded from portfolio, stress, and decision-support calculations.
 

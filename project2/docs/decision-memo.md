@@ -18,6 +18,8 @@ For the October 5, 2026 decision boundary, ETF prices end September 30, producin
 
 These are historical estimates, not promised returns. The constrained mix clears the 7.3965% point-in-time CPI + 4% after-cost modeling hurdle by a small margin using one illustrative rebalance cost. The CPI source is the BLS archived August 2026 release dated September 11, 2026, not an ALFRED API vintage.
 
+The modeled margin is only about 5.51 basis points. The application does not establish compounded after-cost performance over rolling five-year periods, and its one modeled transition cost is not a recurring annual rebalancing-cost forecast. Those limitations prevent the point estimate from being treated as verified S2 compliance.
+
 ## Why no decision is requested yet
 
 - Actual Meridian holdings and their as-of date are unavailable, so turnover compliance cannot be tested.
@@ -26,8 +28,9 @@ These are historical estimates, not promised returns. The constrained mix clears
 - ETF issuer exposure and exemption treatment are unverified.
 - CPI measurement remains a modeling decision: the corrected run uses unadjusted CPI-U from the contemporaneous BLS release rather than seasonally adjusted CPIAUCSL or an ALFRED API vintage.
 - S9 remains unresolved, and the completed stress matrix does not support a robust or authorized allocation range.
+- As an additional declared diagnostic, a −25% one-year VT return with BIL left at its historical annual arithmetic estimate produces approximately −11.24% gross for the 48% BIL / 52% VT mix. This reinforces the need for an S9 ruling but is not a forecast or compliance test.
 
-The next committee action is to resolve the missing evidence and modeling decisions before a committee decision or funded implementation. No Locked Changed-Input Record has been run.
+The next committee action is to resolve the missing evidence and modeling decisions before a committee decision or funded implementation. The Locked Changed-Input Record has been completed and preserved separately; it did not change the HOLD disposition.
 
 ## Phase 4A candidate recommendation — for student review, not final judgment
 
@@ -45,6 +48,7 @@ The earlier Phase 3B run contained a CPI look-ahead error: September 2026 CPI wa
 
 - **Liquidity (S8):** SEC Rule 6c-11 and fund pages expose prior-day holdings, NAV/market information, and 30-day median spreads. Those indicators do not prove that at least 90% of Meridian's position can be sold and settled within five business days at the actual order size. Obtain a dated, position-sized liquidation analysis.
 - **Issuer limit (S6):** `Lab_13.md` says 8% per issuer and does not state exemptions. Configuration exemptions are unconfirmed; decide whether to apply them and whether to look through ETFs, then aggregate dated holdings as needed.
+- **Rolling objective (S2):** Confirm additive versus compounded CPI-plus-spread treatment and the recurring cost convention, then obtain enough point-in-time history to test rolling five-year after-cost outcomes. The current arithmetic expected-return proxy is not a compliance verdict.
 - **Turnover and costs (S7):** Actual holdings/as-of date and observed execution costs are missing. The 25% cap is infeasible from hypothetical equal-weight holdings, which is not evidence about Meridian's real portfolio.
 - **S9:** The annual-loss statement has no defined measurement or breach response. Keep it `UNRESOLVED`; any -10% alert is human-review only until the CIO specifies the policy.
 - **CPI convention:** Confirm whether BLS not-seasonally-adjusted CPI-U from a release archive is the committee's preferred target input or require an archived contemporaneous ALFRED CPIAUCSL vintage before operational use.

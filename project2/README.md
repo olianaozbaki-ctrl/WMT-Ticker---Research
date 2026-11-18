@@ -15,12 +15,14 @@ Requires Python 3.10 or newer.
 ```bash
 python -m pip install -r requirements.txt
 python -m pip install -e .
-python -m unittest discover -s tests -v
-python scripts/generate_phase2_results.py
+PYTHONPATH=src python -m unittest discover -s tests -p 'test*.py' -v
+PYTHONPATH=src python scripts/generate_phase2_results.py
 PYTHONPATH=src python -m streamlit run app.py --server.fileWatcherType poll
 ```
 
 Run the command from the `project2/` directory using the same `python` environment in which the requirements were installed. The `PYTHONPATH=src` prefix makes the local `project2_engine` package importable without relying on a prior editable install.
+
+The generator command writes `outputs/phase2_results.json`, `outputs/phase2_results.md`, `outputs/phase4a_decision_support.json`, and `outputs/phase4a_decision_support.md`. The Streamlit command launches the application; it does not regenerate those files.
 
 The committed input snapshot reproduces the analysis offline. To refresh external data deliberately, run `python scripts/fetch_market_data.py --refresh`. Refreshing changes the evidence boundary and may change results; preserve and review the new raw responses and provenance.
 
@@ -29,7 +31,7 @@ The committed input snapshot reproduces the analysis offline. To refresh externa
 - Universe: BIL, IEF, LQD, and VT.
 - Price source: Yahoo Finance chart endpoint, retrieved 2026-11-17.
 - Price unit: USD adjusted close per ETF share; Yahoo states adjusted close incorporates applicable splits and distributions.
-- Window: 61 aligned calendar-month-end prices from 2021-10-29 through 2026-10-30, producing 60 monthly simple returns.
+- Preserved source panel: 61 aligned calendar-month-end prices from 2021-10-29 through 2026-10-30. The October 5 decision run excludes October 30 and uses 60 prices through 2026-09-30, producing 59 monthly simple returns.
 - Missing values: zero in the raw adjusted-close fields and aligned panel.
 - Estimates: monthly arithmetic mean × 12; sample monthly covariance × 12; portfolio volatility is the square root of annual portfolio variance.
 - Equal-weight baseline: 25% each.
@@ -59,6 +61,8 @@ These figures are generated in [outputs/phase2_results.md](outputs/phase2_result
 - `scripts/` — reproducible data refresh and visible-output generation.
 - `tests/` — known-answer, integrity, feasible/infeasible optimizer, baseline, and rule-verdict tests.
 - `outputs/` — code-generated Phase 2/3B and Phase 4A JSON and Markdown results.
+- `docs/partner-cold-run.md` — independent application-launch and result-verification evidence.
+- `docs/gemini-independent-validation.md` and `docs/gemini-validation-reconciliation.md` — preserved independent response and the finding-by-finding reconciliation.
 
 ## Known limitations and approvals needed
 
@@ -70,7 +74,8 @@ These figures are generated in [outputs/phase2_results.md](outputs/phase2_result
 - The 1% grid solution is discrete and sensitive to historical expected-return estimates.
 - ETF issuer exposure, the diversified-fund exemption, and look-through treatment are unverified; issuer compliance remains `NOT_TESTABLE`.
 - S9 remains `UNRESOLVED`; no loss guarantee is claimed.
-- Phase 3B adds reproducible allocation stresses and an interactive comparison. Final recommendation, allocation ranges, monitoring triggers, clean-user cold run, and Locked Changed-Input Record remain deferred. The reserved changed-input scenario has not been run.
+- The candidate disposition is HOLD and no allocation range is authorized. A partner cold run launched the application without error and reproduced the displayed result; its evidence and command-scope limitation are recorded in [docs/partner-cold-run.md](docs/partner-cold-run.md). The Locked Changed-Input test has been completed and its checksummed artifacts are preserved under `outputs/locked-changed-input-test-1fd3c8b/`.
+- Independent validation confirms the reported arithmetic but highlights the 5.51 bp modeled margin, missing rolling-five-year compounded evidence, and one-time cost treatment. The complete response and reconciliation are preserved under `docs/`.
 
 ## Phase 3B stress testing
 

@@ -18,6 +18,7 @@ This document resolves calculation conventions where the Meridian mandate is suf
 - Volatility is annualized standard deviation. For monthly returns it is sample monthly standard deviation × square root of 12.
 - Covariance and expected-return inputs must use the same annual units.
 - The CPI + 4% expected-return check is only a feasibility proxy. It does not prove that realized compounded return will meet the mandate over rolling five-year periods.
+- Adding the real-return spread to year-over-year CPI is an approved Project 2 arithmetic convention, not a resolved client-policy interpretation. Compounding `(1 + CPI) × (1 + spread) − 1` would produce a different hurdle and requires committee direction.
 - Later validation must separately measure rolling five-year compounded after-cost returns where enough point-in-time history exists.
 
 ## CPI and as-of boundary
@@ -68,6 +69,7 @@ No range is defined in Phase 1. A later phase should derive ranges from the set 
 - The raw frozen panel contains 61 price observations through 2026-10-30; all portfolio estimates in the October 5 decision run are filtered to 60 price observations and 59 simple monthly returns through 2026-09-30.
 - Expected returns equal monthly arithmetic mean × 12; covariance equals sample monthly covariance × 12.
 - The optimizer searches a 1% long-only grid. Its discrete result is not represented as a continuous optimum.
+- Around the BIL/VT solution, a 1% weight shift changes estimated return by about 7.39 basis points, not 73.9 basis points. Precision evidence therefore relies on the recorded 0.5% grid and continuous-solver comparison rather than a verbal grid-step approximation.
 - The corrected CPI hurdle uses BLS August 2026 CPI-U 334.980 versus August 2025 323.976, both published September 11, 2026. The arithmetic CPI + 4% hurdle is 7.3965%. This uses official point-in-time release evidence, not an ALFRED API vintage.
 - The 60/40 comparison is 60% VT and 40% LQD, matching global equity and investment-grade bond roles.
 - Phase 2 turnover and costs are illustrative from the hypothetical equal-weight allocation only. The rule verdict remains `NOT_TESTABLE` until actual holdings are supplied.

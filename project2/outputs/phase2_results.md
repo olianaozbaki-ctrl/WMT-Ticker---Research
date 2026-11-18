@@ -1,6 +1,6 @@
 # Phase 2 Executed Results
 
-Generated directly by `python scripts/generate_phase2_results.py`; values were not manually transcribed.
+Generated directly by `PYTHONPATH=src python scripts/generate_phase2_results.py`; values were not manually transcribed.
 
 - Analysis date: **2026-11-18**
 - Source retrieval date: **2026-11-17**

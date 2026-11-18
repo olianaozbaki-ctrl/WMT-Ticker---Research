@@ -52,7 +52,7 @@ def main() -> None:
     lines = [
         "# Phase 2 Executed Results",
         "",
-        "Generated directly by `python scripts/generate_phase2_results.py`; values were not manually transcribed.",
+        "Generated directly by `PYTHONPATH=src python scripts/generate_phase2_results.py`; values were not manually transcribed.",
         "",
         f"- Analysis date: **{result['analysis_date']}**",
         f"- Source retrieval date: **{result['source_retrieval_date']}**",
