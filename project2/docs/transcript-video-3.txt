@@ -1,6 +1,6 @@
 FIN 43900: Project 2 Video 3 Timestamped Transcript
 
-[0:00:02.880] Hi, my name's [student name redacted under repository privacy guidance] and this is project two, video three. So full disclaimer, I used
+[0:00:02.880] Hi, my name's Oliana Ozbaki and this is project two, video three. So full disclaimer, I used
 
 [0:00:09.600] um OpenAI Codex for development and also Google Gemini for independent validation. I reviewed
 

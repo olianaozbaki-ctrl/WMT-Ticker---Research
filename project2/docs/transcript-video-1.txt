@@ -1,6 +1,6 @@
 FIN 43900: Project 2 Video 1 Timestamped Transcript
 
-[0:00:03.600] Hi, my name is [student name redacted under repository privacy guidance], and today I'll be going over my project two,
+[0:00:03.600] Hi, my name is Oliana Ozbaki, and today I'll be going over my project two,
 
 [0:00:06.600] and this is video one. So, disclaimer, I did use um OpenAI Codex to assist with development and
 

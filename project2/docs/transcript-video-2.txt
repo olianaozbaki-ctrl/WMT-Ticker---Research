@@ -1,6 +1,6 @@
 FIN 43900: Project 2 Video 2 Timestamped Transcript
 
-[0:00:02.880] Hi, my name is [student name redacted under repository privacy guidance] and this is my project two, video two. So just to start,
+[0:00:02.880] Hi, my name is Oliana Ozbaki and this is my project two, video two. So just to start,
 
 [0:00:08.560] I did use OpenAI Codex for development and also Gemini for independent validation of this
 
