@@ -20,8 +20,8 @@ The student-owned written recommendation in `docs/decision-memo.md` is **HOLD fu
 ## Final-submission evidence status
 
 - All three required videos have been recorded, and corrected timestamped transcripts are present at `docs/transcript-video-1.txt`, `docs/transcript-video-2.txt`, and `docs/transcript-video-3.txt`. The transcript evidence runs through 2:51.693, 4:19.040, and 4:38.560, respectively.
-- The repository does not contain the three YouTube URLs, confirmed YouTube titles, or exact platform-reported durations. The manifest preserves these as missing rather than inferring them from transcript headings or final spoken timestamps.
-- Logged-out video access and instructional-team repository access have not been checked for the final pushed state.
+- The manifest contains all three YouTube URLs, exact displayed titles, platform-reported durations, video IDs, and timestamped evidence indices. On November 20, all three resolved without authentication, were marked Unlisted, exposed an English caption track, and were within the course duration limits: 2:58, 4:29, and 4:46.
+- Instructional-team repository access has not been checked for the final pushed state.
 - The final GitHub push, Brightspace attachments, manifest entry, and submission receipt do not yet exist.
 - Exact Codex and Gemini model/version identifiers are not present in the available evidence. Add them only if the original interfaces exposed them; do not infer them.
 
