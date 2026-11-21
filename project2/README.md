@@ -66,8 +66,8 @@ These figures are generated in [outputs/phase2_results.md](outputs/phase2_result
 - [Partner cold run](docs/partner-cold-run.md) — independent application-launch and result-verification evidence.
 - [Gemini response](docs/gemini-independent-validation.md) and [reconciliation](docs/gemini-validation-reconciliation.md) — preserved independent response and finding-by-finding disposition.
 - [Video recording outlines](docs/video-recording-outlines.md) — required video purposes, screens, and recording plan.
-- [Video 1 transcript template](docs/transcript-video-1.txt), [Video 2 transcript template](docs/transcript-video-2.txt), and [Video 3 transcript template](docs/transcript-video-3.txt) — drafts that must be replaced with corrected actual transcripts after recording.
-- [Submission manifest](project-submission-manifest.csv) — 12 rows with unresolved video/access fields marked pending.
+- [Video 1 corrected transcript](docs/transcript-video-1.txt), [Video 2 corrected transcript](docs/transcript-video-2.txt), and [Video 3 corrected transcript](docs/transcript-video-3.txt) — timestamped transcripts of the completed recordings.
+- [Submission manifest](project-submission-manifest.csv) — 12 required/optional rows with timestamped video evidence; unavailable YouTube metadata is identified explicitly.
 
 ## Known limitations and approvals needed
 

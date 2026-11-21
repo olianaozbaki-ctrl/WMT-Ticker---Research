@@ -17,15 +17,15 @@ If the interfaces exposed exact model/version identifiers, add those identifiers
 
 The student-owned written recommendation in `docs/decision-memo.md` is **HOLD funded deployment**: do not adopt, allocate, rebalance, authorize a funded pilot, or authorize an allocation range on current evidence. The engine-generated decision-support schema retains its historical `candidate_disposition_for_student_review` field name, but its value is also `HOLD`; the application labels it as the model-generated disposition and points to the final memo for the student-owned recommendation. The diagnostic BIL 21–80% / VT 20–79% stress envelope is not an authorized range.
 
-## Submission evidence not yet complete
+## Final-submission evidence status
 
-- The three required videos have not been recorded or uploaded. `docs/transcript-video-1.txt`, `docs/transcript-video-2.txt`, and `docs/transcript-video-3.txt` are explicitly marked draft templates, not actual transcripts.
-- YouTube URLs, final titles, actual durations, and timestamp evidence indices remain pending in `project-submission-manifest.csv`.
+- All three required videos have been recorded, and corrected timestamped transcripts are present at `docs/transcript-video-1.txt`, `docs/transcript-video-2.txt`, and `docs/transcript-video-3.txt`. The transcript evidence runs through 2:51.693, 4:19.040, and 4:38.560, respectively.
+- The repository does not contain the three YouTube URLs, confirmed YouTube titles, or exact platform-reported durations. The manifest preserves these as missing rather than inferring them from transcript headings or final spoken timestamps.
 - Logged-out video access and instructional-team repository access have not been checked for the final pushed state.
-- The final frozen commit ID, final GitHub push, Brightspace attachments, manifest entry, and submission receipt do not yet exist.
+- The final GitHub push, Brightspace attachments, manifest entry, and submission receipt do not yet exist.
 - Exact Codex and Gemini model/version identifiers are not present in the available evidence. Add them only if the original interfaces exposed them; do not infer them.
 
-Final pre-recording verification on November 18 used `PYTHONPATH=src python -m unittest discover -s tests -p 'test*.py' -v`: **60 tests passed in 50.757 seconds; 0 failed; 0 skipped; OK.** The suite includes regression assertions for the executed BLS non-seasonally adjusted CPI-U methodology, September 11 availability date, October 5 decision date, and unresolved CIO approval. A separate consistency audit verified the 12 manifest rows, local README/memo links, draft transcript markers, output locations, 48% BIL / 52% VT weights, 7.5017% gross return, 7.4517% illustrative after-cost expected return, 7.8242% volatility, and HOLD across the engine, application labels, README, memo, and video scripts. Both Locked Changed-Input checksum manifests verified after output regeneration. Altair emitted `jsonschema.RefResolver` deprecation warnings during the headless app test; these were warnings, not test failures.
+Final repository verification on November 20 used `PYTHONPATH=src python -m unittest discover -s tests -p 'test*.py' -v`: **60 tests passed in 50.255 seconds; 0 failed; 0 skipped; OK.** The suite includes regression assertions for the executed BLS non-seasonally adjusted CPI-U methodology, September 11 availability date, October 5 decision date, and unresolved CIO approval. A separate consistency audit verified the 12 manifest rows, local links, corrected transcript status, output locations, 48% BIL / 52% VT weights, 7.5017% gross return, 7.4517% illustrative after-cost expected return, 7.8242% volatility, and HOLD across the engine, application labels, README, memo, and video evidence. Both preserved Locked Changed-Input checksum manifests verified. Altair emitted `jsonschema.RefResolver` deprecation warnings during the headless app test; these were warnings, not test failures.
 
 ## Gemini independent validation reconciliation — 2026-11-18
 

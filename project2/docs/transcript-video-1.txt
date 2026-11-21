@@ -1,27 +1,61 @@
-DRAFT TEMPLATE — NOT AN ACTUAL RECORDING OR TRANSCRIPT
+FIN 43900: Project 2 Video 1 Timestamped Transcript
 
-Video 1 title: [INSERT FINAL YOUTUBE TITLE]
-Final video URL: [INSERT AFTER UPLOAD]
-Actual duration: [INSERT AFTER RECORDING; MAXIMUM 3:00]
-Recording date: [INSERT]
+[0:00:03.600] Hi, my name is [student name redacted under repository privacy guidance], and today I'll be going over my project two,
 
-[00:00–00:__] AI USE, OWNERSHIP, AND DISCLAIMER
-[State the AI tools actually used and any exposed model/version identifiers. State that you own the analysis and investment decision. State: Educational project only; not investment advice.]
+[0:00:06.600] and this is video one. So, disclaimer, I did use um OpenAI Codex to assist with development and
 
-[00:__–00:__] SYSTEM AND THINKING CHANGE
-[Describe the corrected point-in-time CPI/market boundary and how the current 48% BIL / 52% VT result and HOLD differ from the earlier state.]
+[0:00:11.700] also Google Gemini for independent validation. I did review all of the AI generated outputs,
 
-[00:__–00:__] CHECKED AI OUTPUT
-[Identify the exact Gemini grid-step claim. Show the source file and the reconciliation. Recompute the change as approximately 7.39 bp and explain that the 73.9 bp statement was corrected.]
+[0:00:16.600] and I do take responsibility for the analysis and the investment decision,
 
-[00:__–00:__] EFFECT ON JUDGMENT
-[Explain the 5.51 bp margin, window instability, and why no allocation range is authorized.]
+[0:00:19.900] and this project is for educational purposes only and is not investment advice. But overall,
 
-[00:__–END] CLOSE
-[State the remaining evidence and policy gaps.]
+[0:00:24.300] my recommendation is hold because several mandate requirements um remain unresolved still. So,
 
-POST-RECORDING TRANSCRIPT CHECKLIST
-- Replace every bracketed prompt with words actually spoken.
-- Make timestamps match the final uploaded video.
-- Correct tickers, dates, percentages, and finance terms.
-- Do not leave this draft notice in the final corrected transcript.
+[0:00:30.200] moving on to here, I will just say that for the corrected point in time um CPI. So, one important
+
+[0:00:39.400] correction did involve inflation data. So, my original analysis used September CPI, which was
+
+[0:00:43.400] not released until October 14th, after my October 5th decision date. So, this introduced a look
+
+[0:00:49.500] ahead bias. So, what I did was I replaced it with the August CPI, which was available um September
+
+[0:00:54.200] 11th and excluded the October market prices, and the corrected portfolio was 48% BIL and 52% VT.
+
+[0:01:04.200] So, moving on to the Gemini findings. So, um basically during the independent validation,
+
+[0:01:12.200] Gemini did claim that shifting 1 percentage point between BIL and VT would change expected
+
+[0:01:16.600] return by approximately 73.9 basis points, and what I wanted to do was verify this rather than
+
+[0:01:21.400] just automatically accepting the result that it actually gave me. So, this is where my validation
+
+[0:01:25.500] came in, and something that I did find out was um with the 73.9 points, I did find out so VT's
+
+[0:01:35.800] estimated return was around 11.05% compared with 3.66% for BIL, and multiplying that difference by
+
+[0:01:43.400] 1 percentage allocation changes change um gives approximately 7.39 basis points and not 73.9. So,
+
+[0:01:50.600] Gemini's calculation was off by a factor of 10, and I documented
+
+[0:01:54.500] this correction and used the independently verified results in my analysis instead.
+
+[0:02:02.993] So, just moving back into the portfolio.
+
+[0:02:09.093] So, with this like portfolio comparison and sensitivity stuff. So, what I did
+
+[0:02:14.593] find out was even though like Gemini's error did not change my allocation,
+
+[0:02:18.093] it did help reinforce like the importance of checking AI generated financial results
+
+[0:02:22.393] and the optimized portfolio did exceed like the modeled return hurdle by only 5.51 basis points
+
+[0:02:28.293] and changing that historical window also shifted the BIL from 48% to 80%. So, the sensitivity along
+
+[0:02:35.193] with like the unresolved mandate requirements supports my hold recommendation. So, just based
+
+[0:02:39.893] on that um here we can see like until Meridian's holdings, costs, liquidity, issuer concentration,
+
+[0:02:47.093] and their annual loss requirements are verified, I would not recommend deploying capital. So,
+
+[0:02:51.693] that keeps my like final recommendation of keeping that hold decision. Thank you.

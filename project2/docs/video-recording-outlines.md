@@ -1,6 +1,6 @@
 # Project 2 Video Recording Outlines
 
-These are recording plans, not evidence that any video has been recorded. Replace every placeholder in the manifest only after recording, reviewing, uploading, and checking access.
+These are the archived recording plans. The completed recordings are documented by the corrected timestamped transcripts; the submission manifest separately identifies YouTube metadata and access checks that still require confirmation.
 
 Each video must open with two short statements: identify the AI tools used and state that the student owns the analysis and decision; then state that the project is educational and not investment advice. Use only model/version identifiers actually exposed by the interfaces.
 

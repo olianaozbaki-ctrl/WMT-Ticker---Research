@@ -1,30 +1,83 @@
-DRAFT TEMPLATE — NOT AN ACTUAL RECORDING OR TRANSCRIPT
+FIN 43900: Project 2 Video 3 Timestamped Transcript
 
-Video 3 title: [INSERT FINAL YOUTUBE TITLE]
-Final video URL: [INSERT AFTER UPLOAD]
-Actual duration: [INSERT AFTER RECORDING; MAXIMUM 5:00]
-Recording date: [INSERT]
+[0:00:02.880] Hi, my name's [student name redacted under repository privacy guidance] and this is project two, video three. So full disclaimer, I used
 
-[00:00–00:__] LIVE APP, AI USE, OWNERSHIP, AND DISCLAIMER
-[Open with the running application. State the AI tools actually used and any exposed model/version identifiers. State that you own the analysis and investment decision. State: Educational project only; not investment advice.]
+[0:00:09.600] um OpenAI Codex for development and also Google Gemini for independent validation. I reviewed
 
-[00:__–00:__] RECOMMENDATION
-[Lead with HOLD funded deployment. Explain that no adoption, allocation, rebalancing, funded pilot, or allocation range is recommended now.]
+[0:00:15.680] um all of the AI generated outputs and take responsibility for the analysis and
 
-[00:__–00:__] KEY RESULTS
-[Give the October 5 decision boundary, 48% BIL / 52% VT weights, 7.5017% gross return, 7.4517% illustrative after-cost expected return, and 7.8242% volatility.]
+[0:00:19.760] investment decision of this project. Um also this project is for educational purposes only
 
-[00:__–00:__] SENSITIVITY AND RANGE
-[Explain the 5.51 bp margin, full-window versus 36-month shift, and diagnostic-only envelope.]
+[0:00:24.800] and is not investment advice at all. But moving into the actual like Meridian Foundation um kind
 
-[00:__–00:__] RISKS, STOPS, AND REVERSAL CONDITIONS
-[Explain the actual-holdings, issuer, liquidity, turnover/cost, rolling-objective, and S9 gaps. State what would maintain HOLD, cause REJECT, or permit reconsideration of a conditional pilot.]
+[0:00:30.960] of application. So my recommendation for them is a hold. I would not authorize funded deployment just
 
-[00:__–END] COMMITTEE ASK
-[Ask the committee to accept HOLD, decline funded deployment and an allocation range, and direct staff to obtain the specified evidence and policy rulings.]
+[0:00:38.240] because um several mandate requirements do remain unresolved. So with the portfolio comparison, what
 
-POST-RECORDING TRANSCRIPT CHECKLIST
-- Replace every bracketed prompt with words actually spoken.
-- Make timestamps match the final uploaded video.
-- Correct tickers, dates, percentages, mandate rules, and committee ask.
-- Do not leave this draft notice in the final corrected transcript.
+[0:00:46.560] I did was I compared three different portfolios using information available as of October 5th,
+
+[0:00:52.320] 2026. The equal-weight portfolio has an estimated return of 3.01% while the 60/40 benchmark has
+
+[0:01:00.800] an estimated return of 6.26%. So the optimized portfolio selects like a 48% BIL and 52% VT with
+
+[0:01:11.680] a 7.5% expected gross return and um 7.45% after illustrative transaction costs and then a 7.82%
+
+[0:01:22.800] annualized volatility. So although it performs better against the modeled return hurdle, this
+
+[0:01:28.240] does not establish um a full mandate compliance. So moving into the actual mandate assessment then.
+
+[0:01:36.240] So the optimized portfolio exceeds the modeled like CPI plus four return hurdle by only 5.51
+
+[0:01:44.080] basis points. However, this is based on historical return estimates and hypothetical starting
+
+[0:01:50.000] holdings, it does not guarantee that Meridian will achieve its objective over um a rolling 5-year
+
+[0:01:55.920] period. So the application therefore distinguishes between like meeting numerical constraints and
+
+[0:02:01.600] verifying the full investment mandate. So with the actual like stress test um analysis. So what the
+
+[0:02:09.760] stress test does it evaluates um changes in expected returns, historical windows,
+
+[0:02:15.760] um costs, volatility, and also correlations. So one important finding here is um in the
+
+[0:02:23.920] sensitivity. So like it's the sensitivity to the historical estimation period. So using the full um
+
+[0:02:33.200] sample it does give um like a 48% BIL allocation, while the most recent 36 months give an 80% BIL.
+
+[0:02:44.560] So this is a 32% um point difference that shows that the portfolio is sensitive to assumptions and
+
+[0:02:54.720] therefore this is where I would not recommend treating the stress results as an approved
+
+[0:02:59.200] allocation range just because it is so sensitive. So now moving into like more modeled feasibility.
+
+[0:03:10.640] So there are like several important requirements that remain unresolved.
+
+[0:03:16.080] So Meridian's actual holdings are unavailable. So turnover and implementation costs cannot be
+
+[0:03:20.880] verified here. Issuer concentration requires clarification regarding ETF exposure and
+
+[0:03:26.560] exemptions. Liquidity needs to be evaluated based on the actual investment size and the
+
+[0:03:31.920] annual loss requirement needs an approved measurement method. So under the hypothetical
+
+[0:03:37.200] um equal weight starting holdings, the 25% turnover cap makes the model infeasible. However,
+
+[0:03:44.000] this does not prove that Meridian's actual portfolio violates that requirement. So this
+
+[0:03:49.600] is where we had to use that decision framework and just understand like what could change. So
+
+[0:03:56.000] my recommendation could change if Meridian like provides verified holdings, realistic
+
+[0:04:02.640] trading costs, issuer concentration and liquidity evidence, and also clear guidance on the annual
+
+[0:04:08.880] loss requirement. So these would become like approval gates supported by monitoring triggers
+
+[0:04:15.040] and conditions for stopping the process. And if those requirements are satisfied,
+
+[0:04:19.920] the committee like would and also could consider or reconsider a conditional pilot for them. But
+
+[0:04:27.600] if a mandatory requirement is violated without like a workable remedy, this is where I would
+
+[0:04:33.440] recommend reject. But for now, I am asking the investment committee to accept that hold
+
+[0:04:38.560] position and obtain the missing evidence before authorizing any type of investment. Thank you.

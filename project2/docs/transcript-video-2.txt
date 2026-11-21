@@ -1,33 +1,77 @@
-DRAFT TEMPLATE — NOT AN ACTUAL RECORDING OR TRANSCRIPT
+FIN 43900: Project 2 Video 2 Timestamped Transcript
 
-Video 2 title: [INSERT FINAL YOUTUBE TITLE]
-Final video URL: [INSERT AFTER UPLOAD]
-Actual duration: [INSERT AFTER RECORDING; MAXIMUM 5:00]
-Recording date: [INSERT]
+[0:00:02.880] Hi, my name is [student name redacted under repository privacy guidance] and this is my project two, video two. So just to start,
 
-[00:00–00:__] AI USE, OWNERSHIP, AND DISCLAIMER
-[State the AI tools actually used and any exposed model/version identifiers. State that you own the analysis and investment decision. State: Educational project only; not investment advice.]
+[0:00:08.560] I did use OpenAI Codex for development and also Gemini for independent validation of this
 
-[00:__–00:__] REPRODUCTION
-[Show the README commands. Explain which command generates outputs and which launches Streamlit.]
+[0:00:13.440] project. I reviewed all of the outputs and take responsibility for all of the code, analysis,
 
-[00:__–00:__] DATA FLOW AND POINT-IN-TIME CONTROL
-[Explain the price, CPI, and DGS10 files; observation versus availability dates; and the October 5 decision boundary.]
+[0:00:18.480] and investment decisions in this project. Um I will mention this is an educational project and
 
-[00:__–00:__] FINANCIAL ENGINE
-[Walk through calculations.py, optimizer.py, mandate.py, stress.py, and decision_support.py. Explain the formulas and stop behavior in your own words.]
+[0:00:23.440] not investment advice at all. So just right here I'm showing my README which just explains how to
 
-[00:__–00:__] VALIDATION DEMONSTRATION
-[Show the actual test command/result and one material test. Show, but do not rerun or modify, the Locked Changed-Input checksum evidence.]
+[0:00:28.960] install, test, and also run the whole application. So moving into the actual data part. So
 
-[00:__–00:__] OUTPUT TRACE
-[Trace the 48% BIL / 52% VT output and HOLD decision from code to generated reports.]
+[0:00:36.880] um the application uses ETF prices, CPI, and also treasury yields. So for the October 5th decision,
 
-[00:__–END] FAILURE MODE
-[Explain one concrete failure mode or unresolved risk and how the system stops or reports it.]
+[0:00:42.880] prices end on September 30th and August CPI was available September 11th. So these point in time
 
-POST-RECORDING TRANSCRIPT CHECKLIST
-- Replace every bracketed prompt with words actually spoken.
-- Make timestamps match the final uploaded video.
-- Correct file names, commands, tickers, dates, and numerical results.
-- Do not leave this draft notice in the final corrected transcript.
+[0:00:48.800] checks prevent future information from entering the actual model. And this is one of the other
+
+[0:00:54.880] CSV files that I did have. So moving into the actual financial engine part of this. So with this
+
+[0:01:03.760] um calculation, the financial engine does calculate weighted portfolio returns,
+
+[0:01:08.480] covariance-based volatility, turnover, and also transaction costs. While the optimizer
+
+[0:01:14.720] does search long only allocations in 1% increments while enforcing modeled constraints. So here if
+
+[0:01:21.760] no portfolio meets the return hurdle and reserve requirement, it reports infeasibility rather than
+
+[0:01:27.040] forcing a result in. Moving into like the mandate and stress testing part of this. So here is the
+
+[0:01:35.440] mandate checker which just distinguishes um past, failed, and also unverified requirements. While
+
+[0:01:42.240] the stress test um like change returns, historical windows, cost, volatility, and also correlations,
+
+[0:01:50.240] and finally this decision support module combines like all of those findings, and prevents missing
+
+[0:01:56.080] data from being treated as compliance. Moving into the testing part of the data. So what this
+
+[0:02:05.360] project does is it uses automated tests to check calculations, data availability, optimization,
+
+[0:02:11.600] and also stress behavior. So I'm not going to run it in this video just because it does take
+
+[0:02:17.360] a little bit long. But what I did was I ran the test with um this first line of code here. And
+
+[0:02:25.280] what my latest test did is it passed um and ran 60 tests in 50 seconds. There were no failures.
+
+[0:02:33.680] And the point in time test reject information rather um like, it just rejects information
+
+[0:02:39.440] that was unavailable by the decision date. So now moving into like the actual locked changed
+
+[0:02:47.920] um input and its records. So here is the whole MD file and then I also have like a folder of
+
+[0:02:56.080] the log change like records here and here. There are like quite a few files there. But just to go
+
+[0:03:02.720] over this one, what I did was I recorded like a prediction before increasing the actual required
+
+[0:03:09.280] real return spread from 4 to 5%. And the optimized allocation changed from 48% BIL and 52% VT to 35%
+
+[0:03:19.920] BIL and 65% VT. So the recommendation did remain as a hold and I preserved the original evidence
+
+[0:03:29.360] and also the check sums. And so we can see here in the phase 2 results of the MD file that the
+
+[0:03:38.720] final portfolio did have like an illustrative after cost expected return of 7.45%. Here it's
+
+[0:03:46.160] um rounding to 7.5% and also an annualized volatility of 7.82%. However like the actual
+
+[0:03:53.440] holdings and also the trading costs and other mandate um requirements remain unverified. So
+
+[0:03:59.520] that is where the application is actually um recommending it as a hold still rather
+
+[0:04:07.280] than just approving the investment decision. So overall what like the system is doing is
+
+[0:04:13.200] um it's connecting reproducible data, financial analysis, stress testing, and also validation
+
+[0:04:19.040] to like a defensible investment decision, which is that hold. So thank you very much.
